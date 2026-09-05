@@ -1,3 +1,25 @@
-dist
-node_modules
+# dependencies
+node_modules/
+
+# build output
+dist/
+
+# environment & secrets — JANGAN commit
 .env
+.env.*
+!.env.example
+
+# logs & local artifacts
+*.log
+zs-dev.log
+zs-vite.log
+
+# backups
+*.bak
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Vercel
+.vercel/
