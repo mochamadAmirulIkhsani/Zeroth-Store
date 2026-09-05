@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Save } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 
@@ -7,6 +7,14 @@ export function AdminSettings() {
   const [form, setForm] = useState({ ...settings });
   const [statsForm, setStatsForm] = useState({ ...stats });
   const [saved, setSaved] = useState('');
+
+  useEffect(() => {
+    setForm({ ...settings });
+  }, [settings]);
+
+  useEffect(() => {
+    setStatsForm({ ...stats });
+  }, [stats]);
 
   const showSaved = (msg: string) => {
     setSaved(msg);
@@ -127,6 +135,15 @@ export function AdminSettings() {
               value={form.socialMedia?.discord ?? ''}
               onChange={e => setForm(f => ({ ...f, socialMedia: { ...f.socialMedia, discord: e.target.value } }))}
               placeholder="discord.gg/zerothstore"
+            />
+          </div>
+          <div>
+            <label className="block text-xs font-medium text-gray-600 mb-1">TikTok</label>
+            <input
+              className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-300"
+              value={form.socialMedia?.tiktok ?? ''}
+              onChange={e => setForm(f => ({ ...f, socialMedia: { ...f.socialMedia, tiktok: e.target.value } }))}
+              placeholder="@zerothstore"
             />
           </div>
         </div>

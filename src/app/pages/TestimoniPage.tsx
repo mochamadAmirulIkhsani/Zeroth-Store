@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { Star, ChevronDown, X, SlidersHorizontal, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import type { Game } from '../data/gameData';
+import { formatDate } from '../components/ui/formatDate';
 
 const ITEMS_PER_PAGE = 10;
 
@@ -264,7 +265,7 @@ export function TestimoniPage() {
                             </div>
                             <span className="font-medium text-[#0A0A0A] text-sm">{t.name}</span>
                           </div>
-                          <span className="text-gray-400 text-xs">{t.date}</span>
+                          <span className="text-gray-400 text-xs">{formatDate(t.date)}</span>
                         </div>
                       </motion.div>
                     );

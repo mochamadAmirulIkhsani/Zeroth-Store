@@ -1,7 +1,9 @@
 import { useState, useRef, useEffect } from 'react';
 import { Plus, Pencil, Trash2, Eye, EyeOff, ChevronDown, ChevronLeft, ChevronRight, Check } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
-import type { Service } from '../../data/gameData';
+import type { Service, ServiceCategory } from '../../data/gameData';
+
+const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL as string | undefined) ?? '';
 
 const EMPTY_SERVICE: Omit<Service, 'id'> = {
   name: '',
@@ -13,7 +15,6 @@ const EMPTY_SERVICE: Omit<Service, 'id'> = {
   active: true,
 };
 
-const CATEGORIES = ['Leveling', 'Endgame', 'Story', 'Farming', 'Build', 'Event', 'Daily', 'Exploration'];
 const ITEMS_PER_PAGE = 5;
 
 // ── Custom Dropdown ──────────────────────────────────────────────
@@ -181,13 +182,19 @@ function Pagination({
 
 // ── Main Component ───────────────────────────────────────────────
 export function AdminServices() {
-  const { games, setGames } = useApp();
+  const { games, setGames, categories, setCategories } = useApp();
   const [selectedGameId, setSelectedGameId] = useState(games[0]?.id ?? '');
   const [editingId, setEditingId] = useState<string | null>(null);
   const [form, setForm] = useState<Omit<Service, 'id'>>(EMPTY_SERVICE);
   const [showForm, setShowForm] = useState(false);
   const [savedMsg, setSavedMsg] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+  // Kategori management modal
+  const [showCategoryModal, setShowCategoryModal] = useState(false);
+  const [catName, setCatName] = useState('');
+  const [catColor, setCatColor] = useState('#6B7280');
+  const [catEditing, setCatEditing] = useState<ServiceCategory | null>(null);
+  const [catError, setCatError] = useState('');
 
   const selectedGame = games.find(g => g.id === selectedGameId);
 
@@ -271,6 +278,76 @@ export function AdminServices() {
         ? { ...g, services: g.services.map(s => s.id === id ? { ...s, active: !s.active } : s) }
         : g
     ));
+  };
+
+  // ── Category management ────────────────────────────────────────
+  const openAddCategory = () => {
+    setCatEditing(null);
+    setCatName('');
+    setCatColor('#6B7280');
+    setCatError('');
+    setShowCategoryModal(true);
+  };
+
+  const openEditCategory = (c: ServiceCategory) => {
+    setCatEditing(c);
+    setCatName(c.name);
+    setCatColor(c.color);
+    setCatError('');
+    setShowCategoryModal(true);
+  };
+
+  const saveCategory = async () => {
+    const name = catName.trim();
+    if (!name) { setCatError('Nama kategori wajib diisi'); return; }
+    setCatError('');
+    const token = sessionStorage.getItem('zeroth_admin_token');
+    if (!token) { setCatError('Sesi admin berakhir, login ulang'); return; }
+    try {
+      if (catEditing) {
+        // rename/color -> slug berubah? jaga konsistensi: kirim name+color, slug lama
+        const res = await fetch(`${API_BASE_URL}/api/categories/${encodeURIComponent(catEditing.id)}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+          body: JSON.stringify({ name, color: catColor }),
+        });
+        if (!res.ok) { const j = await res.json().catch(() => ({})); setCatError(j.message || 'Gagal mengubah kategori'); return; }
+      } else {
+        const res = await fetch(`${API_BASE_URL}/api/categories`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+          body: JSON.stringify({ name, color: catColor }),
+        });
+        if (!res.ok) { const j = await res.json().catch(() => ({})); setCatError(j.message || 'Gagal menambah kategori'); return; }
+      }
+      // refresh categories from API
+      const cats = await (await fetch('http://localhost:4000/api/categories')).json();
+      setCategories(cats);
+      setShowCategoryModal(false);
+      showSaved(catEditing ? 'Kategori diperbarui' : 'Kategori ditambahkan');
+    } catch (error) {
+      console.error('Category save failed', error);
+      setCatError('Gagal menyimpan kategori. Cek koneksi API.');
+    }
+  };
+
+  const deleteCategory = async (c: ServiceCategory) => {
+    if (!confirm(`Hapus kategori "${c.name}"? Layanan dengan kategori ini akan berubah ke "Umum".`)) return;
+    const token = sessionStorage.getItem('zeroth_admin_token');
+    if (!token) return;
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/categories/${encodeURIComponent(c.id)}`, {
+        method: 'DELETE',
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (!res.ok) { const j = await res.json().catch(() => ({})); alert(j.message || 'Gagal menghapus kategori'); return; }
+      const cats = await (await fetch(`${API_BASE_URL}/api/categories`)).json();
+      setCategories(cats);
+      showSaved('Kategori dihapus');
+    } catch (error) {
+      console.error('Category delete failed', error);
+      alert('Gagal menghapus kategori');
+    }
   };
 
   return (
@@ -384,10 +461,17 @@ export function AdminServices() {
                       value={form.category}
                       onChange={e => setForm(f => ({ ...f, category: e.target.value }))}
                     >
-                      {CATEGORIES.map(c => <option key={c} value={c}>{c}</option>)}
+                      {categories.map(c => <option key={c.id} value={c.name}>{c.name}</option>)}
                     </select>
                     <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
                   </div>
+                  <button
+                    type="button"
+                    onClick={openAddCategory}
+                    className="mt-1.5 text-xs text-amber-600 hover:text-amber-700 font-medium"
+                  >
+                    + Kelola Kategori
+                  </button>
                 </div>
                 <div className="sm:col-span-2">
                   <label className="block text-xs font-medium text-gray-600 mb-1">Catatan / Syarat (opsional)</label>
@@ -506,6 +590,82 @@ export function AdminServices() {
             onChange={setCurrentPage}
           />
         </>
+      )}
+
+      {/* ── Kelola Kategori Modal ── */}
+      {showCategoryModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-5">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">
+              {catEditing ? 'Edit Kategori' : 'Tambah Kategori'}
+            </h3>
+
+            <label className="block text-xs font-medium text-gray-600 mb-1">Nama Kategori *</label>
+            <input
+              value={catName}
+              onChange={e => setCatName(e.target.value)}
+              placeholder="Contoh: Premium"
+              className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-300 mb-3"
+            />
+
+            <label className="block text-xs font-medium text-gray-600 mb-1">Warna</label>
+            <div className="flex items-center gap-2 mb-4">
+              <input
+                type="color"
+                value={catColor}
+                onChange={e => setCatColor(e.target.value)}
+                className="w-10 h-10 rounded-lg border border-gray-200 cursor-pointer"
+              />
+              <span className="text-sm text-gray-500">{catColor}</span>
+            </div>
+
+            {catError && <p className="text-xs text-red-500 mb-3">{catError}</p>}
+
+            <div className="flex flex-wrap gap-2 mb-4 max-h-40 overflow-y-auto">
+              {categories.map(c => (
+                <span
+                  key={c.id}
+                  className="inline-flex items-center gap-1.5 text-xs px-2.5 py-1.5 rounded-full border border-gray-200 bg-gray-50"
+                >
+                  <span className="w-2 h-2 rounded-full" style={{ backgroundColor: c.color }} />
+                  {c.name}
+                  <button
+                    type="button"
+                    onClick={() => openEditCategory(c)}
+                    className="text-amber-600 hover:text-amber-800"
+                    title="Edit"
+                  >
+                    <Pencil className="w-3 h-3" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => deleteCategory(c)}
+                    className="text-red-400 hover:text-red-600"
+                    title="Hapus"
+                  >
+                    <Trash2 className="w-3 h-3" />
+                  </button>
+                </span>
+              ))}
+            </div>
+
+            <div className="flex gap-3">
+              <button
+                onClick={saveCategory}
+                className="flex-1 px-4 py-2.5 font-medium rounded-xl text-sm transition-all hover:scale-[1.02] active:scale-[0.98]"
+                style={{ background: 'linear-gradient(135deg, #fbbf24, #f97316)', color: '#000' }}
+              >
+                {catEditing ? 'Simpan Perubahan' : 'Tambah Kategori'}
+              </button>
+              <button
+                onClick={() => setShowCategoryModal(false)}
+                className="px-4 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded-xl text-sm"
+              >
+                Tutup
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

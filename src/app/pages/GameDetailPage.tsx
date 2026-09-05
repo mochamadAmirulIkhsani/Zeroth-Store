@@ -8,7 +8,7 @@ import {
 import { useApp } from '../context/AppContext';
 import { getWALink, DEFAULT_WA_TEMPLATE } from '../data/gameData';
 import type { Service, Game } from '../data/gameData';
-
+import { formatDate } from '../components/ui/formatDate';
 const CATEGORY_COLORS: Record<string, string> = {
   Leveling: '#4A90D9',
   Endgame: '#7B5EA7',
@@ -20,8 +20,14 @@ const CATEGORY_COLORS: Record<string, string> = {
   Exploration: '#2DD4BF',
 };
 
+const FALLBACK_CATEGORY_COLOR = '#6B7280';
+
 function ServiceCard({ service, game }: { service: Service; game: Game }) {
-  const { settings } = useApp();
+  const { settings, categories } = useApp();
+  // kategori dinamis dari DB menimpa default; fallback untuk yang tak terdaftar
+  const colorMap: Record<string, string> = { ...CATEGORY_COLORS };
+  for (const c of categories) colorMap[c.name] = c.color;
+  const catColor = colorMap[service.category] ?? FALLBACK_CATEGORY_COLOR;
   const waLink = getWALink(
     game.name,
     service.name,
@@ -44,8 +50,8 @@ function ServiceCard({ service, game }: { service: Service; game: Game }) {
             <span
               className="text-xs px-2 py-0.5 rounded-full font-medium"
               style={{
-                backgroundColor: (CATEGORY_COLORS[service.category] ?? '#6B7280') + '15',
-                color: CATEGORY_COLORS[service.category] ?? '#6B7280',
+                backgroundColor: catColor + '15',
+                color: catColor,
               }}
             >
               {service.category}
@@ -267,7 +273,7 @@ export function GameDetailPage() {
                         {Array.from({ length: 5 }).map((_, j) => (
                           <Star key={j} className={`w-3.5 h-3.5 ${j < t.rating ? 'text-amber-400 fill-amber-400' : 'text-gray-200'}`} />
                         ))}
-                        <span className="text-gray-400 text-xs ml-1">{t.date}</span>
+                        <span className="text-gray-400 text-xs ml-1">{formatDate(t.date)}</span>
                       </div>
                       <p className="text-gray-700 text-sm mb-3">"{t.content}"</p>
                       <div>

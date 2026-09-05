@@ -6,6 +6,7 @@ import { useApp } from '../../context/AppContext';
 export function AdminLogin() {
   const { adminLogin } = useApp();
   const navigate = useNavigate();
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPass, setShowPass] = useState(false);
   const [error, setError] = useState('');
@@ -16,12 +17,12 @@ export function AdminLogin() {
     setError('');
     setLoading(true);
     await new Promise(r => setTimeout(r, 600));
-    const ok = adminLogin(password);
+    const ok = await adminLogin(email, password);
     setLoading(false);
     if (ok) {
       navigate('/admin/dashboard');
     } else {
-      setError('Password salah. Coba lagi.');
+      setError('Email atau password salah. Coba lagi.');
       setPassword('');
     }
   };
@@ -47,6 +48,20 @@ export function AdminLogin() {
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <label className="block text-gray-400 text-sm mb-1.5">Email</label>
+              <div className="relative">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                  placeholder="admin@zeroth.store"
+                  className="w-full bg-[#0A0A0A] border border-gray-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 placeholder-gray-600 transition"
+                  required
+                />
+              </div>
+            </div>
+
             <div>
               <label className="block text-gray-400 text-sm mb-1.5">Password</label>
               <div className="relative">
@@ -85,7 +100,7 @@ export function AdminLogin() {
 
           <div className="mt-4 p-3 bg-gray-800/50 rounded-xl">
             <p className="text-gray-500 text-xs text-center">
-              Demo password: <code className="text-amber-400">zeroth2026</code>
+              Login: <code className="text-amber-400">admin@zeroth.store</code> / password dari <code className="text-amber-400">ADMIN_PASSWORD</code> di <code className="text-amber-400">.env</code>
             </p>
           </div>
         </div>

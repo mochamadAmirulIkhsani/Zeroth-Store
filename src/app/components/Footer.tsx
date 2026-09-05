@@ -1,5 +1,5 @@
 import { Link } from 'react-router';
-import { MessageCircle, Zap, Instagram, ArrowRight, Shield, Clock, Star } from 'lucide-react';
+import { MessageCircle, Zap, Instagram, Music2, ArrowRight, Shield, Clock, Star } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useApp } from '../context/AppContext';
 
@@ -164,6 +164,30 @@ export function Footer() {
                   title="Instagram"
                 >
                   <Instagram className="w-4 h-4 text-rose-400" />
+                </a>
+              )}
+              {settings.socialMedia?.tiktok && (
+                <a
+                  href={`https://tiktok.com/@${settings.socialMedia.tiktok.replace(/^@/, '')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-110"
+                  style={{ background: 'rgba(34,211,238,0.1)', border: '1px solid rgba(34,211,238,0.2)' }}
+                  title="TikTok"
+                >
+                  <Music2 className="w-4 h-4 text-cyan-400" />
+                </a>
+              )}
+              {settings.socialMedia?.discord && (
+                <a
+                  href={settings.socialMedia.discord}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-110"
+                  style={{ background: 'rgba(129,140,248,0.1)', border: '1px solid rgba(129,140,248,0.2)' }}
+                  title="Discord"
+                >
+                  <MessageCircle className="w-4 h-4 text-indigo-400" />
                 </a>
               )}
             </div>

@@ -67,21 +67,23 @@ export function AdminGames() {
     setEditForm({ name: game.name, description: game.description, tagline: game.tagline, color: game.color, image: game.image });
   };
 
-  const saveEdit = (id: string) => {
-    setGames(games.map(g => g.id === id ? { ...g, ...editForm } : g));
+  const saveEdit = async (id: string) => {
+    const ok = await setGames(games.map(g => g.id === id ? { ...g, ...editForm } : g));
     setEditingId(null);
-    setSaved(id);
-    setTimeout(() => setSaved(null), 2000);
+    setSaved(ok ? id : `GAGAL: ${id}`);
+    setTimeout(() => setSaved(null), 3000);
   };
 
   // ── delete game ──
-  const deleteGame = (id: string) => {
-    setGames(games.filter(g => g.id !== id));
+  const deleteGame = async (id: string) => {
     setDeleteConfirmId(null);
+    const ok = await setGames(games.filter(g => g.id !== id));
     // adjust page if last item on page was deleted
     const newTotal = games.length - 1;
     const newTotalPages = Math.max(1, Math.ceil(newTotal / ITEMS_PER_PAGE));
     if (currentPage > newTotalPages) setCurrentPage(newTotalPages);
+    setSaved(ok ? `Deleted ${id}` : `GAGAL hapus: ${id}`);
+    setTimeout(() => setSaved(null), 3000);
   };
 
   // ── validate & add new game ──
@@ -95,7 +97,7 @@ export function AdminGames() {
     return Object.keys(errs).length === 0;
   };
 
-  const handleAddGame = () => {
+  const handleAddGame = async () => {
     if (!validateAddForm()) return;
 
     const slug = slugify(addForm.name);
@@ -123,13 +125,16 @@ export function AdminGames() {
       ],
     };
 
-    setGames([...games, newGame]);
+    const ok = await setGames([...games, newGame]);
     // jump to last page to see the newly added game
     setCurrentPage(Math.ceil((games.length + 1) / ITEMS_PER_PAGE));
     setShowAddModal(false);
     setAddForm(EMPTY_FORM);
     setAddErrors({});
     setImagePreviewError(false);
+    if (!ok) {
+      alert('GAGAL menyimpan game baru — cek console (F12) untuk detail. Perubahan hanya lokal, tidak masuk database.');
+    }
   };
 
   const closeModal = () => {
@@ -204,7 +209,7 @@ export function AdminGames() {
                             setEditImageError(false);
                             setEditForm(f => ({ ...f, image: e.target.value }));
                           }}
-                          placeholder="https://example.com/cover.jpg"
+                          placeholder="Tempel URL gambar cover…"
                         />
                       </div>
                       {editImageError && <p className="text-red-400 text-xs">URL gambar tidak valid</p>}
@@ -467,7 +472,7 @@ export function AdminGames() {
                         setImagePreviewError(false);
                         if (addErrors.image) setAddErrors(err => ({ ...err, image: undefined }));
                       }}
-                      placeholder="https://example.com/game-cover.jpg"
+                      placeholder="Tempel URL gambar cover…"
                     />
                     {addErrors.image && <p className="text-red-500 text-xs mt-1">{addErrors.image}</p>}
                   </div>

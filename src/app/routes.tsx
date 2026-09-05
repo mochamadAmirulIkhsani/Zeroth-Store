@@ -13,6 +13,7 @@ import { AdminGames } from './pages/admin/AdminGames';
 import { AdminServices } from './pages/admin/AdminServices';
 import { AdminTestimonials } from './pages/admin/AdminTestimonials';
 import { AdminSettings } from './pages/admin/AdminSettings';
+import { AdminUsers } from './pages/admin/AdminUsers';
 import { AdminWhatsApp } from './pages/admin/AdminWhatsApp';
 import { AdminFAQ } from './pages/admin/AdminFAQ';
 
@@ -42,6 +43,7 @@ export const router = createBrowserRouter([
           { path: 'testimonials', Component: AdminTestimonials },
           { path: 'faq', Component: AdminFAQ },
           { path: 'settings', Component: AdminSettings },
+          { path: 'users', Component: AdminUsers },
           { path: 'whatsapp', Component: AdminWhatsApp },
         ],
       },

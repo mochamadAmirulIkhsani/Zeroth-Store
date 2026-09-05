@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, Outlet, useLocation, useNavigate, Navigate } from 'react-router';
 import {
   Zap, LayoutDashboard, Gamepad2, Wrench, Star, Settings,
-  MessageCircle, LogOut, Menu, X, ChevronRight, HelpCircle
+  MessageCircle, LogOut, Menu, X, ChevronRight, HelpCircle, Users
 } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 
@@ -13,6 +13,7 @@ const NAV = [
   { href: '/admin/testimonials', icon: Star, label: 'Testimoni' },
   { href: '/admin/faq', icon: HelpCircle, label: 'FAQ' },
   { href: '/admin/settings', icon: Settings, label: 'Pengaturan' },
+  { href: '/admin/users', icon: Users, label: 'User Admin' },
   { href: '/admin/whatsapp', icon: MessageCircle, label: 'WhatsApp' },
 ];
 

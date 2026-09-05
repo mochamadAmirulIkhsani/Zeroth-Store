@@ -10,6 +10,12 @@ export interface Service {
   waTemplate?: string;
 }
 
+export interface ServiceCategory {
+  id: string;   // slug
+  name: string;
+  color: string;
+}
+
 export interface FAQ {
   id: string;
   question: string;
@@ -280,6 +286,17 @@ export const INITIAL_FAQS: FAQ[] = [
   { id: 'f6', question: 'Apakah akun bisa kena ban karena joki?', answer: 'Risiko ban sangat minimal karena kami menggunakan metode yang aman dan tidak melanggar ToS game secara kasar. Namun kami tetap menyarankan untuk mengganti password setelah joki selesai.', category: 'Keamanan', active: true },
   { id: 'f7', question: 'Bisakah saya memantau progress joki?', answer: 'Tentu! Admin kami akan mengirimkan update progress secara berkala melalui WhatsApp, termasuk screenshot sebagai bukti pengerjaan.', category: 'Umum', active: true },
   { id: 'f8', question: 'Bagaimana kebijakan refund?', answer: 'Refund dapat dilakukan jika kami tidak dapat menyelesaikan pesanan sesuai kesepakatan. Detail kebijakan refund akan dijelaskan saat diskusi awal.', category: 'Garansi', active: true },
+];
+
+export const INITIAL_CATEGORIES: ServiceCategory[] = [
+  { id: 'leveling', name: 'Leveling', color: '#4A90D9' },
+  { id: 'endgame', name: 'Endgame', color: '#7B5EA7' },
+  { id: 'story', name: 'Story', color: '#F59E0B' },
+  { id: 'farming', name: 'Farming', color: '#10B981' },
+  { id: 'build', name: 'Build', color: '#F97316' },
+  { id: 'event', name: 'Event', color: '#EF4444' },
+  { id: 'daily', name: 'Daily', color: '#6B7280' },
+  { id: 'exploration', name: 'Exploration', color: '#2DD4BF' },
 ];
 
 export const INITIAL_STATS = {

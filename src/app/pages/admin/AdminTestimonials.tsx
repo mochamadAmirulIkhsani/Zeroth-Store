@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { Plus, Pencil, Trash2, Star, Eye, EyeOff, Bookmark, ChevronDown, ChevronLeft, ChevronRight, Check } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import type { Testimonial } from '../../data/gameData';
+import { formatDate } from '../../components/ui/formatDate';
 
 const EMPTY: Omit<Testimonial, 'id'> = {
   name: '',
@@ -431,7 +432,7 @@ export function AdminTestimonials() {
                 <div className="flex items-center gap-2 mb-1">
                   <Stars rating={t.rating} />
                   <span className="text-gray-300 text-xs">·</span>
-                  <span className="text-gray-400 text-xs">{t.date}</span>
+                  <span className="text-gray-400 text-xs">{formatDate(t.date)}</span>
                   {t.service && (
                     <>
                       <span className="text-gray-300 text-xs">·</span>
