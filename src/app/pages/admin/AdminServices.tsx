@@ -321,7 +321,7 @@ export function AdminServices() {
         if (!res.ok) { const j = await res.json().catch(() => ({})); setCatError(j.message || 'Gagal menambah kategori'); return; }
       }
       // refresh categories from API
-      const cats = await (await fetch('http://localhost:4000/api/categories')).json();
+      const cats = await (await fetch(`${API_BASE_URL}/api/categories`)).json();
       setCategories(cats);
       setShowCategoryModal(false);
       showSaved(catEditing ? 'Kategori diperbarui' : 'Kategori ditambahkan');
