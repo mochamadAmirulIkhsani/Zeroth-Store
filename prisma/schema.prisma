@@ -1,0 +1,127 @@
+generator client {
+  provider     = "prisma-client-js"
+  engineType   = "client"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum GameStatus {
+  active
+  inactive
+}
+
+enum UserRole {
+  ADMIN
+  OWNER
+}
+
+model User {
+  id           String   @id @default(uuid()) @db.Uuid
+  name         String
+  email        String   @unique
+  passwordHash String   @map("password_hash")
+  role         UserRole @default(ADMIN)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Game {
+  id           String   @id @default(uuid()) @db.Uuid
+  name         String
+  slug         String   @unique
+  description  String
+  tagline      String
+  color        String   @default("#4A90D9")
+  accentColor  String   @default("#E8B84B")
+  image        String   @default("")
+  status       GameStatus @default(active)
+  waTemplate   String?
+  displayOrder Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  services      Service[]
+}
+
+model Service {
+  id          String   @id @default(uuid()) @db.Uuid
+  gameId      String   @map("game_id") @db.Uuid
+  game        Game     @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  name        String
+  description String   @default("")
+  duration    String   @default("")
+  price       String   @default("")
+  notes       String?
+  category    String   @default("Umum")
+  active      Boolean  @default(true)
+  waTemplate  String?
+  displayOrder Int     @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([gameId])
+}
+
+model ServiceCategory {
+  id    String @id @default(uuid()) @db.Uuid
+  slug  String @unique
+  name  String
+  color String @default("#6B7280")
+  displayOrder Int @default(0)
+  active Boolean @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model FAQ {
+  id     String @id @default(uuid()) @db.Uuid
+  gameId String?
+  question String
+  answer   String
+  category String @default("Umum")
+  active   Boolean @default(true)
+  displayOrder Int @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Testimonial {
+  id     String @id @default(uuid()) @db.Uuid
+  gameId String?
+  name   String
+  service String
+  rating Int @default(5)
+  content String
+  date   DateTime
+  featured Boolean @default(false)
+  active Boolean @default(true)
+  avatar String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model GlobalSettings {
+  id             Int     @id @default(1)
+  whatsappNumber String  @default("6281234567890")
+  heroHeadline   String  @default("")
+  heroSubheadline String @default("")
+  operationalHours String @default("")
+  responseTime   String  @default("")
+  announcement   String  @default("")
+  footerText     String  @default("")
+  socialMedia    Json    @default("{}")
+  updatedAt      DateTime @updatedAt
+}
+
+model Stats {
+  id               Int  @id @default(1)
+  ordersCompleted  Int  @default(0)
+  gamesSupported   Int  @default(0)
+  satisfactionRate Int  @default(0)
+  activeClients    Int  @default(0)
+  updatedAt        DateTime @updatedAt
+}

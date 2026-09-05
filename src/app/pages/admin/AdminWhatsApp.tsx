@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { MessageCircle, Save, ExternalLink, Copy, Check, RotateCcw, Info } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import { DEFAULT_WA_TEMPLATE, applyWaTemplate } from '../../data/gameData';
@@ -24,6 +24,24 @@ export function AdminWhatsApp() {
   const [savedGames, setSavedGames] = useState<Record<string, boolean>>({});
   const [copied, setCopied] = useState('');
   const [activeGame, setActiveGame] = useState(games[0]?.id ?? '');
+
+  useEffect(() => {
+    setNumber(settings.whatsappNumber);
+  }, [settings.whatsappNumber]);
+
+  useEffect(() => {
+    setDrafts((prev) => {
+      const next: Record<string, string> = {};
+      for (const game of games) {
+        next[game.id] = prev[game.id] ?? game.waTemplate ?? DEFAULT_WA_TEMPLATE;
+      }
+      return next;
+    });
+
+    if (!activeGame || !games.some((game) => game.id === activeGame)) {
+      setActiveGame(games[0]?.id ?? '');
+    }
+  }, [games, activeGame]);
 
   const handleSaveNumber = () => {
     setSettings({ ...settings, whatsappNumber: number });

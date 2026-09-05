@@ -1,8 +1,8 @@
 import { spawn } from 'node:child_process';
-import process from 'node:process';
+import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
+import process from 'node:process';
 
-const nodemonCli = fileURLToPath(new URL('../node_modules/nodemon/bin/nodemon.js', import.meta.url));
 const children = [];
 let isShuttingDown = false;
 
@@ -23,8 +23,10 @@ const stopAll = (exitCode = 0) => {
   process.exit(exitCode);
 };
 
+const viteBin = fileURLToPath(new URL('../node_modules/vite/bin/vite.js', import.meta.url));
+
 const runManaged = (name, args) => {
-  const child = spawn(process.execPath, [nodemonCli, ...args], { stdio: 'inherit' });
+  const child = spawn(process.execPath, args, { stdio: 'inherit' });
   children.push(child);
 
   child.on('exit', (code, signal) => {
@@ -45,30 +47,13 @@ const runManaged = (name, args) => {
 process.on('SIGINT', () => stopAll(0));
 process.on('SIGTERM', () => stopAll(0));
 
-runManaged('api', [
-  '--watch',
-  'server.mjs',
-  '--ext',
-  'js,mjs,json',
-  '--signal',
-  'SIGTERM',
-  '--exec',
-  'node server.mjs',
-]);
+if (!existsSync(viteBin)) {
+  console.error('vite binary not found. Run `npm install` first.');
+  process.exit(1);
+}
 
-runManaged('web', [
-  '--watch',
-  'src',
-  '--watch',
-  'index.html',
-  '--watch',
-  'vite.config.ts',
-  '--watch',
-  'postcss.config.mjs',
-  '--ext',
-  'js,mjs,cjs,ts,tsx,jsx,css,html,json',
-  '--signal',
-  'SIGTERM',
-  '--exec',
-  'vite',
-]);
+// API: auto-restart on server.mjs change (Node built-in watch)
+runManaged('api', ['--watch', 'server.mjs', 'server.mjs']);
+
+// Web: Vite dev server (has its own HMR, no restart needed for src/ edits)
+runManaged('web', [viteBin]);
