@@ -1,10 +1,7 @@
 {
   "version": 2,
-  "builds": [
-    { "src": "server.mjs", "use": "@vercel/node" }
-  ],
   "routes": [
-    { "src": "/api/(.*)", "dest": "/server.mjs" },
-    { "src": "/(.*)", "dest": "/dist/index.html" }
+    { "src": "/api/(.*)", "dest": "/api" },
+    { "src": "/(?!(api|assets|.*\\.(?:js|css|png|jpg|jpeg|svg|ico|webp|woff2?))).*", "dest": "/index.html" }
   ]
 }
