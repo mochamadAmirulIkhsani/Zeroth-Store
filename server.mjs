@@ -68,6 +68,23 @@ app.get('/api/health', (_req, res) => {
   res.json({ ok: true, message: 'Zeroth Store API is running' });
 });
 
+// Debug: expose raw DB connection error (masked) — for diagnosing production 500s
+app.get('/api/debug/db', async (_req, res) => {
+  const mask = (s = '') => s.replace(/:[^:@/]+@/, ':***@').slice(0, 120);
+  try {
+    await prisma.$queryRaw`SELECT 1 as ok`;
+    res.json({ ok: true, dbUrl: mask(process.env.DATABASE_URL), directUrl: mask(process.env.DIRECT_URL) });
+  } catch (e) {
+    res.status(500).json({
+      ok: false,
+      dbUrl: mask(process.env.DATABASE_URL),
+      directUrl: mask(process.env.DIRECT_URL),
+      error: String(e.message || e).slice(0, 500),
+      code: e.code || null,
+    });
+  }
+});
+
 app.use('/api/admin', adminRoutes);
 app.use('/api/games', gamesRoutes);
 app.use('/api/testimonials', testimonialsRoutes);
