@@ -4,11 +4,11 @@
   "functions": {
     "api/index.mjs": {
       "outputFileTracingIncludes": {
-        "node_modules/.prisma/client/query_compiler_bg.wasm": "./node_modules/.prisma/client/query_compiler_bg.wasm",
-        "node_modules/.prisma/client/query_engine_bg.wasm": "./node_modules/.prisma/client/query_engine_bg.wasm",
-        "node_modules/.prisma/client/schema.prisma": "./node_modules/.prisma/client/schema.prisma",
-        "node_modules/.prisma/client/query_compiler_bg.js": "./node_modules/.prisma/client/query_compiler_bg.js",
-        "node_modules/.prisma/client/query_engine_bg.js": "./node_modules/.prisma/client/query_engine_bg.js"
+        "node_modules/.prisma/client/query_compiler_bg.wasm": ["node_modules/.prisma/client/query_compiler_bg.wasm"],
+        "node_modules/.prisma/client/query_compiler_bg.js": ["node_modules/.prisma/client/query_compiler_bg.js"],
+        "node_modules/.prisma/client/query_engine_bg.wasm": ["node_modules/.prisma/client/query_engine_bg.wasm"],
+        "node_modules/.prisma/client/query_engine_bg.js": ["node_modules/.prisma/client/query_engine_bg.js"],
+        "node_modules/.prisma/client/schema.prisma": ["node_modules/.prisma/client/schema.prisma"]
       }
     }
   },
