@@ -2,15 +2,16 @@ name: Keep Supabase Awake
 
 on:
   schedule:
-    - cron: '0 8 * * *'
+    - cron: '0 8 * * *'   # daily at 8am UTC
   workflow_dispatch:
 
 jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
-      - name: Hit Supabase
+      - name: Query Supabase DB
         run: |
-          curl -sS -o /dev/null -w "%{http_code}\n" "$SUPABASE_URL"
-        env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          curl -sS -f -o /dev/null -w "%{http_code}" \
+            "${SUPABASE_URL}/rest/v1/?select=1" \
+            -H "apikey: ${SUPABASE_ANON_KEY}" \
+            -H "Authorization: Bearer ${SUPABASE_ANON_KEY}"
