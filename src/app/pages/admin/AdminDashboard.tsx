@@ -19,7 +19,7 @@ export function AdminDashboard() {
   ];
 
   const quickActions = [
-    { label: 'Tambah Testimoni', icon: Plus, href: '/admin/testimonials', color: 'bg-amber-50 text-amber-700 border-amber-200' },
+    { label: 'Tambah Testimoni', icon: Plus, href: '/admin/testimonials', color: 'bg-primary text-primary border-primary' },
     { label: 'Edit Nomor WA', icon: MessageCircle, href: '/admin/whatsapp', color: 'bg-green-50 text-green-700 border-green-200' },
     { label: 'Update Headline', icon: TrendingUp, href: '/admin/settings', color: 'bg-blue-50 text-blue-700 border-blue-200' },
   ];
@@ -27,7 +27,7 @@ export function AdminDashboard() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+        <h1 className="text-2xl font-bold text-gray-900" style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
           Dashboard
         </h1>
         <p className="text-gray-500 text-sm mt-1">Selamat datang di Admin Panel Zeroth Store</p>
@@ -52,7 +52,7 @@ export function AdminDashboard() {
               >
                 <card.icon className="w-5 h-5" style={{ color: card.color }} strokeWidth={1.5} />
               </div>
-              <div className="text-2xl font-bold text-gray-900 mb-0.5" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+              <div className="text-2xl font-bold text-gray-900 mb-0.5" style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
                 {card.value}
               </div>
               <p className="text-gray-500 text-xs">{card.label}</p>
@@ -66,7 +66,7 @@ export function AdminDashboard() {
         <div className="bg-white rounded-2xl border border-gray-200 p-6">
           <div className="flex items-center justify-between mb-5">
             <h2 className="font-semibold text-gray-900">Statistik Publik</h2>
-            <Link to="/admin/settings" className="text-amber-600 hover:text-amber-700 text-xs flex items-center gap-1">
+            <Link to="/admin/settings" className="text-primary hover:text-primary text-xs flex items-center gap-1">
               Edit <ArrowRight className="w-3 h-3" />
             </Link>
           </div>
@@ -108,7 +108,7 @@ export function AdminDashboard() {
       <div className="bg-white rounded-2xl border border-gray-200 p-6">
         <div className="flex items-center justify-between mb-5">
           <h2 className="font-semibold text-gray-900">Status Game</h2>
-          <Link to="/admin/games" className="text-amber-600 hover:text-amber-700 text-xs flex items-center gap-1">
+          <Link to="/admin/games" className="text-primary hover:text-primary text-xs flex items-center gap-1">
             Kelola <ArrowRight className="w-3 h-3" />
           </Link>
         </div>
@@ -128,8 +128,8 @@ export function AdminDashboard() {
       </div>
 
       {/* Info */}
-      <div className="bg-amber-50 border border-amber-100 rounded-2xl p-5">
-        <p className="text-amber-700 text-sm">
+      <div className="bg-primary border border-primary rounded-2xl p-5">
+        <p className="text-primary text-sm">
           <strong>Nomor WhatsApp:</strong> +{settings.whatsappNumber} · 
           <strong className="ml-2">Jam Operasional:</strong> {settings.operationalHours}
         </p>

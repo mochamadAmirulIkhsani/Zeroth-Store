@@ -46,7 +46,7 @@ export function GamesPage() {
     <aside className="space-y-6">
       {/* Search */}
       <div>
-        <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Cari Game</p>
+        <p className="text-xs font-semibold text-[rgba(20,20,19,0.5)] uppercase tracking-wider mb-2">Cari Game</p>
         <div className="relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
           <input
@@ -54,7 +54,7 @@ export function GamesPage() {
             placeholder="Nama game..."
             value={query}
             onChange={e => handleQueryChange(e.target.value)}
-            className="w-full pl-9 pr-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-300 focus:border-amber-300 transition"
+            className="w-full pl-9 pr-4 py-2.5 bg-white border border-[#e6dfd8] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition"
           />
           {query && (
             <button onClick={() => handleQueryChange('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-600">
@@ -66,7 +66,7 @@ export function GamesPage() {
 
       {/* Sort */}
       <div>
-        <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Urutkan</p>
+        <p className="text-xs font-semibold text-[rgba(20,20,19,0.5)] uppercase tracking-wider mb-2">Urutkan</p>
         <div className="space-y-1">
           {([
             { value: 'default', label: 'Default' },
@@ -74,14 +74,14 @@ export function GamesPage() {
             { value: 'services', label: 'Layanan Terbanyak' },
           ] as { value: typeof sortBy; label: string }[]).map(opt => (
             <button
-              key={opt.value}
-              onClick={() => handleSort(opt.value)}
-              className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
-                sortBy === opt.value
-                  ? 'bg-amber-50 text-amber-700 font-medium border border-amber-200'
-                  : 'text-gray-600 hover:bg-gray-50 border border-transparent'
-              }`}
-            >
+                              key={opt.value}
+                              onClick={() => handleSort(opt.value)}
+                              className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
+                                sortBy === opt.value
+                                  ? 'bg-primary text-white font-medium border border-primary'
+                                  : 'text-[rgba(20,20,19,0.6)] hover:bg-[#f5f0e8] border border-transparent'
+                              }`}
+                            >
               {opt.label}
             </button>
           ))}
@@ -90,7 +90,7 @@ export function GamesPage() {
 
       {/* Min services */}
       <div>
-        <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Min. Layanan</p>
+        <p className="text-xs font-semibold text-[rgba(20,20,19,0.5)] uppercase tracking-wider mb-2">Min. Layanan</p>
         <div className="space-y-1">
           {[
             { value: 0, label: 'Semua' },
@@ -103,8 +103,8 @@ export function GamesPage() {
               onClick={() => handleMinServices(opt.value)}
               className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
                 minServices === opt.value
-                  ? 'bg-amber-50 text-amber-700 font-medium border border-amber-200'
-                  : 'text-gray-600 hover:bg-gray-50 border border-transparent'
+                  ? 'bg-primary text-white font-medium border border-primary'
+                  : 'text-[rgba(20,20,19,0.6)] hover:bg-[#f5f0e8] border border-transparent'
               }`}
             >
               {opt.label}
@@ -117,7 +117,7 @@ export function GamesPage() {
       {hasFilters && (
         <button
           onClick={clearFilters}
-          className="w-full flex items-center justify-center gap-2 text-sm text-gray-500 hover:text-gray-800 border border-gray-200 hover:border-gray-300 py-2 rounded-xl transition-colors"
+          className="w-full flex items-center justify-center gap-2 text-sm text-[rgba(20,20,19,0.6)] hover:text-[#141413] border border-[#d8cfc2] hover:border-[#c8c0b2] py-2 rounded-xl transition-colors"
         >
           <X className="w-3.5 h-3.5" /> Reset Filter
         </button>
@@ -126,15 +126,15 @@ export function GamesPage() {
   );
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen" style={{ background: '#faf9f5' }}>
       {/* Header */}
-      <div className="bg-gradient-to-br from-white to-gray-50 py-14 border-b border-gray-100">
+      <div className="py-14" style={{ background: '#faf9f5', borderBottom: '1px solid #e6dfd8' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center">
-            <h1 className="text-4xl font-bold text-[#0A0A0A] mb-3" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+            <h1 className="text-4xl font-bold text-[#141413] mb-3" style={{ fontFamily: "'Cormorant Garamond', 'EB Garamond', serif", fontWeight: 500, letterSpacing: '-0.02em' }}>
               Semua Game yang Kami Layani
             </h1>
-            <p className="text-gray-500 max-w-lg mx-auto">
+            <p className="max-w-lg mx-auto" style={{ color: 'rgba(20,20,19,0.55)' }}>
               Pilih game favorit Anda dan lihat daftar lengkap layanan joki yang tersedia
             </p>
           </motion.div>
@@ -145,19 +145,19 @@ export function GamesPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Mobile filter toggle */}
         <div className="flex items-center justify-between mb-6 lg:hidden">
-          <p className="text-sm text-gray-500">{filtered.length} game ditemukan</p>
+          <p className="text-sm" style={{ color: 'rgba(20,20,19,0.55)' }}>{filtered.length} game ditemukan</p>
           <button
             onClick={() => setMobileFilterOpen(v => !v)}
-            className="flex items-center gap-2 text-sm border border-gray-200 px-3 py-2 rounded-lg hover:border-gray-300 transition-colors"
+            className="flex items-center gap-2 text-sm border border-[#d8cfc2] px-3 py-2 rounded-lg hover:border-[#c0b8a8] transition-colors"
           >
             <SlidersHorizontal className="w-4 h-4" />
-            Filter {hasFilters && <span className="w-2 h-2 rounded-full bg-amber-400 inline-block" />}
+            Filter {hasFilters && <span className="w-2 h-2 rounded-full bg-primary inline-block" />}
           </button>
         </div>
 
         {/* Mobile filter panel */}
         {mobileFilterOpen && (
-          <div className="lg:hidden mb-6 bg-gray-50 border border-gray-100 rounded-2xl p-5">
+          <div className="lg:hidden mb-6" style={{ background: '#f5f0e8', border: '1px solid #e6dfd8', borderRadius: '16px', padding: '20px' }}>
             <Sidebar />
           </div>
         )}
@@ -173,23 +173,23 @@ export function GamesPage() {
           {/* Main */}
           <div className="flex-1 min-w-0">
             <div className="hidden lg:flex items-center justify-between mb-6">
-              <p className="text-sm text-gray-500">
+              <p className="text-sm" style={{ color: 'rgba(20,20,19,0.55)' }}>
                 {filtered.length} game ditemukan
                 {hasFilters && (
-                  <button onClick={clearFilters} className="ml-3 text-amber-600 hover:underline text-xs">
+                  <button onClick={clearFilters} className="ml-3 text-primary hover:underline text-xs">
                     Reset filter
                   </button>
                 )}
               </p>
-              <p className="text-xs text-gray-500">
+              <p className="text-xs" style={{ color: 'rgba(20,20,19,0.5)' }}>
                 Halaman {safePage} dari {totalPages}
               </p>
             </div>
 
             {paginated.length === 0 ? (
-              <div className="text-center py-20 text-gray-500">
+              <div className="text-center py-20" style={{ color: 'rgba(20,20,19,0.55)' }}>
                 <p>Tidak ada game yang cocok dengan filter ini.</p>
-                <button onClick={clearFilters} className="mt-3 text-sm text-amber-600 hover:underline">
+                <button onClick={clearFilters} className="mt-3 text-sm text-primary hover:underline">
                   Reset filter
                 </button>
               </div>
@@ -207,7 +207,7 @@ export function GamesPage() {
                     >
                       <Link
                         to={`/games/${game.slug}`}
-                        className="group block bg-white border border-gray-100 rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                        className="group block bg-white border border-[#e6dfd8] rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
                       >
                         <div className="relative h-48 overflow-hidden">
                           <img
@@ -219,7 +219,7 @@ export function GamesPage() {
                           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
                           <div className="absolute top-0 left-0 right-0 h-1" style={{ backgroundColor: game.color }} />
                           <div className="absolute bottom-0 left-0 right-0 p-4">
-                            <h3 className="text-white font-bold text-lg mb-0.5" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+                            <h3 className="text-white font-bold text-lg mb-0.5" style={{ fontFamily: "'Cormorant Garamond', 'EB Garamond', serif", fontWeight: 600 }}>
                               {game.name}
                             </h3>
                             <p className="text-gray-300 text-xs line-clamp-1">{game.tagline}</p>
@@ -231,17 +231,17 @@ export function GamesPage() {
                           </div>
                         </div>
                         <div className="p-4">
-                          <p className="text-gray-500 text-sm mb-4 line-clamp-2">{game.description}</p>
+                          <p className="text-sm mb-4 line-clamp-2" style={{ color: 'rgba(20,20,19,0.55)' }}>{game.description}</p>
                           <div className="flex items-center justify-between">
                             <div>
-                              <p className="text-gray-500 text-xs mb-0.5">Mulai dari</p>
-                              <p className="font-semibold text-[#0A0A0A] text-sm">{startingPrice}</p>
+                              <p className="text-xs mb-0.5" style={{ color: 'rgba(20,20,19,0.5)' }}>Mulai dari</p>
+                              <p className="font-semibold text-[#141413] text-sm">{startingPrice}</p>
                             </div>
                             <div className="flex items-center gap-2">
                               <span className="text-xs px-2 py-1 rounded-lg font-medium" style={{ backgroundColor: game.color + '15', color: game.color }}>
                                 {activeServices.length} Layanan
                               </span>
-                              <ArrowRight className="w-4 h-4 text-gray-300 group-hover:text-amber-500 transition-colors" />
+                              <ArrowRight className="w-4 h-4 text-gray-300 group-hover:text-primary transition-colors" />
                             </div>
                           </div>
                         </div>
@@ -260,8 +260,8 @@ export function GamesPage() {
                   <button
                     onClick={() => setPage(p => Math.max(1, p - 1))}
                     disabled={safePage === 1}
-                    className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-sm font-medium border transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed hover:border-gray-300 hover:shadow-sm"
-                    style={{ borderColor: '#e5e7eb', color: '#6b7280', background: '#fff' }}
+                    className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-sm font-medium border transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed hover:border-[#d8cfc2] hover:shadow-sm"
+                    style={{ borderColor: '#d8cfc2', color: 'rgba(20,20,19,0.6)', background: '#fff' }}
                   >
                     <ChevronLeft className="w-4 h-4" />
                     Prev
@@ -277,7 +277,7 @@ export function GamesPage() {
 
                       if (!isNear) {
                         if (showEllipsisBefore || showEllipsisAfter) {
-                          return <span key={n} className="w-9 text-center text-gray-500 text-sm select-none">…</span>;
+                          return <span key={n} className="w-9 text-center text-[rgba(20,20,19,0.55)] text-sm select-none">…</span>;
                         }
                         return null;
                       }
@@ -288,13 +288,13 @@ export function GamesPage() {
                           onClick={() => setPage(n)}
                           whileHover={!isActive ? { scale: 1.08 } : {}}
                           whileTap={{ scale: 0.95 }}
-                          className="relative w-10 h-10 rounded-xl text-sm font-semibold transition-all duration-200 overflow-hidden"
+                          className="relative w-11 h-11 rounded-xl text-sm font-semibold transition-all duration-200 overflow-hidden"
                           style={{
-                            background: isActive ? 'linear-gradient(135deg, #fbbf24 0%, #f97316 100%)' : '#fff',
-                            color: isActive ? '#000' : '#6b7280',
-                            border: isActive ? 'none' : '1px solid #e5e7eb',
-                            boxShadow: isActive ? '0 4px 14px rgba(251,191,36,0.4)' : '0 1px 3px rgba(0,0,0,0.04)',
-                            fontFamily: 'Space Grotesk, sans-serif',
+                            background: isActive ? '#cc785c' : '#fff',
+                            color: isActive ? '#fff' : 'rgba(20,20,19,0.6)',
+                            border: isActive ? 'none' : '1px solid #d8cfc2',
+                            boxShadow: isActive ? '0 4px 14px rgba(204,120,92,0.4)' : '0 1px 3px rgba(20,20,19,0.04)',
+                            fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
                           }}
                         >
                           {n}
@@ -307,8 +307,8 @@ export function GamesPage() {
                   <button
                     onClick={() => setPage(p => Math.min(totalPages, p + 1))}
                     disabled={safePage === totalPages}
-                    className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-sm font-medium border transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed hover:border-gray-300 hover:shadow-sm"
-                    style={{ borderColor: '#e5e7eb', color: '#6b7280', background: '#fff' }}
+                    className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-sm font-medium border transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed hover:border-[#d8cfc2] hover:shadow-sm"
+                    style={{ borderColor: '#d8cfc2', color: 'rgba(20,20,19,0.6)', background: '#fff' }}
                   >
                     Next
                     <ChevronRight className="w-4 h-4" />
@@ -316,8 +316,8 @@ export function GamesPage() {
                 </div>
 
                 {/* Page info */}
-                <p className="text-center text-xs text-gray-500 mt-3">
-                  Halaman <span className="font-medium text-gray-600">{safePage}</span> dari <span className="font-medium text-gray-600">{totalPages}</span> · {filtered.length} game
+                <p className="text-center text-xs mt-3" style={{ color: 'rgba(20,20,19,0.55)' }}>
+                  Halaman <span className="font-medium" style={{ color: 'rgba(20,20,19,0.75)' }}>{safePage}</span> dari <span className="font-medium" style={{ color: 'rgba(20,20,19,0.75)' }}>{totalPages}</span> · {filtered.length} game
                 </p>
               </div>
             )}

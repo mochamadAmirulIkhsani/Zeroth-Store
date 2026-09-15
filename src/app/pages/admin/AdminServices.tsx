@@ -17,7 +17,6 @@ const EMPTY_SERVICE: Omit<Service, 'id'> = {
 
 const ITEMS_PER_PAGE = 5;
 
-// ── Custom Dropdown ──────────────────────────────────────────────
 interface DropdownOption {
   id: string;
   name: string;
@@ -53,7 +52,7 @@ function GameDropdown({
         type="button"
         onClick={() => setOpen(o => !o)}
         className="w-full flex items-center justify-between gap-3 px-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm transition-all hover:border-gray-300 focus:outline-none"
-        style={{ boxShadow: open ? '0 0 0 3px rgba(251,191,36,0.15)' : undefined, borderColor: open ? '#fbbf24' : undefined }}
+        style={{ boxShadow: open ? '0 0 0 3px rgba(0,102,204,0.15)' : undefined, borderColor: open ? '#0066cc' : undefined }}
       >
         <div className="flex items-center gap-2.5 min-w-0">
           {selected ? (
@@ -89,14 +88,14 @@ function GameDropdown({
                 type="button"
                 onClick={() => { onChange(opt.id); setOpen(false); }}
                 className="w-full flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 transition-colors text-left"
-                style={{ background: isActive ? 'rgba(251,191,36,0.06)' : undefined }}
+                style={{ background: isActive ? 'rgba(0,102,204,0.06)' : undefined }}
               >
                 <span className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ backgroundColor: opt.color }} />
                 <span className={`flex-1 text-sm ${isActive ? 'font-semibold text-gray-900' : 'text-gray-700'}`}>
                   {opt.name}
                 </span>
                 <span className="text-xs text-gray-400">{opt.serviceCount} layanan</span>
-                {isActive && <Check className="w-3.5 h-3.5 text-amber-500 flex-shrink-0" />}
+                {isActive && <Check className="w-3.5 h-3.5 text-primary flex-shrink-0" />}
               </button>
             );
           })}
@@ -106,7 +105,6 @@ function GameDropdown({
   );
 }
 
-// ── Pagination ───────────────────────────────────────────────────
 function Pagination({
   currentPage,
   totalPages,
@@ -159,7 +157,7 @@ function Pagination({
               className="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-medium transition-all"
               style={
                 isActive
-                  ? { background: 'linear-gradient(135deg, #fbbf24, #f97316)', color: '#000', boxShadow: '0 2px 8px rgba(251,191,36,0.35)' }
+                  ? { background: '#0066cc', color: '#000', boxShadow: '0 2px 8px rgba(0,102,204,0.35)' }
                   : { background: '#fff', border: '1px solid #e5e7eb', color: '#6b7280' }
               }
             >
@@ -180,7 +178,6 @@ function Pagination({
   );
 }
 
-// ── Main Component ───────────────────────────────────────────────
 export function AdminServices() {
   const { games, setGames, categories, setCategories } = useApp();
   const [selectedGameId, setSelectedGameId] = useState(games[0]?.id ?? '');
@@ -249,7 +246,6 @@ export function AdminServices() {
           ? { ...g, services: [...g.services, { ...form, id: newId }] }
           : g
       ));
-      // jump to last page
       const newCount = services.length + 1;
       setCurrentPage(Math.ceil(newCount / ITEMS_PER_PAGE));
       showSaved('Layanan ditambahkan');
@@ -265,7 +261,6 @@ export function AdminServices() {
         ? { ...g, services: g.services.filter(s => s.id !== id) }
         : g
     ));
-    // adjust page if needed
     const newCount = services.length - 1;
     const newTotal = Math.max(1, Math.ceil(newCount / ITEMS_PER_PAGE));
     if (currentPage > newTotal) setCurrentPage(newTotal);
@@ -280,7 +275,7 @@ export function AdminServices() {
     ));
   };
 
-  // ── Category management ────────────────────────────────────────
+  // Category management
   const openAddCategory = () => {
     setCatEditing(null);
     setCatName('');
@@ -352,10 +347,10 @@ export function AdminServices() {
 
   return (
     <div className="space-y-6">
-      {/* ── Page Header ── */}
+      {/* Page Header */}
       <div className="flex items-center justify-between flex-wrap gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+          <h1 className="text-2xl font-bold text-gray-900" style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
             Manajemen Layanan
           </h1>
           <p className="text-gray-500 text-sm mt-1">Tambah, edit, dan kelola layanan per game</p>
@@ -367,7 +362,7 @@ export function AdminServices() {
         )}
       </div>
 
-      {/* ── Game Selector Dropdown ── */}
+      {/* Game Selector Dropdown */}
       <div className="flex items-center gap-3 flex-wrap">
         <span className="text-sm font-medium text-gray-600 flex-shrink-0">Filter Game:</span>
         <GameDropdown
@@ -388,7 +383,7 @@ export function AdminServices() {
 
       {selectedGame && (
         <>
-          {/* ── Sub-header ── */}
+          {/* Sub-header */}
           <div className="flex items-center justify-between">
             <h2 className="font-semibold text-gray-700">
               {selectedGame.name}
@@ -398,10 +393,10 @@ export function AdminServices() {
               onClick={handleAddNew}
               className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium transition-all hover:scale-105 active:scale-95"
               style={{
-                background: 'linear-gradient(135deg, #fbbf24, #f97316)',
+                background: '#0066cc',
                 color: '#000',
-                fontFamily: 'Space Grotesk, sans-serif',
-                boxShadow: '0 4px 12px rgba(251,191,36,0.25)',
+                fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
+                boxShadow: '0 4px 12px rgba(0,102,204,0.25)',
               }}
             >
               <Plus className="w-4 h-4" strokeWidth={2.5} />
@@ -409,9 +404,9 @@ export function AdminServices() {
             </button>
           </div>
 
-          {/* ── Add / Edit Form ── */}
+          {/* Add / Edit Form */}
           {showForm && (
-            <div className="bg-white border-2 border-amber-200 rounded-2xl p-6" style={{ boxShadow: '0 4px 24px rgba(251,191,36,0.08)' }}>
+            <div className="bg-white border-2 border-primary rounded-2xl p-6" style={{ boxShadow: '0 4px 24px rgba(0,102,204,0.08)' }}>
               <h3 className="font-semibold text-gray-900 mb-4">
                 {editingId ? 'Edit Layanan' : 'Tambah Layanan Baru'}
               </h3>
@@ -419,7 +414,7 @@ export function AdminServices() {
                 <div className="sm:col-span-2">
                   <label className="block text-xs font-medium text-gray-600 mb-1">Nama Layanan *</label>
                   <input
-                    className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-300"
+                    className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                     value={form.name}
                     onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
                     placeholder="Contoh: Push Rank Diamond ke Master"
@@ -428,7 +423,7 @@ export function AdminServices() {
                 <div className="sm:col-span-2">
                   <label className="block text-xs font-medium text-gray-600 mb-1">Deskripsi *</label>
                   <textarea
-                    className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-300 resize-none"
+                    className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary resize-none"
                     rows={3}
                     value={form.description}
                     onChange={e => setForm(f => ({ ...f, description: e.target.value }))}
@@ -438,7 +433,7 @@ export function AdminServices() {
                 <div>
                   <label className="block text-xs font-medium text-gray-600 mb-1">Estimasi Durasi *</label>
                   <input
-                    className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-300"
+                    className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                     value={form.duration}
                     onChange={e => setForm(f => ({ ...f, duration: e.target.value }))}
                     placeholder="Contoh: 1–3 hari"
@@ -447,7 +442,7 @@ export function AdminServices() {
                 <div>
                   <label className="block text-xs font-medium text-gray-600 mb-1">Harga Estimasi *</label>
                   <input
-                    className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-300"
+                    className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                     value={form.price}
                     onChange={e => setForm(f => ({ ...f, price: e.target.value }))}
                     placeholder="Contoh: Mulai Rp 50.000 atau Nego"
@@ -457,7 +452,7 @@ export function AdminServices() {
                   <label className="block text-xs font-medium text-gray-600 mb-1">Kategori</label>
                   <div className="relative">
                     <select
-                      className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-300 bg-white appearance-none pr-9"
+                      className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary bg-white appearance-none pr-9"
                       value={form.category}
                       onChange={e => setForm(f => ({ ...f, category: e.target.value }))}
                     >
@@ -468,7 +463,7 @@ export function AdminServices() {
                   <button
                     type="button"
                     onClick={openAddCategory}
-                    className="mt-1.5 text-xs text-amber-600 hover:text-amber-700 font-medium"
+                    className="mt-1.5 text-xs text-primary hover:text-primary font-medium"
                   >
                     + Kelola Kategori
                   </button>
@@ -476,7 +471,7 @@ export function AdminServices() {
                 <div className="sm:col-span-2">
                   <label className="block text-xs font-medium text-gray-600 mb-1">Catatan / Syarat (opsional)</label>
                   <input
-                    className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-300"
+                    className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                     value={form.notes ?? ''}
                     onChange={e => setForm(f => ({ ...f, notes: e.target.value }))}
                     placeholder="Contoh: Material tidak termasuk"
@@ -499,9 +494,9 @@ export function AdminServices() {
                   disabled={!form.name.trim()}
                   className="px-5 py-2.5 disabled:opacity-50 font-medium rounded-xl text-sm transition-all hover:scale-[1.02] active:scale-[0.98]"
                   style={{
-                    background: 'linear-gradient(135deg, #fbbf24, #f97316)',
+                    background: '#0066cc',
                     color: '#000',
-                    fontFamily: 'Space Grotesk, sans-serif',
+                    fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
                   }}
                 >
                   {editingId ? 'Simpan Perubahan' : 'Tambah Layanan'}
@@ -516,7 +511,7 @@ export function AdminServices() {
             </div>
           )}
 
-          {/* ── Services List (paged) ── */}
+          {/* Services List (paged) */}
           <div className="space-y-3">
             {services.length === 0 && (
               <div className="text-center py-12 text-gray-400 bg-gray-50 rounded-2xl">
@@ -563,7 +558,7 @@ export function AdminServices() {
                     </button>
                     <button
                       onClick={() => handleEdit(service)}
-                      className="p-1.5 rounded-lg text-amber-600 bg-amber-50 hover:bg-amber-100 transition-colors"
+                      className="p-1.5 rounded-lg text-primary bg-primary hover:bg-primary transition-colors"
                       title="Edit"
                     >
                       <Pencil className="w-3.5 h-3.5" />
@@ -581,7 +576,7 @@ export function AdminServices() {
             ))}
           </div>
 
-          {/* ── Pagination ── */}
+          {/* Pagination */}
           <Pagination
             currentPage={safePage}
             totalPages={totalPages}
@@ -592,7 +587,7 @@ export function AdminServices() {
         </>
       )}
 
-      {/* ── Kelola Kategori Modal ── */}
+      {/* Kelola Kategori Modal */}
       {showCategoryModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-5">
@@ -605,7 +600,7 @@ export function AdminServices() {
               value={catName}
               onChange={e => setCatName(e.target.value)}
               placeholder="Contoh: Premium"
-              className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-300 mb-3"
+              className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary mb-3"
             />
 
             <label className="block text-xs font-medium text-gray-600 mb-1">Warna</label>
@@ -632,7 +627,7 @@ export function AdminServices() {
                   <button
                     type="button"
                     onClick={() => openEditCategory(c)}
-                    className="text-amber-600 hover:text-amber-800"
+                    className="text-primary hover:text-primary"
                     title="Edit"
                   >
                     <Pencil className="w-3 h-3" />
@@ -653,7 +648,7 @@ export function AdminServices() {
               <button
                 onClick={saveCategory}
                 className="flex-1 px-4 py-2.5 font-medium rounded-xl text-sm transition-all hover:scale-[1.02] active:scale-[0.98]"
-                style={{ background: 'linear-gradient(135deg, #fbbf24, #f97316)', color: '#000' }}
+                style={{ background: '#0066cc', color: '#000' }}
               >
                 {catEditing ? 'Simpan Perubahan' : 'Tambah Kategori'}
               </button>

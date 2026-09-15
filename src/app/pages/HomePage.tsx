@@ -46,11 +46,11 @@ function SectionLabel({ text, variant = 'outline' }: { text: string; variant?: '
       className="inline-flex items-center gap-2 mb-4 px-3 py-1 rounded-full border text-xs"
       style={
         variant === 'solid'
-          ? { borderColor: '#fbbf24', background: 'linear-gradient(135deg, #fbbf24, #f97316)', color: '#000' }
-          : { borderColor: 'rgba(251,191,36,0.25)', background: 'rgba(251,191,36,0.06)', color: '#fbbf24' }
+          ? { borderColor: '#cc785c', background: '#cc785c', color: '#fff' }
+          : { borderColor: 'rgba(204,120,92,0.25)', background: 'rgba(204,120,92,0.06)', color: '#cc785c' }
       }
     >
-      <span className="w-1.5 h-1.5 rounded-full" style={variant === 'solid' ? { background: '#000' } : { background: '#fbbf24' }} />
+      <span className="w-1.5 h-1.5 rounded-full" style={variant === 'solid' ? { background: '#fff' } : { background: '#cc785c' }} />
       {text}
     </div>
   );
@@ -73,7 +73,7 @@ export function HomePage() {
   const waLink = `https://wa.me/${settings.whatsappNumber}?text=${encodeURIComponent('Halo Admin! Saya ingin tanya tentang layanan Zeroth Store.')}`;
 
   return (
-    <div style={{ background: '#0A0A0A' }}>
+    <div style={{ background: '#faf9f5' }}>
       {/* HERO */}
       <HeroSection
         heroHeadline={settings.heroHeadline}
@@ -83,7 +83,7 @@ export function HomePage() {
       />
 
       {/* GAME LIST */}
-      <section className="py-24" style={{ background: '#0A0A0A' }}>
+      <section className="py-12 sm:py-24" style={{ background: '#faf9f5' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-14"
@@ -92,10 +92,10 @@ export function HomePage() {
             viewport={{ once: true }}
           >
             <SectionLabel text="Tersedia Sekarang" />
-            <h2 className="text-3xl font-bold text-white mb-3" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+            <h2 className="text-3xl font-bold text-[#141413] mb-3" style={{ fontFamily: "'Cormorant Garamond', 'EB Garamond', serif", fontWeight: 500, letterSpacing: '-0.02em' }}>
               Game yang Kami Layani
             </h2>
-            <p className="max-w-xl mx-auto" style={{ color: 'rgba(255,255,255,0.4)' }}>
+            <p className="max-w-xl mx-auto" style={{ color: 'rgba(20,20,19,0.55)' }}>
               Pilih game favorit Anda dan temukan layanan joki yang sesuai kebutuhan
             </p>
           </motion.div>
@@ -118,12 +118,12 @@ export function HomePage() {
                     to={`/games/${game.slug}`}
                     className="group flex flex-col sm:flex-row overflow-hidden rounded-2xl relative h-full"
                     style={{
-                      background: '#111',
-                      border: '1px solid rgba(255,255,255,0.07)',
+                      background: '#fff',
+                      border: '1px solid #e6dfd8',
                       transition: 'border-color 0.25s',
                     }}
-                    onMouseEnter={e => (e.currentTarget.style.borderColor = `${game.color}45`)}
-                    onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.07)')}
+                    onMouseEnter={e => (e.currentTarget.style.borderColor = `${game.color}65`)}
+                    onMouseLeave={e => (e.currentTarget.style.borderColor = '#e6dfd8')}
                   >
                     {/* Image — top on mobile, left on sm+ */}
                     <div className="relative w-full h-28 sm:h-auto sm:flex-shrink-0 sm:w-44 overflow-hidden">
@@ -134,10 +134,10 @@ export function HomePage() {
                         loading="lazy"
                       />
                       {/* Mobile: fade to bottom */}
-                      <div className="absolute inset-0 sm:hidden" style={{ background: 'linear-gradient(to top, #111 0%, transparent 55%)' }} />
+                      <div className="absolute inset-0 sm:hidden" style={{ background: 'linear-gradient(to top, #ffffff 0%, transparent 55%)' }} />
                       {/* Desktop: fade to right */}
-                      <div className="absolute inset-0 hidden sm:block" style={{ background: 'linear-gradient(to right, transparent 40%, #111 100%)' }} />
-                      <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 50%)' }} />
+                      <div className="absolute inset-0 hidden sm:block" style={{ background: 'linear-gradient(to right, transparent 40%, #ffffff 100%)' }} />
+                      <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(20,20,19,0.25) 0%, transparent 50%)' }} />
                       <div className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-500"
                         style={{ background: `radial-gradient(ellipse at center, ${game.color}, transparent 70%)` }} />
                       {/* Color top bar */}
@@ -153,8 +153,8 @@ export function HomePage() {
                               className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full flex-shrink-0"
                               style={{ backgroundColor: game.color }}
                             />
-                            <h3 className="font-bold text-white leading-tight line-clamp-1"
-                              style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 'clamp(0.72rem, 2.5vw, 1.05rem)' }}>
+                            <h3 className="font-bold text-[#141413] leading-tight line-clamp-1"
+                              style={{ fontFamily: "'Cormorant Garamond', 'EB Garamond', serif", fontWeight: 600, fontSize: 'clamp(0.9rem, 2.5vw, 1.2rem)', letterSpacing: '-0.01em' }}>
                               {game.name}
                             </h3>
                           </div>
@@ -164,13 +164,13 @@ export function HomePage() {
                               backgroundColor: `${game.color}15`,
                               color: game.color,
                               border: `1px solid ${game.color}30`,
-                              fontFamily: 'Space Grotesk',
+                              fontFamily: 'Inter, system-ui, sans-serif',
                             }}
                           >
                             {activeServices.length}
                           </span>
                         </div>
-                        <p className="hidden sm:block text-xs mb-4 leading-relaxed line-clamp-2" style={{ color: 'rgba(255,255,255,0.5)' }}>
+                        <p className="hidden sm:block text-xs mb-4 leading-relaxed line-clamp-2" style={{ color: 'rgba(20,20,19,0.5)' }}>
                           {game.tagline}
                         </p>
                       </div>
@@ -178,17 +178,17 @@ export function HomePage() {
                       <div>
                         {/* Service tags — desktop only */}
                         <div className="hidden sm:block">
-                          <p className="text-[10px] uppercase tracking-widest mb-2" style={{ color: 'rgba(255,255,255,0.25)', fontFamily: 'Space Grotesk' }}>
+                          <p className="text-[10px] uppercase tracking-widest mb-2" style={{ color: 'rgba(20,20,19,0.35)', fontFamily: 'Inter, system-ui, sans-serif' }}>
                             Yang Kami Tawarkan
                           </p>
                           <div className="flex flex-wrap gap-1.5 mb-4">
                             {visibleServices.map(svc => (
                               <span key={svc.id} className="text-[11px] px-2.5 py-1 rounded-lg"
                                 style={{
-                                  background: 'rgba(255,255,255,0.05)',
-                                  color: 'rgba(255,255,255,0.6)',
-                                  border: '1px solid rgba(255,255,255,0.08)',
-                                  fontFamily: 'Plus Jakarta Sans, sans-serif',
+                                  background: 'rgba(20,20,19,0.04)',
+                                  color: 'rgba(20,20,19,0.6)',
+                                  border: '1px solid rgba(20,20,19,0.08)',
+                                  fontFamily: 'Inter, system-ui, sans-serif',
                                 }}>
                                 {svc.name}
                               </span>
@@ -199,7 +199,7 @@ export function HomePage() {
                                   background: `${game.color}10`,
                                   color: game.color,
                                   border: `1px solid ${game.color}25`,
-                                  fontFamily: 'Space Grotesk',
+                                  fontFamily: 'Inter, system-ui, sans-serif',
                                 }}>
                                 +{extraCount} lagi
                               </span>
@@ -208,7 +208,7 @@ export function HomePage() {
                         </div>
 
                         <div className="flex items-center gap-1 sm:gap-1.5 font-semibold transition-all duration-200"
-                          style={{ color: game.color, fontFamily: 'Space Grotesk', fontSize: 'clamp(0.65rem, 2vw, 0.75rem)' }}>
+                          style={{ color: game.color, fontFamily: 'Inter, system-ui, sans-serif', fontSize: 'clamp(0.65rem, 2vw, 0.75rem)' }}>
                           <span className="sm:hidden">Detail</span>
                           <span className="hidden sm:inline">Lihat Semua Layanan</span>
                           <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
@@ -228,9 +228,9 @@ export function HomePage() {
             <Link
               to="/games"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm transition-all duration-200 hover:scale-105"
-              style={{ border: '1px solid rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.5)', background: 'rgba(255,255,255,0.04)' }}
-              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(251,191,36,0.35)'; (e.currentTarget as HTMLElement).style.color = '#fbbf24'; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.1)'; (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.5)'; }}
+              style={{ border: '1px solid #e6dfd8', color: 'rgba(20,20,19,0.6)', background: 'rgba(255,255,255,0.5)' }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(204,120,92,0.35)'; (e.currentTarget as HTMLElement).style.color = '#cc785c'; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = '#e6dfd8'; (e.currentTarget as HTMLElement).style.color = 'rgba(20,20,19,0.6)'; }}
             >
               Lihat Semua Game <ArrowRight className="w-4 h-4" />
             </Link>
@@ -240,27 +240,26 @@ export function HomePage() {
 
       {/* DIVIDER */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.07), transparent)' }} />
+        <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent, rgba(20,20,19,0.1), transparent)' }} />
       </div>
 
-      {/* WHY US */}
-      <section className="py-24 relative overflow-hidden" style={{ background: 'linear-gradient(160deg, #0d0d10 0%, #0a0a0a 50%, #0d0a0d 100%)' }}>
-        {/* Dot-grid texture (R-07 reason): gaming-brand background rhythm echoing pixel/HUD aesthetic of the store's game catalog; kept at 4% opacity so it reads as texture, never pattern. Removed only if the brand drops the gaming identity. */}
+      {/* WHY US — warm cream editorial band */}
+      <section className="py-12 sm:py-24 relative overflow-hidden" style={{ background: 'linear-gradient(160deg, #faf9f5 0%, #f5f0e8 50%, #faf9f5 100%)' }}>
+        {/* Dot-grid texture — gaming-brand rhythm echoing pixel/HUD aesthetic; kept at 4% opacity so it reads as texture, never pattern. Removed only if the brand drops the gaming identity. */}
         <div className="absolute inset-0 pointer-events-none" style={{
-          backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px)',
+          backgroundImage: 'radial-gradient(circle, rgba(20,20,19,0.05) 1px, transparent 1px)',
           backgroundSize: '28px 28px',
         }} />
         <div className="absolute top-0 left-1/4 w-96 h-96 rounded-full pointer-events-none"
-          style={{ background: 'radial-gradient(circle, rgba(251,191,36,0.05) 0%, transparent 70%)', filter: 'blur(40px)' }} />
-        {/* Blue orb removed: R-13 dose cap — single amber accent is the brand anchor; blue was decorative */}
+          style={{ background: 'radial-gradient(circle, rgba(204,120,92,0.06) 0%, transparent 70%)', filter: 'blur(40px)' }} />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div className="text-center mb-14" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <SectionLabel text="Kenapa Kami?" />
-            <h2 className="text-3xl font-bold text-white mb-3" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+            <h2 className="text-3xl font-bold text-[#141413] mb-3" style={{ fontFamily: "'Cormorant Garamond', 'EB Garamond', serif", fontWeight: 500, letterSpacing: '-0.02em' }}>
               Mengapa Memilih Zeroth Store?
             </h2>
-            <p className="max-w-xl mx-auto" style={{ color: 'rgba(255,255,255,0.4)' }}>
+            <p className="max-w-xl mx-auto" style={{ color: 'rgba(20,20,19,0.55)' }}>
               Bukan sekadar joki, kami adalah mitra gaming profesional Anda
             </p>
           </motion.div>
@@ -271,26 +270,26 @@ export function HomePage() {
               initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0 }}
               whileHover={{ y: -3, transition: { duration: 0.2 } }}
               className="col-span-2 lg:col-span-2 relative overflow-hidden rounded-2xl p-5 sm:p-8 cursor-default"
-              style={{ background: 'linear-gradient(135deg, rgba(251,191,36,0.07) 0%, rgba(15,15,20,0.95) 60%)', border: '1px solid rgba(251,191,36,0.2)', minHeight: 160 }}
+              style={{ background: 'linear-gradient(135deg, rgba(204,120,92,0.07) 0%, rgba(255,255,255,0.6) 60%)', border: '1px solid rgba(204,120,92,0.2)', minHeight: 160 }}
             >
-              <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(251,191,36,0.6), transparent)' }} />
-              <div className="absolute -top-16 -right-16 w-56 h-56 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(251,191,36,0.1) 0%, transparent 70%)' }} />
+              <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(204,120,92,0.6), transparent)' }} />
+              <div className="absolute -top-16 -right-16 w-56 h-56 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(204,120,92,0.1) 0%, transparent 70%)' }} />
               <div className="flex items-start gap-5 relative z-10">
                 <div className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0"
-                  style={{ background: 'rgba(251,191,36,0.12)', border: '1px solid rgba(251,191,36,0.25)' }}>
-                  <Shield className="w-7 h-7 text-amber-400" strokeWidth={1.5} />
+                  style={{ background: 'rgba(204,120,92,0.12)', border: '1px solid rgba(204,120,92,0.25)' }}>
+                  <Shield className="w-7 h-7 text-primary" strokeWidth={1.5} />
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-bold text-white mb-2" style={{ fontFamily: 'Space Grotesk', fontSize: '1.15rem' }}>Aman & Terpercaya</h3>
-                  <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.5)' }}>Data akun dijaga ketat. Tidak ada kebocoran informasi klien, dijamin privasi 100%.</p>
+                  <h3 className="font-bold text-[#141413] mb-2" style={{ fontFamily: "'Cormorant Garamond', 'EB Garamond', serif", fontWeight: 600, fontSize: '1.25rem', letterSpacing: '-0.01em' }}>Aman & Terpercaya</h3>
+                  <p className="text-sm leading-relaxed" style={{ color: 'rgba(20,20,19,0.55)' }}>Data akun dijaga ketat. Tidak ada kebocoran informasi klien, dijamin privasi 100%.</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 mt-6 relative z-10 flex-wrap">
                 {['Enkripsi Data', 'No Leak', 'Privasi 100%'].map(tag => (
                   <div key={tag} className="flex items-center gap-1.5 px-3 py-1 rounded-full"
-                    style={{ background: 'rgba(52,211,153,0.08)', border: '1px solid rgba(52,211,153,0.18)' }}>
-                    <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
-                    <span className="text-xs" style={{ color: 'rgba(255,255,255,0.5)' }}>{tag}</span>
+                    style={{ background: 'rgba(93,184,114,0.08)', border: '1px solid rgba(93,184,114,0.2)' }}>
+                    <div className="w-1.5 h-1.5 rounded-full" style={{ background: '#5db872' }} />
+                    <span className="text-xs" style={{ color: 'rgba(20,20,19,0.6)' }}>{tag}</span>
                   </div>
                 ))}
               </div>
@@ -301,35 +300,35 @@ export function HomePage() {
               initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.08 }}
               whileHover={{ y: -3, transition: { duration: 0.2 } }}
               className="col-span-2 lg:col-span-1 lg:row-span-2 relative overflow-hidden rounded-2xl p-5 sm:p-7 flex flex-col cursor-default"
-              style={{ background: 'linear-gradient(160deg, rgba(96,165,250,0.08) 0%, rgba(10,10,15,0.97) 65%)', border: '1px solid rgba(96,165,250,0.2)', minHeight: 200 }}
+              style={{ background: 'linear-gradient(160deg, rgba(204,120,92,0.06) 0%, rgba(255,255,255,0.7) 65%)', border: '1px solid rgba(204,120,92,0.18)', minHeight: 200 }}
             >
-              <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(96,165,250,0.6), transparent)' }} />
+              <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(204,120,92,0.6), transparent)' }} />
               <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 rounded-full pointer-events-none"
-                style={{ background: 'radial-gradient(circle, rgba(96,165,250,0.1) 0%, transparent 70%)' }} />
+                style={{ background: 'radial-gradient(circle, rgba(204,120,92,0.1) 0%, transparent 70%)' }} />
               <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-5 relative z-10"
-                style={{ background: 'rgba(96,165,250,0.12)', border: '1px solid rgba(96,165,250,0.22)' }}>
-                <Zap className="w-7 h-7 text-blue-400" strokeWidth={1.5} />
+                style={{ background: 'rgba(204,120,92,0.12)', border: '1px solid rgba(204,120,92,0.22)' }}>
+                <Zap className="w-7 h-7 text-primary" strokeWidth={1.5} />
               </div>
-              <h3 className="font-bold text-white mb-2 relative z-10" style={{ fontFamily: 'Space Grotesk', fontSize: '1.15rem' }}>Proses Cepat</h3>
-              <p className="text-sm leading-relaxed mb-auto relative z-10" style={{ color: 'rgba(255,255,255,0.5)' }}>
+              <h3 className="font-bold text-[#141413] mb-2 relative z-10" style={{ fontFamily: "'Cormorant Garamond', 'EB Garamond', serif", fontWeight: 600, fontSize: '1.25rem', letterSpacing: '-0.01em' }}>Proses Cepat</h3>
+              <p className="text-sm leading-relaxed mb-auto relative z-10" style={{ color: 'rgba(20,20,19,0.55)' }}>
                 Tim berpengalaman mengerjakan pesanan dengan efisien. Estimasi waktu selalu transparan.
               </p>
               <div className="mt-8 space-y-3 relative z-10">
                 {[
-                  { label: 'Order Diterima', time: '< 5 menit', color: '#60a5fa' },
-                  { label: 'Proses Dimulai', time: '< 1 jam', color: '#34d399' },
-                  { label: 'Selesai', time: '1–7 hari', color: '#fbbf24' },
+                  { label: 'Order Diterima', time: '< 5 menit', color: '#cc785c' },
+                  { label: 'Proses Dimulai', time: '< 1 jam', color: '#5db872' },
+                  { label: 'Selesai', time: '1–7 hari', color: '#e8a55a' },
                 ].map((item, idx) => (
                   <motion.div key={idx} initial={{ opacity: 0, x: -12 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.35 + idx * 0.1 }} className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: item.color }} />
-                      <span className="text-xs" style={{ color: 'rgba(255,255,255,0.4)' }}>{item.label}</span>
+                      <span className="text-xs" style={{ color: 'rgba(20,20,19,0.55)' }}>{item.label}</span>
                     </div>
-                    <span className="text-xs font-semibold" style={{ color: item.color, fontFamily: 'Space Grotesk' }}>{item.time}</span>
+                    <span className="text-xs font-semibold" style={{ color: item.color, fontFamily: 'Inter, system-ui, sans-serif' }}>{item.time}</span>
                   </motion.div>
                 ))}
-                <div className="mt-2 rounded-full overflow-hidden h-1" style={{ background: 'rgba(255,255,255,0.07)' }}>
-                  <motion.div className="h-full rounded-full" style={{ background: 'linear-gradient(90deg, #60a5fa, #34d399, #fbbf24)' }}
+                <div className="mt-2 rounded-full overflow-hidden h-1" style={{ background: 'rgba(20,20,19,0.08)' }}>
+                  <motion.div className="h-full rounded-full" style={{ background: 'linear-gradient(90deg, #cc785c, #5db872, #e8a55a)' }}
                     initial={{ width: '0%' }} whileInView={{ width: '68%' }} viewport={{ once: true }} transition={{ duration: 1.5, delay: 0.6 }} />
                 </div>
               </div>
@@ -340,16 +339,16 @@ export function HomePage() {
               initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.14 }}
               whileHover={{ y: -3, transition: { duration: 0.2 } }}
               className="relative overflow-hidden rounded-2xl p-4 sm:p-6 cursor-default"
-              style={{ background: 'linear-gradient(135deg, rgba(167,139,250,0.08) 0%, rgba(12,10,18,0.97) 65%)', border: '1px solid rgba(167,139,250,0.2)', minHeight: 160 }}
+              style={{ background: 'linear-gradient(135deg, rgba(232,165,90,0.08) 0%, rgba(255,255,255,0.65) 65%)', border: '1px solid rgba(232,165,90,0.2)', minHeight: 160 }}
             >
-              <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(167,139,250,0.55), transparent)' }} />
-              <div className="absolute -top-10 -right-10 w-36 h-36 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(167,139,250,0.1) 0%, transparent 70%)' }} />
+              <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(232,165,90,0.55), transparent)' }} />
+              <div className="absolute -top-10 -right-10 w-36 h-36 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(232,165,90,0.1) 0%, transparent 70%)' }} />
               <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-4 relative z-10"
-                style={{ background: 'rgba(167,139,250,0.12)', border: '1px solid rgba(167,139,250,0.22)' }}>
-                <ThumbsUp className="w-6 h-6" style={{ color: '#a78bfa' }} strokeWidth={1.5} />
+                style={{ background: 'rgba(232,165,90,0.12)', border: '1px solid rgba(232,165,90,0.22)' }}>
+                <ThumbsUp className="w-6 h-6" style={{ color: '#e8a55a' }} strokeWidth={1.5} />
               </div>
-              <h3 className="font-bold text-white mb-2 relative z-10" style={{ fontFamily: 'Space Grotesk' }}>Berpengalaman</h3>
-              <p className="text-sm leading-relaxed relative z-10" style={{ color: 'rgba(255,255,255,0.4)' }}>
+              <h3 className="font-bold text-[#141413] mb-2 relative z-10" style={{ fontFamily: "'Cormorant Garamond', 'EB Garamond', serif", fontWeight: 600, letterSpacing: '-0.01em' }}>Berpengalaman</h3>
+              <p className="text-sm leading-relaxed relative z-10" style={{ color: 'rgba(20,20,19,0.55)' }}>
                 Tim kami bermain dan memahami setiap game secara mendalam, bukan pemula.
               </p>
             </motion.div>
@@ -359,21 +358,21 @@ export function HomePage() {
               initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.18 }}
               whileHover={{ y: -3, transition: { duration: 0.2 } }}
               className="relative overflow-hidden rounded-2xl p-4 sm:p-6 cursor-default"
-              style={{ background: 'linear-gradient(135deg, rgba(52,211,153,0.07) 0%, rgba(10,14,12,0.97) 65%)', border: '1px solid rgba(52,211,153,0.18)', minHeight: 160 }}
+              style={{ background: 'linear-gradient(135deg, rgba(93,184,114,0.07) 0%, rgba(255,255,255,0.65) 65%)', border: '1px solid rgba(93,184,114,0.2)', minHeight: 160 }}
             >
-              <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(52,211,153,0.55), transparent)' }} />
-              <div className="absolute -top-10 -right-10 w-36 h-36 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(52,211,153,0.1) 0%, transparent 70%)' }} />
+              <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(93,184,114,0.55), transparent)' }} />
+              <div className="absolute -top-10 -right-10 w-36 h-36 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(93,184,114,0.1) 0%, transparent 70%)' }} />
               <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-4 relative z-10"
-                style={{ background: 'rgba(52,211,153,0.12)', border: '1px solid rgba(52,211,153,0.22)' }}>
-                <Award className="w-6 h-6 text-emerald-400" strokeWidth={1.5} />
+                style={{ background: 'rgba(93,184,114,0.12)', border: '1px solid rgba(93,184,114,0.22)' }}>
+                <Award className="w-6 h-6 text-primary" strokeWidth={1.5} />
               </div>
-              <h3 className="font-bold text-white mb-2 relative z-10" style={{ fontFamily: 'Space Grotesk' }}>Harga Terjangkau</h3>
-              <p className="text-sm leading-relaxed relative z-10" style={{ color: 'rgba(255,255,255,0.4)' }}>
+              <h3 className="font-bold text-[#141413] mb-2 relative z-10" style={{ fontFamily: "'Cormorant Garamond', 'EB Garamond', serif", fontWeight: 600, letterSpacing: '-0.01em' }}>Harga Terjangkau</h3>
+              <p className="text-sm leading-relaxed relative z-10" style={{ color: 'rgba(20,20,19,0.55)' }}>
                 Harga kompetitif dan bisa dinegosiasikan. Kualitas premium, harga bersahabat.
               </p>
               <div className="mt-4 flex items-center gap-2 relative z-10">
                 <span className="text-xs px-2.5 py-1 rounded-full font-semibold"
-                  style={{ background: 'rgba(52,211,153,0.1)', color: '#34d399', border: '1px solid rgba(52,211,153,0.22)', fontFamily: 'Space Grotesk' }}>
+                  style={{ background: 'rgba(93,184,114,0.1)', color: '#5db872', border: '1px solid rgba(93,184,114,0.22)', fontFamily: 'Inter, system-ui, sans-serif' }}>
                   Nego Friendly
                 </span>
               </div>
@@ -384,16 +383,16 @@ export function HomePage() {
               initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.22 }}
               whileHover={{ y: -3, transition: { duration: 0.2 } }}
               className="relative overflow-hidden rounded-2xl p-4 sm:p-6 cursor-default"
-              style={{ background: 'linear-gradient(135deg, rgba(249,115,22,0.07) 0%, rgba(14,10,8,0.97) 65%)', border: '1px solid rgba(249,115,22,0.18)', minHeight: 160 }}
+              style={{ background: 'linear-gradient(135deg, rgba(204,120,92,0.07) 0%, rgba(255,255,255,0.65) 65%)', border: '1px solid rgba(204,120,92,0.18)', minHeight: 160 }}
             >
-              <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(249,115,22,0.55), transparent)' }} />
-              <div className="absolute -top-10 -right-10 w-36 h-36 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(249,115,22,0.1) 0%, transparent 70%)' }} />
+              <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(204,120,92,0.55), transparent)' }} />
+              <div className="absolute -top-10 -right-10 w-36 h-36 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(204,120,92,0.1) 0%, transparent 70%)' }} />
               <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-4 relative z-10"
-                style={{ background: 'rgba(249,115,22,0.12)', border: '1px solid rgba(249,115,22,0.22)' }}>
-                <Clock className="w-6 h-6 text-orange-400" strokeWidth={1.5} />
+                style={{ background: 'rgba(204,120,92,0.12)', border: '1px solid rgba(204,120,92,0.22)' }}>
+                <Clock className="w-6 h-6 text-primary" strokeWidth={1.5} />
               </div>
-              <h3 className="font-bold text-white mb-2 relative z-10" style={{ fontFamily: 'Space Grotesk' }}>Respon Cepat</h3>
-              <p className="text-sm leading-relaxed relative z-10" style={{ color: 'rgba(255,255,255,0.4)' }}>
+              <h3 className="font-bold text-[#141413] mb-2 relative z-10" style={{ fontFamily: "'Cormorant Garamond', 'EB Garamond', serif", fontWeight: 600, letterSpacing: '-0.01em' }}>Respon Cepat</h3>
+              <p className="text-sm leading-relaxed relative z-10" style={{ color: 'rgba(20,20,19,0.55)' }}>
                 Admin aktif 16 jam sehari, 7 hari seminggu. Pesan Anda tidak akan terabaikan.
               </p>
             </motion.div>
@@ -403,18 +402,18 @@ export function HomePage() {
               initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.26 }}
               whileHover={{ y: -3, transition: { duration: 0.2 } }}
               className="col-span-2 lg:col-span-2 relative overflow-hidden rounded-2xl p-5 sm:p-8 cursor-default"
-              style={{ background: 'linear-gradient(135deg, rgba(251,113,133,0.07) 0%, rgba(14,10,12,0.97) 65%)', border: '1px solid rgba(251,113,133,0.18)' }}
+              style={{ background: 'linear-gradient(135deg, rgba(204,120,92,0.07) 0%, rgba(255,255,255,0.6) 65%)', border: '1px solid rgba(204,120,92,0.18)' }}
             >
-              <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(251,113,133,0.55), transparent)' }} />
-              <div className="absolute -bottom-12 right-0 w-64 h-48 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(251,113,133,0.08) 0%, transparent 70%)' }} />
+              <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(204,120,92,0.55), transparent)' }} />
+              <div className="absolute -bottom-12 right-0 w-64 h-48 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(204,120,92,0.08) 0%, transparent 70%)' }} />
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 relative z-10">
                 <div className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0"
-                  style={{ background: 'rgba(251,113,133,0.12)', border: '1px solid rgba(251,113,133,0.22)' }}>
-                  <Users className="w-7 h-7" style={{ color: '#fb7185' }} strokeWidth={1.5} />
+                  style={{ background: 'rgba(204,120,92,0.12)', border: '1px solid rgba(204,120,92,0.22)' }}>
+                  <Users className="w-7 h-7" style={{ color: '#cc785c' }} strokeWidth={1.5} />
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-bold text-white mb-1.5" style={{ fontFamily: 'Space Grotesk', fontSize: '1.15rem' }}>Dipercaya Pelanggan Nyata</h3>
-                  <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.4)' }}>
+                  <h3 className="font-bold text-[#141413] mb-1.5" style={{ fontFamily: "'Cormorant Garamond', 'EB Garamond', serif", fontWeight: 600, fontSize: '1.25rem', letterSpacing: '-0.01em' }}>Dipercaya Pelanggan Nyata</h3>
+                  <p className="text-sm leading-relaxed" style={{ color: 'rgba(20,20,19,0.55)' }}>
                     {testimonials.filter(t => t.active).length} testimoni dari pelanggan yang sudah merasakan layanan kami. Nama disamarkan demi privasi.
                   </p>
                 </div>
@@ -424,8 +423,8 @@ export function HomePage() {
                     { val: stats.satisfactionRate + '%', label: 'Kepuasan' },
                   ].map(s => (
                     <div key={s.label} className="text-center">
-                      <p className="font-bold" style={{ color: '#fb7185', fontFamily: 'Space Grotesk', fontSize: '1.6rem' }}>{s.val}</p>
-                      <p className="text-xs" style={{ color: 'rgba(255,255,255,0.3)' }}>{s.label}</p>
+                      <p className="font-bold" style={{ color: '#cc785c', fontFamily: "'Cormorant Garamond', 'EB Garamond', serif", fontWeight: 600, fontSize: '1.8rem' }}>{s.val}</p>
+                      <p className="text-xs" style={{ color: 'rgba(20,20,19,0.4)' }}>{s.label}</p>
                     </div>
                   ))}
                 </div>
@@ -437,27 +436,27 @@ export function HomePage() {
 
       {/* DIVIDER */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.07), transparent)' }} />
+        <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent, rgba(20,20,19,0.1), transparent)' }} />
       </div>
 
       {/* STATS */}
-      <section className="py-24" style={{ background: '#0A0A0A' }}>
+      <section className="py-12 sm:py-24" style={{ background: '#faf9f5' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div className="text-center mb-14" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <SectionLabel text="Angka Bicara" variant="solid" />
-            <h2 className="text-3xl font-bold text-white mb-3" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+            <h2 className="text-3xl font-bold text-[#141413] mb-3" style={{ fontFamily: "'Cormorant Garamond', 'EB Garamond', serif", fontWeight: 500, letterSpacing: '-0.02em' }}>
               Zeroth Store dalam Angka
             </h2>
-            <p className="max-w-xl mx-auto" style={{ color: 'rgba(255,255,255,0.4)' }}>
+            <p className="max-w-xl mx-auto" style={{ color: 'rgba(20,20,19,0.55)' }}>
               Kepercayaan ribuan klien dibuktikan lewat hasil nyata
             </p>
           </motion.div>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { label: 'Order Selesai', value: stats.ordersCompleted, suffix: '+', color: '#fbbf24' },
-              { label: 'Game Dilayani', value: stats.gamesSupported, suffix: '', color: '#60a5fa' },
-              { label: 'Tingkat Kepuasan', value: stats.satisfactionRate, suffix: '%', color: '#34d399' },
-              { label: 'Klien Aktif', value: stats.activeClients, suffix: '+', color: '#fb7185' },
+              { label: 'Order Selesai', value: stats.ordersCompleted, suffix: '+', color: '#cc785c' },
+              { label: 'Game Dilayani', value: stats.gamesSupported, suffix: '', color: '#e8a55a' },
+              { label: 'Tingkat Kepuasan', value: stats.satisfactionRate, suffix: '%', color: '#5db872' },
+              { label: 'Klien Aktif', value: stats.activeClients, suffix: '+', color: '#a9583e' },
             ].map((stat, i) => (
               <motion.div
                 key={i}
@@ -466,14 +465,14 @@ export function HomePage() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
                 className="relative overflow-hidden rounded-2xl p-6 text-center"
-                style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}
+                style={{ background: 'rgba(255,255,255,0.55)', border: '1px solid #e6dfd8' }}
               >
                 <div className="absolute top-0 left-0 right-0 h-px"
-                  style={{ background: `linear-gradient(90deg, transparent, ${stat.color}50, transparent)` }} />
-                <div className="text-4xl lg:text-5xl font-bold mb-2" style={{ fontFamily: 'Space Grotesk, sans-serif', color: stat.color }}>
+                  style={{ background: `linear-gradient(90deg, transparent, ${stat.color}55, transparent)` }} />
+                <div className="text-4xl lg:text-5xl font-bold mb-2" style={{ fontFamily: "'Cormorant Garamond', 'EB Garamond', serif", color: stat.color, fontWeight: 600 }}>
                   <AnimatedCounter target={stat.value} suffix={stat.suffix} />
                 </div>
-                <p className="text-sm" style={{ color: 'rgba(255,255,255,0.4)' }}>{stat.label}</p>
+                <p className="text-sm" style={{ color: 'rgba(20,20,19,0.5)' }}>{stat.label}</p>
               </motion.div>
             ))}
           </div>
@@ -482,19 +481,19 @@ export function HomePage() {
 
       {/* DIVIDER */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.07), transparent)' }} />
+        <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent, rgba(20,20,19,0.1), transparent)' }} />
       </div>
 
       {/* TESTIMONIALS */}
       {featuredTestimonials.length > 0 && (
-        <section className="py-24 overflow-hidden" style={{ background: '#0A0A0A' }}>
+        <section className="py-12 sm:py-24 overflow-hidden" style={{ background: '#181715' }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div className="text-center mb-14" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
               <SectionLabel text="Testimoni Klien" />
-              <h2 className="text-3xl font-bold text-white mb-3" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+              <h2 className="text-3xl font-bold text-[#faf9f5] mb-3" style={{ fontFamily: "'Cormorant Garamond', 'EB Garamond', serif", fontWeight: 500, letterSpacing: '-0.02em' }}>
                 Kata Mereka yang Sudah Order
               </h2>
-              <p style={{ color: 'rgba(255,255,255,0.4)' }}>Ribuan klien puas telah mempercayakan akun mereka kepada kami</p>
+              <p style={{ color: 'rgba(250,249,245,0.5)' }}>Ribuan klien puas telah mempercayakan akun mereka kepada kami</p>
             </motion.div>
           </div>
           <div className="relative">
@@ -504,9 +503,9 @@ export function HomePage() {
             <Link
               to="/testimoni"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm transition-all duration-200 hover:scale-105"
-              style={{ border: '1px solid rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.5)', background: 'rgba(255,255,255,0.04)' }}
-              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(251,191,36,0.35)'; (e.currentTarget as HTMLElement).style.color = '#fbbf24'; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.1)'; (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.5)'; }}
+              style={{ border: '1px solid rgba(250,249,245,0.12)', color: 'rgba(250,249,245,0.6)', background: 'rgba(255,255,255,0.03)' }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(204,120,92,0.4)'; (e.currentTarget as HTMLElement).style.color = '#cc785c'; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(250,249,245,0.12)'; (e.currentTarget as HTMLElement).style.color = 'rgba(250,249,245,0.6)'; }}
             >
               Lihat Semua Testimoni <ArrowRight className="w-4 h-4" />
             </Link>
@@ -516,18 +515,18 @@ export function HomePage() {
 
       {/* DIVIDER */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.07), transparent)' }} />
+        <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent, rgba(20,20,19,0.1), transparent)' }} />
       </div>
 
       {/* FAQ */}
-      <section className="py-24" style={{ background: 'linear-gradient(160deg, #0d0d10 0%, #0a0a0a 100%)' }}>
+      <section className="py-12 sm:py-24" style={{ background: '#faf9f5' }}>
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div className="text-center mb-14" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <SectionLabel text="FAQ" />
-            <h2 className="text-3xl font-bold text-white mb-3" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+            <h2 className="text-3xl font-bold text-[#141413] mb-3" style={{ fontFamily: "'Cormorant Garamond', 'EB Garamond', serif", fontWeight: 500, letterSpacing: '-0.02em' }}>
               Pertanyaan yang Sering Ditanya
             </h2>
-            <p style={{ color: 'rgba(255,255,255,0.4)' }}>Temukan jawaban atas pertanyaan umum tentang layanan kami</p>
+            <p style={{ color: 'rgba(20,20,19,0.55)' }}>Temukan jawaban atas pertanyaan umum tentang layanan kami</p>
           </motion.div>
           <div className="space-y-3">
             {FAQS_HOME.map((faq, i) => (
@@ -539,32 +538,32 @@ export function HomePage() {
                 transition={{ delay: i * 0.06 }}
                 className="relative overflow-hidden rounded-2xl"
                 style={{
-                  background: openFaq === i ? 'rgba(251,191,36,0.05)' : 'rgba(255,255,255,0.03)',
-                  border: `1px solid ${openFaq === i ? 'rgba(251,191,36,0.25)' : 'rgba(255,255,255,0.07)'}`,
+                  background: openFaq === i ? 'rgba(204,120,92,0.05)' : 'rgba(255,255,255,0.6)',
+                  border: `1px solid ${openFaq === i ? 'rgba(204,120,92,0.3)' : '#e6dfd8'}`,
                   transition: 'background 0.2s, border-color 0.2s',
                 }}
               >
                 {openFaq === i && (
                   <div className="absolute top-0 left-0 right-0 h-px"
-                    style={{ background: 'linear-gradient(90deg, transparent, rgba(251,191,36,0.5), transparent)' }} />
+                    style={{ background: 'linear-gradient(90deg, transparent, rgba(204,120,92,0.5), transparent)' }} />
                 )}
                 <button
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
                   className="w-full px-6 py-4 text-left flex items-center justify-between gap-4"
                 >
-                  <span className="font-medium text-sm" style={{ color: openFaq === i ? '#fbbf24' : 'rgba(255,255,255,0.8)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+                  <span className="font-medium text-sm" style={{ color: openFaq === i ? '#cc785c' : '#141413', fontFamily: 'Inter, system-ui, sans-serif' }}>
                     {faq.q}
                   </span>
                   <div className="w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors"
-                    style={{ background: openFaq === i ? 'rgba(251,191,36,0.15)' : 'rgba(255,255,255,0.06)' }}>
+                    style={{ background: openFaq === i ? 'rgba(204,120,92,0.15)' : 'rgba(20,20,19,0.05)' }}>
                     {openFaq === i
-                      ? <ChevronUp className="w-3.5 h-3.5 text-amber-400" />
-                      : <ChevronDown className="w-3.5 h-3.5" style={{ color: 'rgba(255,255,255,0.4)' }} />}
+                      ? <ChevronUp className="w-3.5 h-3.5 text-primary" />
+                      : <ChevronDown className="w-3.5 h-3.5" style={{ color: 'rgba(20,20,19,0.4)' }} />}
                   </div>
                 </button>
                 {openFaq === i && (
                   <div className="px-6 pb-5">
-                    <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.5)' }}>{faq.a}</p>
+                    <p className="text-sm leading-relaxed" style={{ color: 'rgba(20,20,19,0.6)' }}>{faq.a}</p>
                   </div>
                 )}
               </motion.div>
@@ -574,9 +573,9 @@ export function HomePage() {
             <Link
               to="/faq"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm transition-all duration-200 hover:scale-105"
-              style={{ border: '1px solid rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.5)', background: 'rgba(255,255,255,0.04)' }}
-              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(251,191,36,0.35)'; (e.currentTarget as HTMLElement).style.color = '#fbbf24'; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.1)'; (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.5)'; }}
+              style={{ border: '1px solid #e6dfd8', color: 'rgba(20,20,19,0.6)', background: 'rgba(255,255,255,0.5)' }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(204,120,92,0.35)'; (e.currentTarget as HTMLElement).style.color = '#cc785c'; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = '#e6dfd8'; (e.currentTarget as HTMLElement).style.color = 'rgba(20,20,19,0.6)'; }}
             >
               Lihat FAQ Lengkap <ArrowRight className="w-4 h-4" />
             </Link>

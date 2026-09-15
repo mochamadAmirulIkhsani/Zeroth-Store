@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { MessageCircle, Star, TrendingUp, Zap, Shield } from 'lucide-react';
+import { MessageCircle, Star, TrendingUp, Shield } from 'lucide-react';
 
 interface HeroSectionProps {
   heroHeadline: string;
@@ -20,18 +20,18 @@ export function HeroSection({ heroHeadline, heroSubheadline, waLink, stats }: He
       className="relative overflow-hidden"
       style={{
         minHeight: '100svh',
-        background: '#0A0A0A',
+        background: '#faf9f5',
       }}
     >
-      {/* ── Subtle noise texture overlay ── */}
+      {/* Warm ambient glow */}
       <div
         className="absolute inset-0 pointer-events-none z-0"
         style={{
-          backgroundImage: `radial-gradient(ellipse 80% 60% at 50% 0%, rgba(251,191,36,0.06) 0%, transparent 70%)`,
+          backgroundImage: `radial-gradient(ellipse 80% 60% at 50% 0%, rgba(204,120,92,0.06) 0%, transparent 70%)`,
         }}
       />
 
-      {/* ── LARGE WATERMARK TEXT — bottom ── */}
+      {/* Watermark text */}
       <div
         className="absolute bottom-0 left-0 right-0 pointer-events-none z-0 flex items-end justify-center overflow-hidden"
         style={{ lineHeight: 0.85 }}
@@ -41,12 +41,12 @@ export function HeroSection({ heroHeadline, heroSubheadline, waLink, stats }: He
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2, ease: 'easeOut' }}
           style={{
-            fontFamily: 'Space Grotesk, sans-serif',
-            fontWeight: 700,
-            fontSize: 'clamp(80px, 18vw, 240px)',
+            fontFamily: "'Cormorant Garamond', 'EB Garamond', serif",
+            fontWeight: 600,
+            fontSize: 'clamp(90px, 19vw, 260px)',
             color: 'transparent',
-            WebkitTextStroke: '1px rgba(255,255,255,0.07)',
-            letterSpacing: '-0.02em',
+            WebkitTextStroke: '1px rgba(20,20,19,0.08)',
+            letterSpacing: '-0.03em',
             whiteSpace: 'nowrap',
             userSelect: 'none',
           }}
@@ -55,7 +55,7 @@ export function HeroSection({ heroHeadline, heroSubheadline, waLink, stats }: He
         </motion.span>
       </div>
 
-      {/* ── HERO IMAGE — center, full height ── */}
+      {/* Hero image */}
       <motion.div
         className="absolute inset-0 z-10 flex items-end justify-center pointer-events-none"
         initial={{ opacity: 0, scale: 1.05 }}
@@ -68,29 +68,29 @@ export function HeroSection({ heroHeadline, heroSubheadline, waLink, stats }: He
           className="h-full w-auto max-w-none object-cover object-top"
           style={{
             maxHeight: '92vh',
-            filter: 'drop-shadow(0 40px 80px rgba(0,0,0,0.8))',
+            filter: 'drop-shadow(0 40px 80px rgba(20,20,19,0.35))',
           }}
         />
         {/* Gradient feet fade */}
         <div
           className="absolute bottom-0 left-0 right-0 h-48 pointer-events-none"
-          style={{ background: 'linear-gradient(to top, #0A0A0A 30%, transparent)' }}
+          style={{ background: 'linear-gradient(to top, #faf9f5 30%, transparent)' }}
         />
       </motion.div>
 
-      {/* ── LEFT gradient fade ── */}
+      {/* Left gradient fade */}
       <div
         className="absolute left-0 top-0 bottom-0 w-1/2 pointer-events-none z-10"
-        style={{ background: 'linear-gradient(to right, #0A0A0A 30%, transparent 80%)' }}
+        style={{ background: 'linear-gradient(to right, #faf9f5 30%, transparent 80%)' }}
       />
 
-      {/* ── RIGHT gradient fade ── */}
+      {/* Right gradient fade */}
       <div
         className="absolute right-0 top-0 bottom-0 w-1/3 pointer-events-none z-10"
-        style={{ background: 'linear-gradient(to left, #0A0A0A 15%, transparent 70%)' }}
+        style={{ background: 'linear-gradient(to left, #faf9f5 15%, transparent 70%)' }}
       />
 
-      {/* ── TOP-RIGHT STAT CARDS ── */}
+      {/* Stat cards */}
       <div className="absolute top-10 right-6 sm:right-10 lg:right-16 z-30 flex flex-col gap-3 max-w-[220px]">
         {/* Big stat card */}
         <motion.div
@@ -99,8 +99,9 @@ export function HeroSection({ heroHeadline, heroSubheadline, waLink, stats }: He
           transition={{ delay: 0.7, duration: 0.5, type: 'spring', stiffness: 120 }}
           className="rounded-2xl p-4"
           style={{
-            background: 'rgba(255,255,255,0.96)',
-            boxShadow: '0 8px 40px rgba(0,0,0,0.35)',
+            background: 'rgba(255,255,255,0.9)',
+            border: '1px solid #e6dfd8',
+            boxShadow: '0 8px 40px rgba(20,20,19,0.08)',
           }}
         >
           <p className="text-xs font-medium text-gray-500 mb-1">Order Selesai</p>
@@ -108,7 +109,7 @@ export function HeroSection({ heroHeadline, heroSubheadline, waLink, stats }: He
             <div>
               <span
                 className="font-bold text-gray-900"
-                style={{ fontFamily: 'Space Grotesk', fontSize: '2rem', lineHeight: 1 }}
+                style={{ fontFamily: 'Inter, system-ui, sans-serif', fontSize: '2rem', lineHeight: 1 }}
               >
                 {stats.ordersCompleted.toLocaleString('id-ID')}+
               </span>
@@ -116,7 +117,7 @@ export function HeroSection({ heroHeadline, heroSubheadline, waLink, stats }: He
             </div>
             <div
               className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-              style={{ background: 'linear-gradient(135deg, #fbbf24, #f97316)' }}
+              style={{ background: '#cc785c' }}
             >
               <TrendingUp className="w-5 h-5 text-white" strokeWidth={2} />
             </div>
@@ -132,18 +133,18 @@ export function HeroSection({ heroHeadline, heroSubheadline, waLink, stats }: He
             className="flex-1 rounded-2xl p-3.5"
             style={{
               background: 'rgba(255,255,255,0.55)',
-              border: '1px solid rgba(255,255,255,0.4)',
+              border: '1px solid rgba(20,20,19,0.08)',
               boxShadow: 'none',
             }}
           >
-            <p className="text-[10px] font-medium text-gray-700 mb-1.5">Win Rate</p>
+            <p className="text-[10px] font-medium text-gray-600 mb-1.5">Win Rate</p>
             <p
               className="font-bold text-gray-900"
-              style={{ fontFamily: 'Space Grotesk', fontSize: '1.3rem', lineHeight: 1 }}
+              style={{ fontFamily: 'Inter, system-ui, sans-serif', fontSize: '1.3rem', lineHeight: 1 }}
             >
               {stats.satisfactionRate}%
             </p>
-            <p className="text-[10px] text-gray-700 mt-0.5">Jaminan</p>
+            <p className="text-[10px] text-gray-600 mt-0.5">Jaminan</p>
           </motion.div>
 
           <motion.div
@@ -153,28 +154,28 @@ export function HeroSection({ heroHeadline, heroSubheadline, waLink, stats }: He
             className="flex-1 rounded-2xl p-3.5"
             style={{
               background: 'rgba(255,255,255,0.55)',
-              border: '1px solid rgba(255,255,255,0.4)',
+              border: '1px solid rgba(20,20,19,0.08)',
               boxShadow: 'none',
             }}
           >
-            <p className="text-[10px] font-medium text-gray-700 mb-1.5">Klien Aktif</p>
+            <p className="text-[10px] font-medium text-gray-600 mb-1.5">Klien Aktif</p>
             <div className="flex gap-0.5 mb-0.5">
               {[1,2,3,4,5].map(s => (
-                <div key={s} className="w-1.5 h-1.5 rounded-full" style={{ background: s <= 4 ? '#fbbf24' : 'rgba(251,191,36,0.25)' }} />
+                <div key={s} className="w-1.5 h-1.5 rounded-full" style={{ background: s <= 4 ? '#cc785c' : 'rgba(204,120,92,0.25)' }} />
               ))}
             </div>
             <p
               className="font-bold text-gray-900"
-              style={{ fontFamily: 'Space Grotesk', fontSize: '1.3rem', lineHeight: 1 }}
+              style={{ fontFamily: 'Inter, system-ui, sans-serif', fontSize: '1.3rem', lineHeight: 1 }}
             >
               {stats.activeClients.toLocaleString('id-ID')}+
             </p>
-            <p className="text-[10px] text-gray-700 mt-0.5">Klien</p>
+            <p className="text-[10px] text-gray-600 mt-0.5">Klien</p>
           </motion.div>
         </div>
       </div>
 
-      {/* ── LEFT TEXT CONTENT ── */}
+      {/* Text content */}
       <div className="relative z-20 flex flex-col justify-center min-h-screen px-6 sm:px-10 lg:px-16 max-w-2xl">
         {/* Label */}
         <motion.div
@@ -183,8 +184,8 @@ export function HeroSection({ heroHeadline, heroSubheadline, waLink, stats }: He
           transition={{ duration: 0.5, delay: 0.3 }}
           className="flex items-center gap-2 mb-6"
         >
-          <div className="w-0.5 h-4 bg-amber-400 rounded-full" />
-          <span className="text-sm" style={{ color: 'rgba(255,255,255,0.55)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+          <div className="w-0.5 h-4 bg-primary rounded-full" />
+          <span className="text-sm" style={{ color: 'rgba(20,20,19,0.55)', fontFamily: 'Inter, system-ui, sans-serif', letterSpacing: '0.02em', textTransform: 'uppercase', fontSize: '12px', fontWeight: 500 }}>
             Joki Game Profesional #1 Indonesia
           </span>
         </motion.div>
@@ -192,12 +193,13 @@ export function HeroSection({ heroHeadline, heroSubheadline, waLink, stats }: He
         {/* Large headline — multi-line like reference */}
         <h1
           style={{
-            fontFamily: 'Space Grotesk, sans-serif',
-            fontWeight: 700,
-            lineHeight: 1.0,
-            letterSpacing: '-0.03em',
-            fontSize: 'clamp(2.8rem, 6.5vw, 5.5rem)',
+            fontFamily: "'Cormorant Garamond', 'EB Garamond', Georgia, serif",
+            fontWeight: 400,
+            lineHeight: 1.02,
+            letterSpacing: '-0.02em',
+            fontSize: 'clamp(3.2rem, 7vw, 6rem)',
             marginBottom: '1.5rem',
+            color: '#141413',
           }}
         >
           {[line1, line2, line3].filter(Boolean).map((line, i) => (
@@ -208,9 +210,9 @@ export function HeroSection({ heroHeadline, heroSubheadline, waLink, stats }: He
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.55, delay: 0.35 + i * 0.1, ease: 'easeOut' }}
               style={{
-                color: i === 1 ? 'transparent' : '#ffffff',
+                color: i === 1 ? 'transparent' : '#141413',
                 ...(i === 1 ? {
-                  WebkitTextStroke: '2px #fbbf24',
+                  WebkitTextStroke: '2px #cc785c',
                 } : {}),
               }}
             >
@@ -225,7 +227,7 @@ export function HeroSection({ heroHeadline, heroSubheadline, waLink, stats }: He
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.65 }}
           className="mb-8 max-w-sm"
-          style={{ color: 'rgba(255,255,255,0.5)', fontSize: '1rem', lineHeight: 1.6 }}
+          style={{ color: 'rgba(20,20,19,0.55)', fontSize: '1rem', lineHeight: 1.6 }}
         >
           {heroSubheadline}
         </motion.p>
@@ -239,11 +241,11 @@ export function HeroSection({ heroHeadline, heroSubheadline, waLink, stats }: He
         >
           <div className="flex items-center gap-0.5">
             {[1,2,3,4,5].map(s => (
-              <Star key={s} className="w-4 h-4 text-amber-400 fill-amber-400" />
+              <Star key={s} className="w-4 h-4 text-primary fill-primary" />
             ))}
           </div>
-          <span className="text-sm" style={{ color: 'rgba(255,255,255,0.5)' }}>
-            Dipercaya <span className="text-white font-semibold" style={{ fontFamily: 'Space Grotesk' }}>{stats.ordersCompleted.toLocaleString('id-ID')}+</span> Klien
+          <span className="text-sm" style={{ color: 'rgba(20,20,19,0.55)' }}>
+            Dipercaya <span className="text-[#141413] font-semibold" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>{stats.ordersCompleted.toLocaleString('id-ID')}+</span> Klien
           </span>
         </motion.div>
 
@@ -256,24 +258,24 @@ export function HeroSection({ heroHeadline, heroSubheadline, waLink, stats }: He
         >
           {[
             { icon: Shield, label: 'Akun Aman' },
-            { icon: Zap, label: 'Respon Cepat' },
+            { icon: Shield, label: 'Respon Cepat' },
           ].map(({ icon: Icon, label }) => (
             <div
               key={label}
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-full"
               style={{
-                background: 'rgba(255,255,255,0.06)',
-                border: '1px solid rgba(255,255,255,0.1)',
+                background: 'rgba(204,120,92,0.06)',
+                border: '1px solid rgba(204,120,92,0.18)',
               }}
             >
-              <Icon className="w-3 h-3 text-amber-400" strokeWidth={2} />
-              <span className="text-xs" style={{ color: 'rgba(255,255,255,0.55)' }}>{label}</span>
+              <Icon className="w-3 h-3 text-primary" strokeWidth={2} />
+              <span className="text-xs" style={{ color: 'rgba(20,20,19,0.6)' }}>{label}</span>
             </div>
           ))}
         </motion.div>
       </div>
 
-      {/* ── BOTTOM CTA BUTTON — centered ── */}
+      {/* CTA button */}
       <motion.div
         className="absolute bottom-10 left-0 right-0 z-30 flex justify-center px-6"
         initial={{ opacity: 0, y: 30 }}
@@ -286,15 +288,15 @@ export function HeroSection({ heroHeadline, heroSubheadline, waLink, stats }: He
           rel="noopener noreferrer"
           className="inline-flex items-center gap-3 transition-all duration-200 hover:scale-105 active:scale-95"
           style={{
-            background: 'linear-gradient(135deg, #fbbf24 0%, #f97316 100%)',
-            color: '#000',
-            fontFamily: 'Space Grotesk, sans-serif',
-            fontWeight: 700,
-            fontSize: '1rem',
+            background: '#cc785c',
+            color: '#fff',
+            fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
+            fontWeight: 600,
+            fontSize: '0.9rem',
             letterSpacing: '0.03em',
             padding: '1rem 2.5rem',
             borderRadius: '100px',
-            boxShadow: '0 0 40px rgba(251,191,36,0.35), 0 8px 32px rgba(249,115,22,0.25)',
+            boxShadow: '0 0 40px rgba(204,120,92,0.35), 0 8px 32px rgba(20,20,19,0.15)',
           }}
         >
           <MessageCircle className="w-5 h-5" />

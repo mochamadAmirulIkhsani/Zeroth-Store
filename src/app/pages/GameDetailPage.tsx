@@ -57,15 +57,15 @@ function ServiceCard({ service, game }: { service: Service; game: Game }) {
               {service.category}
             </span>
           </div>
-          <h4 className="font-semibold text-[#0A0A0A] leading-snug">{service.name}</h4>
+          <h4 className="font-semibold text-[#272729] leading-snug">{service.name}</h4>
         </div>
       </div>
       <p className="text-gray-500 text-sm leading-relaxed mb-4">{service.description}</p>
 
       {service.notes && (
-        <div className="flex items-start gap-2 bg-amber-50 border border-amber-100 rounded-xl p-3 mb-4">
-          <AlertCircle className="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" />
-          <p className="text-amber-700 text-xs">{service.notes}</p>
+        <div className="flex items-start gap-2 bg-primary border border-primary rounded-xl p-3 mb-4">
+          <AlertCircle className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+          <p className="text-primary text-xs">{service.notes}</p>
         </div>
       )}
 
@@ -76,13 +76,13 @@ function ServiceCard({ service, game }: { service: Service; game: Game }) {
         </div>
         <div className="flex items-center gap-1.5">
           <DollarSign className="w-3.5 h-3.5 text-gray-500 flex-shrink-0" strokeWidth={1.5} />
-          <span className="text-sm font-semibold text-[#0A0A0A]">{service.price}</span>
+          <span className="text-sm font-semibold text-[#272729]">{service.price}</span>
         </div>
         <a
           href={waLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-full flex items-center justify-center gap-2 bg-[#0A0A0A] hover:bg-[#2a2a2a] text-white py-2.5 rounded-xl transition-all duration-200"
+          className="w-full flex items-center justify-center gap-2 bg-[#272729] hover:bg-[#2a2a2a] text-white py-2.5 rounded-xl transition-all duration-200"
         >
           <MessageCircle className="w-4 h-4 flex-shrink-0" />
           <span className="hidden sm:inline text-sm">Order Sekarang</span>
@@ -118,7 +118,7 @@ export function GameDetailPage() {
   );
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white pt-16">
       {/* Banner */}
       <div className="relative h-56 sm:h-72 overflow-hidden">
         <img
@@ -139,7 +139,7 @@ export function GameDetailPage() {
             </Link>
             <div className="flex items-end justify-between gap-4">
               <div>
-                <h1 className="text-3xl sm:text-4xl font-bold text-white mb-1" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+                <h1 className="text-3xl sm:text-4xl font-bold text-white mb-1" style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
                   {game.name}
                 </h1>
                 <div className="flex items-center gap-2">
@@ -171,7 +171,7 @@ export function GameDetailPage() {
           <div className="lg:col-span-2 space-y-10">
             {/* Description */}
             <div>
-              <h2 className="text-xl font-bold text-[#0A0A0A] mb-3" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+              <h2 className="text-xl font-bold text-[#272729] mb-3" style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
                 Tentang {game.name}
               </h2>
               <p className="text-gray-500 leading-relaxed">{game.description}</p>
@@ -179,7 +179,7 @@ export function GameDetailPage() {
 
             {/* Services */}
             <div>
-              <h2 className="text-xl font-bold text-[#0A0A0A] mb-4" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+              <h2 className="text-xl font-bold text-[#272729] mb-4" style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
                 Daftar Layanan Joki
               </h2>
               {/* Category filter */}
@@ -212,7 +212,7 @@ export function GameDetailPage() {
             {/* How It Works */}
             {game.howItWorks && (
               <div>
-                <h2 className="text-xl font-bold text-[#0A0A0A] mb-6" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+                <h2 className="text-xl font-bold text-[#272729] mb-6" style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
                   Cara Kerja / Alur Joki
                 </h2>
                 <div className="relative">
@@ -231,7 +231,7 @@ export function GameDetailPage() {
                       </div>
                       <div className="pb-6 last:pb-0">
                         <p className="text-xs text-gray-500 mb-0.5">Langkah {i + 1}</p>
-                        <h4 className="font-semibold text-[#0A0A0A] mb-1">{step.title}</h4>
+                        <h4 className="font-semibold text-[#272729] mb-1">{step.title}</h4>
                         <p className="text-gray-500 text-sm leading-relaxed">{step.description}</p>
                       </div>
                     </div>
@@ -245,7 +245,7 @@ export function GameDetailPage() {
               <div className="bg-gray-50 rounded-2xl p-6 border border-gray-100">
                 <div className="flex items-center gap-2 mb-4">
                   <Shield className="w-5 h-5 text-green-600" strokeWidth={1.5} />
-                  <h2 className="text-lg font-bold text-[#0A0A0A]" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+                  <h2 className="text-lg font-bold text-[#272729]" style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
                     Jaminan Keamanan Akun
                   </h2>
                 </div>
@@ -263,7 +263,7 @@ export function GameDetailPage() {
             {/* Testimonials */}
             {gameTestimonials.length > 0 && (
               <div>
-                <h2 className="text-xl font-bold text-[#0A0A0A] mb-6" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+                <h2 className="text-xl font-bold text-[#272729] mb-6" style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
                   Testimoni {game.name}
                 </h2>
                 <div className="space-y-4">
@@ -271,19 +271,19 @@ export function GameDetailPage() {
                     <div key={t.id} className="bg-white border border-gray-100 rounded-xl p-5">
                       <div className="flex items-center gap-1 mb-2">
                         {Array.from({ length: 5 }).map((_, j) => (
-                          <Star key={j} className={`w-3.5 h-3.5 ${j < t.rating ? 'text-amber-400 fill-amber-400' : 'text-gray-200'}`} />
+                          <Star key={j} className={`w-3.5 h-3.5 ${j < t.rating ? 'text-primary fill-primary' : 'text-gray-200'}`} />
                         ))}
                         <span className="text-gray-500 text-xs ml-1">{formatDate(t.date)}</span>
                       </div>
                       <p className="text-gray-700 text-sm mb-3">"{t.content}"</p>
                       <div>
-                        <p className="font-medium text-[#0A0A0A] text-sm">{t.name}</p>
+                        <p className="font-medium text-[#272729] text-sm">{t.name}</p>
                         <p className="text-gray-500 text-xs">{t.service}</p>
                       </div>
                     </div>
                   ))}
                 </div>
-                <Link to="/testimoni" className="inline-flex items-center gap-1 text-amber-600 hover:text-amber-700 text-sm mt-4">
+                <Link to="/testimoni" className="inline-flex items-center gap-1 text-primary hover:text-primary text-sm mt-4">
                   Lihat lebih banyak testimoni →
                 </Link>
               </div>
@@ -294,8 +294,8 @@ export function GameDetailPage() {
           <div className="lg:col-span-1 space-y-6">
             {/* Quick Order Card */}
             <div className="sticky top-24 space-y-4">
-              <div className="bg-[#0A0A0A] rounded-2xl p-6 text-white">
-                <h3 className="font-bold text-lg mb-2" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+              <div className="bg-[#272729] rounded-2xl p-6 text-white">
+                <h3 className="font-bold text-lg mb-2" style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
                   Mulai Order Sekarang
                 </h3>
                 <p className="text-gray-500 text-sm mb-5">
@@ -328,19 +328,19 @@ export function GameDetailPage() {
 
               {/* Stats */}
               <div className="bg-gray-50 rounded-2xl p-5 border border-gray-100">
-                <h4 className="font-semibold text-[#0A0A0A] text-sm mb-3">Statistik Layanan</h4>
+                <h4 className="font-semibold text-[#272729] text-sm mb-3">Statistik Layanan</h4>
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
                     <span className="text-gray-500 text-xs">Total Layanan</span>
-                    <span className="font-semibold text-[#0A0A0A] text-sm">{activeServices.length}</span>
+                    <span className="font-semibold text-[#272729] text-sm">{activeServices.length}</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-gray-500 text-xs">Harga Mulai</span>
-                    <span className="font-semibold text-[#0A0A0A] text-sm">{activeServices[0]?.price ?? 'Nego'}</span>
+                    <span className="font-semibold text-[#272729] text-sm">{activeServices[0]?.price ?? 'Nego'}</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-gray-500 text-xs">Testimoni</span>
-                    <span className="font-semibold text-[#0A0A0A] text-sm">{gameTestimonials.length}+</span>
+                    <span className="font-semibold text-[#272729] text-sm">{gameTestimonials.length}+</span>
                   </div>
                 </div>
               </div>

@@ -29,15 +29,15 @@ export function FAQPage() {
   const waLink = `https://wa.me/${settings.whatsappNumber}?text=${encodeURIComponent('Halo! Saya punya pertanyaan tentang layanan Zeroth Store.')}`;
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen" style={{ background: '#faf9f5' }}>
       {/* Header */}
-      <div className="bg-gradient-to-br from-white to-gray-50 py-16 border-b border-gray-100">
+      <div className="py-16" style={{ background: '#faf9f5', borderBottom: '1px solid #e6dfd8' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            <h1 className="text-4xl font-bold text-[#0A0A0A] mb-3" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+            <h1 className="text-4xl font-bold text-[#141413] mb-3" style={{ fontFamily: "'Cormorant Garamond', 'EB Garamond', serif", fontWeight: 500, letterSpacing: '-0.02em' }}>
               Pertanyaan yang Sering Ditanya
             </h1>
-            <p className="text-gray-500 max-w-lg mx-auto">
+            <p className="max-w-lg mx-auto" style={{ color: 'rgba(20,20,19,0.55)' }}>
               Temukan jawaban dari pertanyaan-pertanyaan yang sering diajukan klien kami
             </p>
           </motion.div>
@@ -53,8 +53,8 @@ export function FAQPage() {
               onClick={() => setActiveCategory(cat)}
               className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
                 activeCategory === cat
-                  ? 'bg-black text-white'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                  ? 'bg-[#141413] text-[#faf9f5]'
+                  : 'bg-[#efe9de] text-[rgba(20,20,19,0.6)] hover:bg-[#e8e0d2]'
               }`}
             >
               {cat !== 'Semua' && <span>{CATEGORY_ICONS[cat] ?? '❓'}</span>}
@@ -67,7 +67,7 @@ export function FAQPage() {
         {activeCategory === 'Semua' ? (
           Object.entries(grouped).map(([category, categoryFaqs]) => (
             <div key={category} className="mb-10">
-              <h2 className="flex items-center gap-2 text-lg font-bold text-[#0A0A0A] mb-4" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+              <h2 className="flex items-center gap-2 text-lg font-bold text-[#141413] mb-4" style={{ fontFamily: "'Cormorant Garamond', 'EB Garamond', serif", fontWeight: 600 }}>
                 <span>{CATEGORY_ICONS[category] ?? '❓'}</span>
                 {category}
               </h2>
@@ -78,21 +78,21 @@ export function FAQPage() {
                     initial={{ opacity: 0, y: 5 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="bg-white border border-gray-100 rounded-2xl overflow-hidden hover:border-gray-200 transition-colors"
+                    className="bg-white border border-[#e6dfd8] rounded-2xl overflow-hidden hover:border-[#d8cfc2] transition-colors"
                   >
                     <button
                       onClick={() => setOpenFaq(openFaq === faq.id ? null : faq.id)}
                       className="w-full px-6 py-4 text-left flex items-center justify-between gap-4"
                     >
-                      <span className="font-medium text-[#0A0A0A] text-sm text-left">{faq.question}</span>
+                      <span className="font-medium text-[#141413] text-sm text-left">{faq.question}</span>
                       {openFaq === faq.id
-                        ? <ChevronUp className="w-4 h-4 text-gray-400 flex-shrink-0" />
-                        : <ChevronDown className="w-4 h-4 text-gray-400 flex-shrink-0" />
+                        ? <ChevronUp className="w-4 h-4 text-[rgba(20,20,19,0.4)] flex-shrink-0" />
+                        : <ChevronDown className="w-4 h-4 text-[rgba(20,20,19,0.4)] flex-shrink-0" />
                       }
                     </button>
                     {openFaq === faq.id && (
-                      <div className="px-6 pb-4 border-t border-gray-50">
-                        <p className="text-gray-500 text-sm leading-relaxed pt-3">{faq.answer}</p>
+                      <div className="px-6 pb-4 border-t" style={{ borderColor: '#ebe6df' }}>
+                        <p className="text-sm leading-relaxed pt-3" style={{ color: 'rgba(20,20,19,0.6)' }}>{faq.answer}</p>
                       </div>
                     )}
                   </motion.div>
@@ -107,21 +107,21 @@ export function FAQPage() {
                 key={faq.id}
                 initial={{ opacity: 0, y: 5 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="bg-white border border-gray-100 rounded-2xl overflow-hidden hover:border-gray-200 transition-colors"
+                className="bg-white border border-[#e6dfd8] rounded-2xl overflow-hidden hover:border-[#d8cfc2] transition-colors"
               >
                 <button
                   onClick={() => setOpenFaq(openFaq === faq.id ? null : faq.id)}
                   className="w-full px-6 py-4 text-left flex items-center justify-between gap-4"
                 >
-                  <span className="font-medium text-[#0A0A0A] text-sm text-left">{faq.question}</span>
+                  <span className="font-medium text-[#141413] text-sm text-left">{faq.question}</span>
                   {openFaq === faq.id
-                    ? <ChevronUp className="w-4 h-4 text-gray-400 flex-shrink-0" />
-                    : <ChevronDown className="w-4 h-4 text-gray-400 flex-shrink-0" />
+                    ? <ChevronUp className="w-4 h-4 text-[rgba(20,20,19,0.4)] flex-shrink-0" />
+                    : <ChevronDown className="w-4 h-4 text-[rgba(20,20,19,0.4)] flex-shrink-0" />
                   }
                 </button>
                 {openFaq === faq.id && (
-                  <div className="px-6 pb-4 border-t border-gray-50">
-                    <p className="text-gray-500 text-sm leading-relaxed pt-3">{faq.answer}</p>
+                  <div className="px-6 pb-4 border-t" style={{ borderColor: '#ebe6df' }}>
+                    <p className="text-sm leading-relaxed pt-3" style={{ color: 'rgba(20,20,19,0.6)' }}>{faq.answer}</p>
                   </div>
                 )}
               </motion.div>
@@ -130,18 +130,19 @@ export function FAQPage() {
         )}
 
         {/* CTA */}
-        <div className="mt-14 bg-gray-50 rounded-2xl p-8 text-center border border-gray-100">
-          <h3 className="font-bold text-[#0A0A0A] text-xl mb-2" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+        <div className="mt-14 rounded-2xl p-8 text-center" style={{ background: '#efe9de', border: '1px solid #e6dfd8' }}>
+          <h3 className="font-bold text-[#141413] text-xl mb-2" style={{ fontFamily: "'Cormorant Garamond', 'EB Garamond', serif", fontWeight: 600 }}>
             Pertanyaan Anda Tidak Ada di Sini?
           </h3>
-          <p className="text-gray-500 text-sm mb-6">
+          <p className="text-sm mb-6" style={{ color: 'rgba(20,20,19,0.55)' }}>
             Langsung tanyakan kepada admin kami via WhatsApp. Kami siap membantu!
           </p>
           <a
             href={waLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-7 py-3.5 rounded-xl text-sm transition-colors"
+            className="inline-flex items-center gap-2 text-white px-7 py-3.5 rounded-xl text-sm transition-colors"
+            style={{ background: '#cc785c' }}
           >
             <MessageCircle className="w-4 h-4" />
             <span>Tanya via WhatsApp</span>

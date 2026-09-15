@@ -44,7 +44,7 @@ export function AdminLayout() {
 
       {/* Sidebar */}
       <aside
-        className={`fixed top-0 left-0 h-full w-64 bg-[#0A0A0A] z-50 transition-transform duration-300 flex flex-col ${
+        className={`fixed top-0 left-0 h-full w-64 bg-[#272729] z-50 transition-transform duration-300 flex flex-col ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
         }`}
       >
@@ -52,11 +52,11 @@ export function AdminLayout() {
         <div className="p-5 border-b border-gray-800">
           <div className="flex items-center justify-between">
             <Link to="/" className="flex items-center gap-2">
-              <div className="w-7 h-7 bg-amber-500 rounded-lg flex items-center justify-center">
+              <div className="w-7 h-7 bg-primary rounded-lg flex items-center justify-center">
                 <Zap className="w-3.5 h-3.5 text-black" strokeWidth={2.5} />
               </div>
-              <span className="text-white font-bold text-sm" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
-                Zeroth<span className="text-amber-500">Store</span>
+              <span className="text-white font-bold text-sm" style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
+                Zeroth<span className="text-primary">Store</span>
               </span>
             </Link>
             <button
@@ -66,8 +66,8 @@ export function AdminLayout() {
               <X className="w-4 h-4" />
             </button>
           </div>
-          <div className="mt-3 px-2 py-1.5 bg-amber-500/10 rounded-lg">
-            <p className="text-amber-400 text-xs font-medium">Admin Panel</p>
+          <div className="mt-3 px-2 py-1.5 bg-primary/10 rounded-lg">
+            <p className="text-primary text-xs font-medium">Admin Panel</p>
           </div>
         </div>
 
@@ -82,7 +82,7 @@ export function AdminLayout() {
                 onClick={() => setSidebarOpen(false)}
                 className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-all duration-200 ${
                   active
-                    ? 'bg-amber-500 text-black font-medium'
+                    ? 'bg-primary text-black font-medium'
                     : 'text-gray-400 hover:text-white hover:bg-gray-800'
                 }`}
               >

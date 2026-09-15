@@ -12,7 +12,7 @@ export function RootLayout() {
       <main className="flex-1">
         {/* Loading state */}
         {!isBootstrapped && (
-          <div className="py-6 px-4 text-center text-sm" style={{ background: '#0A0A0A', color: 'rgba(255,255,255,0.5)' }}>
+          <div className="py-6 px-4 text-center text-sm" style={{ background: '#272729', color: 'rgba(255,255,255,0.5)' }}>
             Memuat data...
           </div>
         )}

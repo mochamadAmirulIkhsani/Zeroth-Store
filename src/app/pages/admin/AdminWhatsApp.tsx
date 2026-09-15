@@ -92,7 +92,7 @@ export function AdminWhatsApp() {
   return (
     <div className="space-y-6 max-w-4xl">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+        <h1 className="text-2xl font-bold text-gray-900" style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
           Pengaturan WhatsApp
         </h1>
         <p className="text-gray-500 text-sm mt-1">Kelola nomor WhatsApp dan template pesan per game</p>
@@ -111,7 +111,7 @@ export function AdminWhatsApp() {
             </label>
             <div className="flex gap-3">
               <input
-                className="flex-1 border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-300"
+                className="flex-1 border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                 value={number}
                 onChange={e => setNumber(e.target.value.replace(/\D/g, ''))}
                 placeholder="Contoh: 6281234567890"
@@ -119,7 +119,7 @@ export function AdminWhatsApp() {
               <button
                 onClick={handleSaveNumber}
                 className={`flex items-center gap-1.5 px-5 py-2.5 rounded-xl text-sm font-medium transition-all ${
-                  numberSaved ? 'bg-green-500 text-white' : 'bg-amber-500 hover:bg-amber-600 text-black'
+                  numberSaved ? 'bg-green-500 text-white' : 'bg-primary hover:bg-primary text-black'
                 }`}
               >
                 {numberSaved ? <><Check className="w-4 h-4" /> Tersimpan</> : <><Save className="w-4 h-4" /> Simpan</>}
@@ -144,16 +144,16 @@ export function AdminWhatsApp() {
       </div>
 
       {/* Variables Reference */}
-      <div className="bg-amber-50 border border-amber-100 rounded-2xl p-4">
+      <div className="bg-primary border border-primary rounded-2xl p-4">
         <div className="flex items-start gap-2">
-          <Info className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" />
+          <Info className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
           <div>
-            <p className="text-sm font-medium text-amber-800 mb-2">Variabel yang tersedia di template:</p>
+            <p className="text-sm font-medium text-primary mb-2">Variabel yang tersedia di template:</p>
             <div className="flex flex-wrap gap-2">
               {VARIABLES.map(v => (
-                <span key={v.key} className="inline-flex items-center gap-1.5 text-xs bg-white border border-amber-200 text-amber-700 px-2.5 py-1 rounded-lg">
+                <span key={v.key} className="inline-flex items-center gap-1.5 text-xs bg-white border border-primary text-primary px-2.5 py-1 rounded-lg">
                   <code className="font-mono">{v.key}</code>
-                  <span className="text-amber-500">→</span>
+                  <span className="text-primary">→</span>
                   <span>{v.desc}</span>
                 </span>
               ))}
@@ -177,14 +177,14 @@ export function AdminWhatsApp() {
                 key={g.id}
                 onClick={() => setActiveGame(g.id)}
                 className={`w-full text-left px-4 py-3 text-sm flex items-center gap-2.5 transition-colors ${
-                  activeGame === g.id ? 'bg-amber-50 text-amber-700 font-medium border-r-2 border-amber-400' : 'text-gray-600 hover:bg-gray-50'
+                  activeGame === g.id ? 'bg-primary text-primary font-medium border-r-2 border-primary' : 'text-gray-600 hover:bg-gray-50'
                 }`}
               >
                 <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: g.color }} />
                 <span className="truncate">{g.name}</span>
                 {/* Indicator if customized */}
                 {g.waTemplate && g.waTemplate !== DEFAULT_WA_TEMPLATE && (
-                  <span className="ml-auto w-1.5 h-1.5 rounded-full bg-amber-400 flex-shrink-0" />
+                  <span className="ml-auto w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
                 )}
               </button>
             ))}
@@ -197,7 +197,7 @@ export function AdminWhatsApp() {
                 <span className="w-3 h-3 rounded-full" style={{ backgroundColor: currentGame.color }} />
                 <h3 className="font-semibold text-gray-900">{currentGame.name}</h3>
                 {currentGame.waTemplate && currentGame.waTemplate !== DEFAULT_WA_TEMPLATE && (
-                  <span className="text-xs bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full">Dikustomisasi</span>
+                  <span className="text-xs bg-primary text-primary px-2 py-0.5 rounded-full">Dikustomisasi</span>
                 )}
               </div>
 
@@ -214,7 +214,7 @@ export function AdminWhatsApp() {
                     </button>
                   </div>
                   <textarea
-                    className="flex-1 min-h-[220px] border border-gray-200 rounded-xl px-4 py-3 text-sm font-mono leading-relaxed focus:outline-none focus:ring-2 focus:ring-amber-300 resize-none"
+                    className="flex-1 min-h-[220px] border border-gray-200 rounded-xl px-4 py-3 text-sm font-mono leading-relaxed focus:outline-none focus:ring-2 focus:ring-primary resize-none"
                     value={drafts[currentGame.id] ?? DEFAULT_WA_TEMPLATE}
                     onChange={e => setDrafts(prev => ({ ...prev, [currentGame.id]: e.target.value }))}
                     placeholder="Tulis template pesan..."
@@ -268,7 +268,7 @@ export function AdminWhatsApp() {
                   className={`flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-medium transition-all ${
                     savedGames[currentGame.id]
                       ? 'bg-green-500 text-white'
-                      : 'bg-amber-500 hover:bg-amber-600 text-black'
+                      : 'bg-primary hover:bg-primary text-black'
                   }`}
                 >
                   {savedGames[currentGame.id]

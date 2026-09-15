@@ -75,14 +75,14 @@ export function TestimonialsCarousel({ testimonials, games, dark = false }: Prop
       <div
         className="flex-shrink-0 w-72 rounded-2xl p-5 select-none transition-all duration-200"
         style={{
-          background: 'rgba(255,255,255,0.04)',
-          border: '1px solid rgba(255,255,255,0.08)',
+          background: 'rgba(250,249,245,0.04)',
+          border: '1px solid rgba(250,249,245,0.1)',
         }}
       >
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-0.5">
             {Array.from({ length: 5 }).map((_, j) => (
-              <Star key={j} className={`w-3.5 h-3.5 ${j < t.rating ? 'text-amber-400 fill-amber-400' : ''}`}
+              <Star key={j} className={`w-3.5 h-3.5 ${j < t.rating ? 'text-primary fill-primary' : ''}`}
                 style={j >= t.rating ? { color: 'rgba(255,255,255,0.12)' } : {}} />
             ))}
           </div>
@@ -104,16 +104,16 @@ export function TestimonialsCarousel({ testimonials, games, dark = false }: Prop
             )}
           </div>
           <div>
-            <p className="text-sm font-medium text-white" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>{t.name}</p>
+            <p className="text-sm font-medium text-white" style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>{t.name}</p>
             <p className="text-xs" style={{ color: 'rgba(255,255,255,0.3)' }}>{game?.name}{t.service ? `, ${t.service}` : ''}</p>
           </div>
         </div>
       </div>
     ) : (
-      <div className="flex-shrink-0 w-72 bg-gray-50 border border-gray-100 hover:border-gray-200 hover:shadow-md rounded-2xl p-5 transition-all duration-200 select-none">
+      <div className="flex-shrink-0 w-72 bg-white border border-[#e6dfd8] hover:border-[#d8cfc2] hover:shadow-md rounded-2xl p-5 transition-all duration-200 select-none">
         <div className="flex items-center gap-1 mb-3">
           {Array.from({ length: 5 }).map((_, j) => (
-            <Star key={j} className={`w-3.5 h-3.5 ${j < t.rating ? 'text-amber-400 fill-amber-400' : 'text-gray-200'}`} />
+            <Star key={j} className={`w-3.5 h-3.5 ${j < t.rating ? 'text-primary fill-primary' : 'text-gray-200'}`} />
           ))}
         </div>
         <p className="text-gray-700 text-sm leading-relaxed mb-4 line-clamp-3">"{t.content}"</p>
@@ -126,7 +126,7 @@ export function TestimonialsCarousel({ testimonials, games, dark = false }: Prop
             )}
           </div>
           <div>
-            <p className="font-medium text-[#0A0A0A] text-sm">{t.name}</p>
+            <p className="font-medium text-[#272729] text-sm">{t.name}</p>
             <p className="text-gray-400 text-xs">{game?.name}{t.service ? `, ${t.service}` : ''}</p>
           </div>
         </div>
@@ -136,7 +136,7 @@ export function TestimonialsCarousel({ testimonials, games, dark = false }: Prop
 
   if (testimonials.length === 0) return null;
 
-  const fadeColor = dark ? '#0A0A0A' : '#ffffff';
+  const fadeColor = dark ? '#181715' : '#faf9f5';
 
   return (
     <div

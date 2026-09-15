@@ -12,13 +12,13 @@ interface AdminUser {
   createdAt: string;
 }
 
-// ── Shared styles ──────────────────────────────────────────────
+// Shared styles
 const inputCls =
-  'w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-300';
+  'w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary';
 const labelCls = 'block text-xs font-medium text-gray-600 mb-1';
 const cardCls = 'bg-white border border-gray-200 rounded-2xl p-6';
 const btnPrimary =
-  'flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-black font-semibold px-6 py-3 rounded-xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed';
+  'flex items-center gap-2 bg-primary hover:bg-primary text-black font-semibold px-6 py-3 rounded-xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed';
 
 function getToken(): string | null {
   return sessionStorage.getItem('zeroth_admin_token');
@@ -40,7 +40,7 @@ const roleBadge = (role: string) =>
     ? 'bg-purple-100 text-purple-700'
     : 'bg-blue-100 text-blue-700';
 
-// ── Change password card ───────────────────────────────────────
+// Change password card
 function ChangePasswordCard() {
   const [current, setCurrent] = useState('');
   const [next, setNext] = useState('');
@@ -97,14 +97,13 @@ function ChangePasswordCard() {
   );
 }
 
-// ── User management (OWNER only) ───────────────────────────────
+// User management (OWNER only)
 function UserManagement() {
   const [users, setUsers] = useState<AdminUser[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [msg, setMsg] = useState<{ ok: boolean; text: string } | null>(null);
 
-  // form state
   const [showForm, setShowForm] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -171,7 +170,7 @@ function UserManagement() {
           </h2>
           <p className="text-gray-500 text-xs mt-0.5">Hanya OWNER yang dapat menambah/menghapus user.</p>
         </div>
-        <button onClick={() => setShowForm(s => !s)} className="flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-black text-sm font-semibold px-4 py-2.5 rounded-xl transition-colors">
+        <button onClick={() => setShowForm(s => !s)} className="flex items-center gap-2 bg-primary hover:bg-primary text-black text-sm font-semibold px-4 py-2.5 rounded-xl transition-colors">
           <Plus className="w-4 h-4" /> Tambah User
         </button>
       </div>
@@ -180,7 +179,7 @@ function UserManagement() {
       {error && <p className="text-red-500 text-sm mb-3">{error}</p>}
 
       {showForm && (
-        <div className="border border-amber-200 bg-amber-50/50 rounded-xl p-4 mb-5 space-y-3">
+        <div className="border border-primary bg-primary/50 rounded-xl p-4 mb-5 space-y-3">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
               <label className={labelCls}>Nama</label>
@@ -202,7 +201,7 @@ function UserManagement() {
               </select>
             </div>
           </div>
-          <button onClick={create} disabled={creating} className="flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-black text-sm font-semibold px-4 py-2.5 rounded-xl transition-colors disabled:opacity-50">
+          <button onClick={create} disabled={creating} className="flex items-center gap-2 bg-primary hover:bg-primary text-black text-sm font-semibold px-4 py-2.5 rounded-xl transition-colors disabled:opacity-50">
             <UserPlus className="w-4 h-4" /> {creating ? 'Menyimpan…' : 'Buat User'}
           </button>
         </div>
@@ -258,7 +257,7 @@ export function AdminUsers() {
   return (
     <div className="space-y-8 max-w-4xl">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-gray-900" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+        <h1 className="text-2xl font-bold text-gray-900" style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
           User Admin
         </h1>
         {adminRole && (

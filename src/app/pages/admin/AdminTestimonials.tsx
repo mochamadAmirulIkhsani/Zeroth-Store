@@ -17,7 +17,6 @@ const EMPTY: Omit<Testimonial, 'id'> = {
 
 const ITEMS_PER_PAGE = 5;
 
-// ── Game Filter Dropdown ─────────────────────────────────────────
 function FilterDropdown({
   options,
   value,
@@ -45,7 +44,7 @@ function FilterDropdown({
         type="button"
         onClick={() => setOpen(o => !o)}
         className="w-full flex items-center justify-between gap-2 px-3.5 py-2.5 bg-white border border-gray-200 rounded-xl text-sm transition-all hover:border-gray-300 focus:outline-none"
-        style={{ borderColor: open ? '#fbbf24' : undefined, boxShadow: open ? '0 0 0 3px rgba(251,191,36,0.12)' : undefined }}
+        style={{ borderColor: open ? '#0066cc' : undefined, boxShadow: open ? '0 0 0 3px rgba(0,102,204,0.12)' : undefined }}
       >
         <div className="flex items-center gap-2 min-w-0">
           {selected && selected.id !== 'all' ? (
@@ -76,11 +75,11 @@ function FilterDropdown({
                 type="button"
                 onClick={() => { onChange(opt.id === 'all' ? '' : opt.id); setOpen(false); }}
                 className="w-full flex items-center gap-2.5 px-4 py-2.5 hover:bg-gray-50 transition-colors text-left"
-                style={{ background: isActive ? 'rgba(251,191,36,0.05)' : undefined }}
+                style={{ background: isActive ? 'rgba(0,102,204,0.05)' : undefined }}
               >
                 <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: opt.color }} />
                 <span className={`flex-1 text-sm ${isActive ? 'font-semibold text-gray-900' : 'text-gray-600'}`}>{opt.name}</span>
-                {isActive && <Check className="w-3.5 h-3.5 text-amber-500 flex-shrink-0" />}
+                {isActive && <Check className="w-3.5 h-3.5 text-primary flex-shrink-0" />}
               </button>
             );
           })}
@@ -90,7 +89,6 @@ function FilterDropdown({
   );
 }
 
-// ── Pagination ───────────────────────────────────────────────────
 function Pagination({
   currentPage,
   totalPages,
@@ -135,7 +133,7 @@ function Pagination({
               className="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-medium transition-all"
               style={
                 isActive
-                  ? { background: 'linear-gradient(135deg,#fbbf24,#f97316)', color: '#000', boxShadow: '0 2px 8px rgba(251,191,36,0.35)' }
+                  ? { background: 'linear-gradient(135deg,#0066cc,#0066cc)', color: '#000', boxShadow: '0 2px 8px rgba(0,102,204,0.35)' }
                   : { background: '#fff', border: '1px solid #e5e7eb', color: '#6b7280' }
               }
             >
@@ -155,7 +153,7 @@ function Pagination({
   );
 }
 
-// ── Star Row ─────────────────────────────────────────────────────
+// Star Row
 function Stars({ rating, interactive = false, onChange }: { rating: number; interactive?: boolean; onChange?: (r: number) => void }) {
   return (
     <div className="flex items-center gap-0.5">
@@ -167,14 +165,13 @@ function Stars({ rating, interactive = false, onChange }: { rating: number; inte
           onClick={() => onChange?.(r)}
           className={interactive ? 'cursor-pointer' : 'cursor-default'}
         >
-          <Star className={`${interactive ? 'w-5 h-5' : 'w-3 h-3'} ${r <= rating ? 'text-amber-400 fill-amber-400' : 'text-gray-200'}`} />
+          <Star className={`${interactive ? 'w-5 h-5' : 'w-3 h-3'} ${r <= rating ? 'text-primary fill-primary' : 'text-gray-200'}`} />
         </button>
       ))}
     </div>
   );
 }
 
-// ── Main ─────────────────────────────────────────────────────────
 export function AdminTestimonials() {
   const { testimonials, setTestimonials, games } = useApp();
   const [showForm, setShowForm] = useState(false);
@@ -189,7 +186,6 @@ export function AdminTestimonials() {
     setTimeout(() => setSavedMsg(''), 2500);
   };
 
-  // Filtered + paginated
   const filtered = filterGameId
     ? testimonials.filter(t => t.gameId === filterGameId)
     : testimonials;
@@ -244,10 +240,10 @@ export function AdminTestimonials() {
   return (
     <div className="space-y-5">
 
-      {/* ── Header ── */}
+      {/* Header */}
       <div className="flex items-start justify-between flex-wrap gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+          <h1 className="text-2xl font-bold text-gray-900" style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
             Manajemen Testimoni
           </h1>
           <p className="text-gray-400 text-sm mt-0.5">{testimonials.length} total · {testimonials.filter(t => t.featured).length} featured</p>
@@ -262,10 +258,10 @@ export function AdminTestimonials() {
             onClick={handleAdd}
             className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium transition-all hover:scale-105 active:scale-95"
             style={{
-              background: 'linear-gradient(135deg,#fbbf24,#f97316)',
+              background: 'linear-gradient(135deg,#0066cc,#0066cc)',
               color: '#000',
-              fontFamily: 'Space Grotesk, sans-serif',
-              boxShadow: '0 4px 12px rgba(251,191,36,0.25)',
+              fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
+              boxShadow: '0 4px 12px rgba(0,102,204,0.25)',
             }}
           >
             <Plus className="w-4 h-4" strokeWidth={2.5} />
@@ -274,7 +270,7 @@ export function AdminTestimonials() {
         </div>
       </div>
 
-      {/* ── Filter Bar ── */}
+      {/* Filter Bar */}
       <div className="flex items-center gap-3 flex-wrap">
         <span className="text-sm font-medium text-gray-500 flex-shrink-0">Filter:</span>
         <FilterDropdown options={dropdownOptions} value={filterGameId} onChange={changeFilter} />
@@ -285,9 +281,9 @@ export function AdminTestimonials() {
         )}
       </div>
 
-      {/* ── Form ── */}
+      {/* Form */}
       {showForm && (
-        <div className="bg-white border-2 border-amber-200 rounded-2xl p-5" style={{ boxShadow: '0 4px 24px rgba(251,191,36,0.07)' }}>
+        <div className="bg-white border-2 border-primary rounded-2xl p-5" style={{ boxShadow: '0 4px 24px rgba(0,102,204,0.07)' }}>
           <h3 className="font-semibold text-gray-900 mb-4 text-sm">
             {editingId ? 'Edit Testimoni' : 'Tambah Testimoni Baru'}
           </h3>
@@ -295,7 +291,7 @@ export function AdminTestimonials() {
             <div>
               <label className="block text-xs font-medium text-gray-500 mb-1">Nama *</label>
               <input
-                className="w-full border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-300"
+                className="w-full border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                 value={form.name}
                 onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
                 placeholder="Nama atau Anonim"
@@ -305,7 +301,7 @@ export function AdminTestimonials() {
               <label className="block text-xs font-medium text-gray-500 mb-1">Game *</label>
               <div className="relative">
                 <select
-                  className="w-full border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-300 bg-white appearance-none pr-8"
+                  className="w-full border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary bg-white appearance-none pr-8"
                   value={form.gameId}
                   onChange={e => setForm(f => ({ ...f, gameId: e.target.value }))}
                 >
@@ -318,7 +314,7 @@ export function AdminTestimonials() {
             <div>
               <label className="block text-xs font-medium text-gray-500 mb-1">Layanan</label>
               <input
-                className="w-full border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-300"
+                className="w-full border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                 value={form.service}
                 onChange={e => setForm(f => ({ ...f, service: e.target.value }))}
                 placeholder="Contoh: Push Rank"
@@ -328,7 +324,7 @@ export function AdminTestimonials() {
               <label className="block text-xs font-medium text-gray-500 mb-1">Tanggal</label>
               <input
                 type="date"
-                className="w-full border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-300"
+                className="w-full border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                 value={form.date}
                 onChange={e => setForm(f => ({ ...f, date: e.target.value }))}
               />
@@ -350,7 +346,7 @@ export function AdminTestimonials() {
             <div className="sm:col-span-2">
               <label className="block text-xs font-medium text-gray-500 mb-1">Isi Testimoni *</label>
               <textarea
-                className="w-full border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-300 resize-none"
+                className="w-full border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary resize-none"
                 rows={3}
                 value={form.content}
                 onChange={e => setForm(f => ({ ...f, content: e.target.value }))}
@@ -363,7 +359,7 @@ export function AdminTestimonials() {
               onClick={handleSave}
               disabled={!form.name.trim() || !form.content.trim() || !form.gameId}
               className="px-5 py-2 font-medium rounded-xl text-sm disabled:opacity-50 transition-all hover:scale-[1.02] active:scale-[0.98]"
-              style={{ background: 'linear-gradient(135deg,#fbbf24,#f97316)', color: '#000' }}
+              style={{ background: 'linear-gradient(135deg,#0066cc,#0066cc)', color: '#000' }}
             >
               {editingId ? 'Simpan Perubahan' : 'Tambah'}
             </button>
@@ -377,7 +373,7 @@ export function AdminTestimonials() {
         </div>
       )}
 
-      {/* ── List ── */}
+      {/* List */}
       <div className="space-y-2">
         {paged.length === 0 && (
           <div className="text-center py-12 bg-gray-50 rounded-2xl text-gray-400">
@@ -421,7 +417,7 @@ export function AdminTestimonials() {
                     </span>
                   )}
                   {t.featured && (
-                    <span className="text-xs px-1.5 py-0.5 bg-amber-50 text-amber-600 rounded-md font-medium flex items-center gap-0.5 border border-amber-100">
+                    <span className="text-xs px-1.5 py-0.5 bg-primary text-primary rounded-md font-medium flex items-center gap-0.5 border border-primary">
                       <Bookmark className="w-2.5 h-2.5" /> Featured
                     </span>
                   )}
@@ -447,7 +443,7 @@ export function AdminTestimonials() {
               <div className="flex items-center gap-1 flex-shrink-0">
                 <button
                   onClick={() => toggle(t.id, 'featured')}
-                  className={`p-1.5 rounded-lg transition-colors ${t.featured ? 'text-amber-500 bg-amber-50 hover:bg-amber-100' : 'text-gray-300 hover:text-gray-500 hover:bg-gray-100'}`}
+                  className={`p-1.5 rounded-lg transition-colors ${t.featured ? 'text-primary bg-primary hover:bg-primary' : 'text-gray-300 hover:text-gray-500 hover:bg-gray-100'}`}
                   title="Toggle featured"
                 >
                   <Bookmark className="w-3.5 h-3.5" />
@@ -461,7 +457,7 @@ export function AdminTestimonials() {
                 </button>
                 <button
                   onClick={() => handleEdit(t)}
-                  className="p-1.5 rounded-lg text-amber-600 bg-amber-50 hover:bg-amber-100 transition-colors"
+                  className="p-1.5 rounded-lg text-primary bg-primary hover:bg-primary transition-colors"
                   title="Edit"
                 >
                   <Pencil className="w-3.5 h-3.5" />
@@ -479,7 +475,7 @@ export function AdminTestimonials() {
         })}
       </div>
 
-      {/* ── Pagination ── */}
+      {/* Pagination */}
       <Pagination
         currentPage={safePage}
         totalPages={totalPages}

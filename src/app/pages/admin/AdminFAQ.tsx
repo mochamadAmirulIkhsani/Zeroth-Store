@@ -14,7 +14,6 @@ const EMPTY: Omit<FAQ, 'id'> = {
   active: true,
 };
 
-// ── Generic Dropdown ─────────────────────────────────────────────
 function Dropdown({
   options,
   value,
@@ -46,7 +45,7 @@ function Dropdown({
         type="button"
         onClick={() => setOpen(o => !o)}
         className="w-full flex items-center justify-between gap-2 px-3.5 py-2.5 bg-white border border-gray-200 rounded-xl text-sm hover:border-gray-300 transition-all focus:outline-none"
-        style={{ borderColor: open ? '#fbbf24' : undefined, boxShadow: open ? '0 0 0 3px rgba(251,191,36,0.12)' : undefined }}
+        style={{ borderColor: open ? '#0066cc' : undefined, boxShadow: open ? '0 0 0 3px rgba(0,102,204,0.12)' : undefined }}
       >
         <div className="flex items-center gap-2 min-w-0">
           {selected?.color && (
@@ -75,7 +74,7 @@ function Dropdown({
                 type="button"
                 onClick={() => { onChange(opt.id); setOpen(false); }}
                 className="w-full flex items-center gap-2.5 px-4 py-2.5 hover:bg-gray-50 transition-colors text-left"
-                style={{ background: isActive ? 'rgba(251,191,36,0.05)' : undefined }}
+                style={{ background: isActive ? 'rgba(0,102,204,0.05)' : undefined }}
               >
                 {opt.color && (
                   <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: opt.color }} />
@@ -83,7 +82,7 @@ function Dropdown({
                 <span className={`flex-1 text-sm ${isActive ? 'font-semibold text-gray-900' : 'text-gray-600'}`}>
                   {opt.label}
                 </span>
-                {isActive && <Check className="w-3.5 h-3.5 text-amber-500 flex-shrink-0" />}
+                {isActive && <Check className="w-3.5 h-3.5 text-primary flex-shrink-0" />}
               </button>
             );
           })}
@@ -93,7 +92,6 @@ function Dropdown({
   );
 }
 
-// ── Pagination ───────────────────────────────────────────────────
 function Pagination({
   currentPage,
   totalPages,
@@ -139,7 +137,7 @@ function Pagination({
               className="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-medium transition-all"
               style={
                 isActive
-                  ? { background: 'linear-gradient(135deg,#fbbf24,#f97316)', color: '#000', boxShadow: '0 2px 8px rgba(251,191,36,0.35)' }
+                  ? { background: 'linear-gradient(135deg,#0066cc,#0066cc)', color: '#000', boxShadow: '0 2px 8px rgba(0,102,204,0.35)' }
                   : { background: '#fff', border: '1px solid #e5e7eb', color: '#6b7280' }
               }
             >
@@ -160,12 +158,11 @@ function Pagination({
   );
 }
 
-// ── Category Badge ───────────────────────────────────────────────
 const CATEGORY_COLORS: Record<string, { bg: string; text: string; border: string }> = {
   Umum:       { bg: 'bg-blue-50',   text: 'text-blue-600',   border: 'border-blue-100' },
   Keamanan:   { bg: 'bg-green-50',  text: 'text-green-600',  border: 'border-green-100' },
   Pembayaran: { bg: 'bg-purple-50', text: 'text-purple-600', border: 'border-purple-100' },
-  Garansi:    { bg: 'bg-amber-50',  text: 'text-amber-600',  border: 'border-amber-100' },
+  Garansi:    { bg: 'bg-primary',  text: 'text-primary',  border: 'border-primary' },
   Teknis:     { bg: 'bg-red-50',    text: 'text-red-600',    border: 'border-red-100' },
   Lainnya:    { bg: 'bg-gray-100',  text: 'text-gray-500',   border: 'border-gray-200' },
 };
@@ -179,7 +176,6 @@ function CategoryBadge({ category }: { category: string }) {
   );
 }
 
-// ── Main ─────────────────────────────────────────────────────────
 export function AdminFAQ() {
   const { faqs, setFaqs, games } = useApp();
   const [showForm, setShowForm] = useState(false);
@@ -194,7 +190,6 @@ export function AdminFAQ() {
     setTimeout(() => setSavedMsg(''), 2500);
   };
 
-  // Filter + paginate
   const filtered = filterCategory
     ? faqs.filter(f => f.category === filterCategory)
     : faqs;
@@ -244,7 +239,6 @@ export function AdminFAQ() {
   const toggleActive = (id: string) =>
     setFaqs(faqs.map(f => f.id === id ? { ...f, active: !f.active } : f));
 
-  // Dropdown option lists
   const categoryFilterOptions = [
     { id: '', label: 'Semua Kategori' },
     ...FAQ_CATEGORIES.map(c => ({ id: c, label: c })),
@@ -258,10 +252,10 @@ export function AdminFAQ() {
   return (
     <div className="space-y-5">
 
-      {/* ── Header ── */}
+      {/* Header */}
       <div className="flex items-start justify-between flex-wrap gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+          <h1 className="text-2xl font-bold text-gray-900" style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
             Manajemen FAQ
           </h1>
           <p className="text-gray-400 text-sm mt-0.5">
@@ -278,10 +272,10 @@ export function AdminFAQ() {
             onClick={handleAdd}
             className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium transition-all hover:scale-105 active:scale-95"
             style={{
-              background: 'linear-gradient(135deg,#fbbf24,#f97316)',
+              background: 'linear-gradient(135deg,#0066cc,#0066cc)',
               color: '#000',
-              fontFamily: 'Space Grotesk, sans-serif',
-              boxShadow: '0 4px 12px rgba(251,191,36,0.25)',
+              fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
+              boxShadow: '0 4px 12px rgba(0,102,204,0.25)',
             }}
           >
             <Plus className="w-4 h-4" strokeWidth={2.5} />
@@ -290,7 +284,7 @@ export function AdminFAQ() {
         </div>
       </div>
 
-      {/* ── Filter Bar ── */}
+      {/* Filter Bar */}
       <div className="flex items-center gap-3 flex-wrap">
         <span className="text-sm font-medium text-gray-500 flex-shrink-0">Filter:</span>
         <Dropdown
@@ -305,7 +299,7 @@ export function AdminFAQ() {
             {filtered.length} dari {faqs.length} ditampilkan
             <button
               onClick={() => changeFilter('')}
-              className="ml-1.5 text-amber-500 hover:text-amber-600 underline"
+              className="ml-1.5 text-primary hover:text-primary underline"
             >
               Reset
             </button>
@@ -313,11 +307,11 @@ export function AdminFAQ() {
         )}
       </div>
 
-      {/* ── Form ── */}
+      {/* Form */}
       {showForm && (
         <div
-          className="bg-white border-2 border-amber-200 rounded-2xl p-5"
-          style={{ boxShadow: '0 4px 24px rgba(251,191,36,0.07)' }}
+          className="bg-white border-2 border-primary rounded-2xl p-5"
+          style={{ boxShadow: '0 4px 24px rgba(0,102,204,0.07)' }}
         >
           <h3 className="font-semibold text-gray-900 mb-4 text-sm">
             {editingId ? 'Edit FAQ' : 'Tambah FAQ Baru'}
@@ -326,7 +320,7 @@ export function AdminFAQ() {
             <div>
               <label className="block text-xs font-medium text-gray-500 mb-1">Pertanyaan *</label>
               <input
-                className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-300"
+                className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                 value={form.question}
                 onChange={e => setForm(f => ({ ...f, question: e.target.value }))}
                 placeholder="Tulis pertanyaan yang sering ditanya..."
@@ -335,7 +329,7 @@ export function AdminFAQ() {
             <div>
               <label className="block text-xs font-medium text-gray-500 mb-1">Jawaban *</label>
               <textarea
-                className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-300 resize-none"
+                className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary resize-none"
                 rows={4}
                 value={form.answer}
                 onChange={e => setForm(f => ({ ...f, answer: e.target.value }))}
@@ -347,7 +341,7 @@ export function AdminFAQ() {
                 <label className="block text-xs font-medium text-gray-500 mb-1">Kategori</label>
                 <div className="relative">
                   <select
-                    className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-300 bg-white appearance-none pr-9"
+                    className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary bg-white appearance-none pr-9"
                     value={form.category}
                     onChange={e => setForm(f => ({ ...f, category: e.target.value }))}
                   >
@@ -360,7 +354,7 @@ export function AdminFAQ() {
                 <label className="block text-xs font-medium text-gray-500 mb-1">Spesifik untuk Game (opsional)</label>
                 <div className="relative">
                   <select
-                    className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-300 bg-white appearance-none pr-9"
+                    className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary bg-white appearance-none pr-9"
                     value={form.gameId ?? ''}
                     onChange={e => setForm(f => ({ ...f, gameId: e.target.value }))}
                   >
@@ -385,7 +379,7 @@ export function AdminFAQ() {
               onClick={handleSave}
               disabled={!form.question.trim() || !form.answer.trim()}
               className="px-5 py-2 font-medium rounded-xl text-sm disabled:opacity-50 transition-all hover:scale-[1.02] active:scale-[0.98]"
-              style={{ background: 'linear-gradient(135deg,#fbbf24,#f97316)', color: '#000' }}
+              style={{ background: 'linear-gradient(135deg,#0066cc,#0066cc)', color: '#000' }}
             >
               {editingId ? 'Simpan Perubahan' : 'Tambah FAQ'}
             </button>
@@ -399,7 +393,7 @@ export function AdminFAQ() {
         </div>
       )}
 
-      {/* ── FAQ List ── */}
+      {/* FAQ List */}
       <div className="space-y-2">
         {paged.length === 0 && (
           <div className="text-center py-14 bg-gray-50 rounded-2xl text-gray-400">
@@ -460,7 +454,7 @@ export function AdminFAQ() {
                 </button>
                 <button
                   onClick={() => handleEdit(faq)}
-                  className="p-1.5 rounded-lg text-amber-600 bg-amber-50 hover:bg-amber-100 transition-colors"
+                  className="p-1.5 rounded-lg text-primary bg-primary hover:bg-primary transition-colors"
                   title="Edit"
                 >
                   <Pencil className="w-3.5 h-3.5" />
@@ -478,7 +472,7 @@ export function AdminFAQ() {
         })}
       </div>
 
-      {/* ── Pagination ── */}
+      {/* Pagination */}
       <Pagination
         currentPage={safePage}
         totalPages={totalPages}

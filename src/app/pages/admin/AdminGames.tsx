@@ -5,7 +5,7 @@ import { useApp } from '../../context/AppContext';
 import type { Game } from '../../data/gameData';
 
 const DEFAULT_COLORS = [
-  '#fbbf24', '#f97316', '#ef4444', '#ec4899',
+  '#0066cc', '#0066cc', '#ef4444', '#ec4899',
   '#a78bfa', '#60a5fa', '#34d399', '#2dd4bf',
 ];
 
@@ -29,7 +29,7 @@ const EMPTY_FORM: AddGameForm = {
   name: '',
   tagline: '',
   description: '',
-  color: '#fbbf24',
+  color: '#0066cc',
   image: '',
 };
 
@@ -52,7 +52,6 @@ export function AdminGames() {
   const safePage = Math.min(currentPage, totalPages);
   const pagedGames = games.slice((safePage - 1) * ITEMS_PER_PAGE, safePage * ITEMS_PER_PAGE);
 
-  // ── toggle active/inactive ──
   const toggleStatus = (id: string) => {
     setGames(games.map(g => g.id === id
       ? { ...g, status: g.status === 'active' ? 'inactive' : 'active' }
@@ -60,7 +59,6 @@ export function AdminGames() {
     ));
   };
 
-  // ── edit existing game ──
   const startEdit = (game: Game) => {
     setEditingId(game.id);
     setEditImageError(false);
@@ -74,11 +72,9 @@ export function AdminGames() {
     setTimeout(() => setSaved(null), 3000);
   };
 
-  // ── delete game ──
   const deleteGame = async (id: string) => {
     setDeleteConfirmId(null);
     const ok = await setGames(games.filter(g => g.id !== id));
-    // adjust page if last item on page was deleted
     const newTotal = games.length - 1;
     const newTotalPages = Math.max(1, Math.ceil(newTotal / ITEMS_PER_PAGE));
     if (currentPage > newTotalPages) setCurrentPage(newTotalPages);
@@ -86,7 +82,6 @@ export function AdminGames() {
     setTimeout(() => setSaved(null), 3000);
   };
 
-  // ── validate & add new game ──
   const validateAddForm = () => {
     const errs: Partial<AddGameForm> = {};
     if (!addForm.name.trim()) errs.name = 'Nama game wajib diisi';
@@ -126,7 +121,6 @@ export function AdminGames() {
     };
 
     const ok = await setGames([...games, newGame]);
-    // jump to last page to see the newly added game
     setCurrentPage(Math.ceil((games.length + 1) / ITEMS_PER_PAGE));
     setShowAddModal(false);
     setAddForm(EMPTY_FORM);
@@ -149,7 +143,7 @@ export function AdminGames() {
       {/* Header */}
       <div className="flex items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+          <h1 className="text-2xl font-bold text-gray-900" style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
             Manajemen Game
           </h1>
           <p className="text-gray-500 text-sm mt-1">Kelola game yang tampil di website</p>
@@ -158,10 +152,10 @@ export function AdminGames() {
           onClick={() => setShowAddModal(true)}
           className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:scale-105 active:scale-95"
           style={{
-            background: 'linear-gradient(135deg, #fbbf24, #f97316)',
+            background: '#0066cc',
             color: '#000',
-            fontFamily: 'Space Grotesk, sans-serif',
-            boxShadow: '0 4px 16px rgba(251,191,36,0.3)',
+            fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
+            boxShadow: '0 4px 16px rgba(0,102,204,0.3)',
           }}
         >
           <Plus className="w-4 h-4" strokeWidth={2.5} />
@@ -203,7 +197,7 @@ export function AdminGames() {
                         <ImageIcon className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400 pointer-events-none" />
                         <input
                           type="url"
-                          className="w-full border border-gray-200 rounded-lg pl-8 pr-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-300"
+                          className="w-full border border-gray-200 rounded-lg pl-8 pr-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                           value={editForm.image ?? ''}
                           onChange={e => {
                             setEditImageError(false);
@@ -215,19 +209,19 @@ export function AdminGames() {
                       {editImageError && <p className="text-red-400 text-xs">URL gambar tidak valid</p>}
                     </div>
                     <input
-                      className="w-full border border-gray-200 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-300"
+                      className="w-full border border-gray-200 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                       value={editForm.name ?? ''}
                       onChange={e => setEditForm(f => ({ ...f, name: e.target.value }))}
                       placeholder="Nama game"
                     />
                     <input
-                      className="w-full border border-gray-200 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-300"
+                      className="w-full border border-gray-200 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                       value={editForm.tagline ?? ''}
                       onChange={e => setEditForm(f => ({ ...f, tagline: e.target.value }))}
                       placeholder="Tagline"
                     />
                     <textarea
-                      className="w-full border border-gray-200 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-300 resize-none"
+                      className="w-full border border-gray-200 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary resize-none"
                       rows={2}
                       value={editForm.description ?? ''}
                       onChange={e => setEditForm(f => ({ ...f, description: e.target.value }))}
@@ -276,7 +270,7 @@ export function AdminGames() {
                   <>
                     <button
                       onClick={() => saveEdit(game.id)}
-                      className="px-3 py-1.5 bg-amber-500 hover:bg-amber-600 text-black text-xs rounded-lg font-medium transition-colors"
+                      className="px-3 py-1.5 bg-primary hover:bg-primary text-black text-xs rounded-lg font-medium transition-colors"
                     >
                       Simpan
                     </button>
@@ -309,7 +303,7 @@ export function AdminGames() {
                     </button>
                     <Link
                       to="/admin/services"
-                      className="p-2 rounded-lg bg-amber-50 text-amber-600 hover:bg-amber-100 transition-colors"
+                      className="p-2 rounded-lg bg-primary text-primary hover:bg-primary transition-colors"
                       title="Kelola Layanan"
                     >
                       <ArrowRight className="w-4 h-4" />
@@ -346,7 +340,7 @@ export function AdminGames() {
         ))}
       </div>
 
-      {/* ── PAGINATION ── */}
+      {/* PAGINATION */}
       {totalPages > 1 && (
         <div className="flex flex-col items-center gap-2 pt-2">
           <p className="text-sm text-gray-400">
@@ -370,13 +364,11 @@ export function AdminGames() {
             {/* Page numbers */}
             {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => {
               const isActive = page === safePage;
-              // Show first, last, current ±1, and ellipsis
               const show =
                 page === 1 ||
                 page === totalPages ||
                 Math.abs(page - safePage) <= 1;
               if (!show) {
-                // show ellipsis only once between gaps
                 const prevShow =
                   page - 1 === 1 ||
                   page - 1 === totalPages ||
@@ -396,9 +388,9 @@ export function AdminGames() {
                   style={
                     isActive
                       ? {
-                          background: 'linear-gradient(135deg, #fbbf24, #f97316)',
+                          background: '#0066cc',
                           color: '#000',
-                          boxShadow: '0 2px 8px rgba(251,191,36,0.35)',
+                          boxShadow: '0 2px 8px rgba(0,102,204,0.35)',
                         }
                       : {
                           background: '#fff',
@@ -424,7 +416,7 @@ export function AdminGames() {
         </div>
       )}
 
-      {/* ── ADD GAME MODAL ── */}
+      {/* ADD GAME MODAL */}
       {showAddModal && (
         <div
           className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4"
@@ -438,7 +430,7 @@ export function AdminGames() {
             {/* Modal header */}
             <div className="flex items-center justify-between p-6 border-b border-gray-100">
               <div>
-                <h2 className="font-bold text-gray-900 text-lg" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+                <h2 className="font-bold text-gray-900 text-lg" style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
                   Tambah Game Baru
                 </h2>
                 <p className="text-gray-500 text-xs mt-0.5">Isi detail game yang ingin ditambahkan</p>
@@ -463,7 +455,7 @@ export function AdminGames() {
                   <div className="flex-1">
                     <input
                       type="url"
-                      className={`w-full border rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-300 transition-all ${
+                      className={`w-full border rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all ${
                         addErrors.image ? 'border-red-300 bg-red-50' : 'border-gray-200'
                       }`}
                       value={addForm.image}
@@ -502,7 +494,7 @@ export function AdminGames() {
                 </label>
                 <input
                   type="text"
-                  className={`w-full border rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-300 transition-all ${
+                  className={`w-full border rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all ${
                     addErrors.name ? 'border-red-300 bg-red-50' : 'border-gray-200'
                   }`}
                   value={addForm.name}
@@ -527,7 +519,7 @@ export function AdminGames() {
                 </label>
                 <input
                   type="text"
-                  className={`w-full border rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-300 transition-all ${
+                  className={`w-full border rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all ${
                     addErrors.tagline ? 'border-red-300 bg-red-50' : 'border-gray-200'
                   }`}
                   value={addForm.tagline}
@@ -547,7 +539,7 @@ export function AdminGames() {
                 </label>
                 <textarea
                   rows={3}
-                  className={`w-full border rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-300 transition-all resize-none ${
+                  className={`w-full border rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all resize-none ${
                     addErrors.description ? 'border-red-300 bg-red-50' : 'border-gray-200'
                   }`}
                   value={addForm.description}
@@ -607,10 +599,10 @@ export function AdminGames() {
 
               {/* Info note */}
               <div className="rounded-xl p-3.5 flex gap-3" style={{ background: '#fffbeb', border: '1px solid #fde68a' }}>
-                <div className="w-4 h-4 rounded-full bg-amber-400 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <div className="w-4 h-4 rounded-full bg-primary flex items-center justify-center flex-shrink-0 mt-0.5">
                   <span className="text-white text-[9px] font-black leading-none">i</span>
                 </div>
-                <p className="text-xs text-amber-700 leading-relaxed">
+                <p className="text-xs text-primary leading-relaxed">
                   Setelah game ditambahkan, buka menu <strong>Layanan</strong> untuk menambahkan layanan joki pada game ini.
                 </p>
               </div>
@@ -628,10 +620,10 @@ export function AdminGames() {
                 onClick={handleAddGame}
                 className="flex-1 py-3 rounded-xl text-sm font-semibold transition-all hover:scale-[1.02] active:scale-[0.98]"
                 style={{
-                  background: 'linear-gradient(135deg, #fbbf24, #f97316)',
+                  background: '#0066cc',
                   color: '#000',
-                  fontFamily: 'Space Grotesk, sans-serif',
-                  boxShadow: '0 4px 16px rgba(251,191,36,0.3)',
+                  fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
+                  boxShadow: '0 4px 16px rgba(0,102,204,0.3)',
                 }}
               >
                 Tambah Game

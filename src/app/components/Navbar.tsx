@@ -36,12 +36,12 @@ export function Navbar() {
         <div
           className="w-full text-center py-2 px-4 text-xs font-medium"
           style={{
-            background: 'linear-gradient(90deg, #fbbf24, #f97316)',
-            color: '#000',
+            background: '#cc785c',
+            color: '#fff',
           }}
         >
           <span className="inline-flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-black/30" />
+            <span className="w-1.5 h-1.5 rounded-full bg-white/40" />
             {settings.announcement}
           </span>
         </div>
@@ -52,21 +52,21 @@ export function Navbar() {
         style={{
           top: settings.announcement ? '32px' : '0',
           background: scrolled
-            ? 'rgba(8,8,8,0.92)'
-            : 'rgba(8,8,8,0.65)',
+            ? 'rgba(250,249,245,0.94)'
+            : 'rgba(250,249,245,0.72)',
           backdropFilter: 'blur(20px)',
           WebkitBackdropFilter: 'blur(20px)',
           borderBottom: scrolled
-            ? '1px solid rgba(255,255,255,0.06)'
-            : '1px solid rgba(255,255,255,0.03)',
-          boxShadow: scrolled ? '0 4px 40px rgba(0,0,0,0.4)' : 'none',
+            ? '1px solid #e6dfd8'
+            : '1px solid transparent',
+          boxShadow: scrolled ? '0 4px 40px rgba(20,20,19,0.06)' : 'none',
         }}
       >
-        {/* Amber top glow line */}
+        {/* Coral top glow line */}
         <div
           className="absolute top-0 left-0 right-0 h-px pointer-events-none transition-opacity duration-500"
           style={{
-            background: 'linear-gradient(90deg, transparent 0%, rgba(251,191,36,0.6) 50%, transparent 100%)',
+            background: 'linear-gradient(90deg, transparent 0%, rgba(204,120,92,0.7) 50%, transparent 100%)',
             opacity: scrolled ? 1 : 0,
           }}
         />
@@ -79,21 +79,21 @@ export function Navbar() {
               <div
                 className="relative w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110"
                 style={{
-                  background: 'linear-gradient(135deg, #fbbf24 0%, #f97316 100%)',
+                  background: '#141413',
                 }}
               >
-                <Zap className="w-4.5 h-4.5 text-black" strokeWidth={2.5} style={{ width: 18, height: 18 }} />
+                <Zap className="w-4.5 h-4.5 text-[#faf9f5]" strokeWidth={2.5} style={{ width: 18, height: 18 }} />
               </div>
               <div className="flex flex-col leading-none">
                 <span
-                  className="text-white tracking-tight leading-none"
-                  style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 800, fontSize: '1.05rem', letterSpacing: '-0.02em' }}
+                  className="tracking-tight leading-none"
+                  style={{ fontFamily: "'Cormorant Garamond', 'EB Garamond', serif", fontWeight: 600, fontSize: '1.35rem', letterSpacing: '-0.02em', color: '#141413' }}
                 >
-                  ZEROTH<span style={{ color: '#fbbf24' }}>.</span>
+                  Zeroth<span style={{ color: '#cc785c' }}>.</span>
                 </span>
                 <span
                   className="tracking-widest leading-none"
-                  style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 500, fontSize: '0.5rem', color: 'rgba(255,255,255,0.5)', letterSpacing: '0.2em' }}
+                  style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif', fontWeight: 500, fontSize: '0.5rem', color: 'rgba(20,20,19,0.5)', letterSpacing: '0.2em' }}
                 >
                   STORE
                 </span>
@@ -108,18 +108,18 @@ export function Navbar() {
                   to={link.href}
                   className="relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 group"
                   style={{
-                    color: isActive(link.href) ? '#fbbf24' : 'rgba(255,255,255,0.55)',
-                    background: isActive(link.href) ? 'rgba(251,191,36,0.08)' : 'transparent',
+                    color: isActive(link.href) ? '#cc785c' : 'rgba(20,20,19,0.6)',
+                    background: isActive(link.href) ? 'rgba(204,120,92,0.08)' : 'transparent',
                   }}
                   onMouseEnter={e => {
                     if (!isActive(link.href)) {
-                      (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.9)';
-                      (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.05)';
+                      (e.currentTarget as HTMLElement).style.color = 'rgba(20,20,19,0.9)';
+                      (e.currentTarget as HTMLElement).style.background = 'rgba(204,120,92,0.05)';
                     }
                   }}
                   onMouseLeave={e => {
                     if (!isActive(link.href)) {
-                      (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.55)';
+                      (e.currentTarget as HTMLElement).style.color = 'rgba(20,20,19,0.6)';
                       (e.currentTarget as HTMLElement).style.background = 'transparent';
                     }
                   }}
@@ -129,7 +129,7 @@ export function Navbar() {
                     <motion.span
                       layoutId="nav-underline"
                       className="absolute bottom-1 left-4 right-4 h-px rounded-full"
-                      style={{ background: 'linear-gradient(90deg, transparent, #fbbf24, transparent)' }}
+                      style={{ background: 'linear-gradient(90deg, transparent, #cc785c, transparent)' }}
                       transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                     />
                   )}
@@ -145,9 +145,10 @@ export function Navbar() {
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-xl transition-all duration-200 hover:scale-105 active:scale-95"
                 style={{
-                  background: 'linear-gradient(135deg, #fbbf24 0%, #f97316 100%)',
-                  color: '#000',
-                  fontFamily: 'Space Grotesk, sans-serif',
+                  background: '#cc785c',
+                  color: '#fff',
+                  fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
+                  boxShadow: '0 2px 12px rgba(204,120,92,0.35)',
                 }}
               >
                 <MessageCircle className="w-4 h-4" />
@@ -158,11 +159,11 @@ export function Navbar() {
             {/* Mobile Toggle */}
             <button
               onClick={() => setOpen(!open)}
-              className="md:hidden relative w-9 h-9 flex items-center justify-center rounded-xl transition-all duration-200"
+              className="md:hidden relative w-11 h-11 flex items-center justify-center rounded-xl transition-all duration-200"
               style={{
-                background: open ? 'rgba(251,191,36,0.15)' : 'rgba(255,255,255,0.06)',
-                border: `1px solid ${open ? 'rgba(251,191,36,0.3)' : 'rgba(255,255,255,0.08)'}`,
-                color: open ? '#fbbf24' : 'rgba(255,255,255,0.7)',
+                background: open ? 'rgba(204,120,92,0.12)' : 'rgba(20,20,19,0.04)',
+                border: `1px solid ${open ? 'rgba(204,120,92,0.3)' : 'rgba(20,20,19,0.1)'}`,
+                color: open ? '#cc785c' : 'rgba(20,20,19,0.7)',
               }}
               aria-label="Toggle menu"
             >
@@ -190,9 +191,9 @@ export function Navbar() {
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.25, ease: 'easeInOut' }}
               className="md:hidden overflow-hidden"
-              style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
+              style={{ borderTop: '1px solid #e6dfd8' }}
             >
-              <div className="px-4 py-4 space-y-1" style={{ background: 'rgba(6,6,6,0.97)' }}>
+              <div className="px-4 py-4 space-y-1" style={{ background: 'rgba(250,249,245,0.98)' }}>
                 {NAV_LINKS.map((link, i) => (
                   <motion.div
                     key={link.href}
@@ -204,13 +205,13 @@ export function Navbar() {
                       to={link.href}
                       className="flex items-center justify-between px-4 py-3 rounded-xl text-sm transition-all duration-150"
                       style={{
-                        background: isActive(link.href) ? 'rgba(251,191,36,0.08)' : 'transparent',
-                        color: isActive(link.href) ? '#fbbf24' : 'rgba(255,255,255,0.6)',
-                        border: `1px solid ${isActive(link.href) ? 'rgba(251,191,36,0.2)' : 'transparent'}`,
+                        background: isActive(link.href) ? 'rgba(204,120,92,0.08)' : 'transparent',
+                        color: isActive(link.href) ? '#cc785c' : 'rgba(20,20,19,0.65)',
+                        border: `1px solid ${isActive(link.href) ? 'rgba(204,120,92,0.2)' : 'transparent'}`,
                       }}
                     >
                       <span className="font-medium">{link.label}</span>
-                      {isActive(link.href) && <ArrowRight className="w-3.5 h-3.5 text-amber-400" />}
+                      {isActive(link.href) && <ArrowRight className="w-3.5 h-3.5 text-primary" />}
                     </Link>
                   </motion.div>
                 ))}
@@ -227,10 +228,10 @@ export function Navbar() {
                     rel="noopener noreferrer"
                     className="flex items-center justify-center gap-2 py-3.5 rounded-xl text-sm font-bold w-full transition-all duration-200 active:scale-95"
                     style={{
-                      background: 'linear-gradient(135deg, #fbbf24 0%, #f97316 100%)',
-                      color: '#000',
-                      fontFamily: 'Space Grotesk, sans-serif',
-                      boxShadow: '0 4px 20px rgba(251,191,36,0.3)',
+                      background: '#cc785c',
+                      color: '#fff',
+                      fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
+                      boxShadow: '0 4px 20px rgba(204,120,92,0.3)',
                     }}
                   >
                     <MessageCircle className="w-4 h-4" />

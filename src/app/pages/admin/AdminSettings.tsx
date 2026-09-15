@@ -34,7 +34,7 @@ export function AdminSettings() {
   return (
     <div className="space-y-8 max-w-3xl">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-gray-900" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+        <h1 className="text-2xl font-bold text-gray-900" style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
           Pengaturan Global
         </h1>
         {saved && (
@@ -49,7 +49,7 @@ export function AdminSettings() {
           <div>
             <label className="block text-xs font-medium text-gray-600 mb-1">Hero Headline</label>
             <input
-              className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-300"
+              className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
               value={form.heroHeadline}
               onChange={e => setForm(f => ({ ...f, heroHeadline: e.target.value }))}
             />
@@ -57,7 +57,7 @@ export function AdminSettings() {
           <div>
             <label className="block text-xs font-medium text-gray-600 mb-1">Hero Subheadline</label>
             <textarea
-              className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-300 resize-none"
+              className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary resize-none"
               rows={2}
               value={form.heroSubheadline}
               onChange={e => setForm(f => ({ ...f, heroSubheadline: e.target.value }))}
@@ -66,7 +66,7 @@ export function AdminSettings() {
           <div>
             <label className="block text-xs font-medium text-gray-600 mb-1">Banner Pengumuman (opsional)</label>
             <input
-              className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-300"
+              className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
               value={form.announcement}
               onChange={e => setForm(f => ({ ...f, announcement: e.target.value }))}
               placeholder="Kosongkan jika tidak ada pengumuman"
@@ -82,7 +82,7 @@ export function AdminSettings() {
           <div>
             <label className="block text-xs font-medium text-gray-600 mb-1">Nomor WhatsApp (format internasional)</label>
             <input
-              className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-300"
+              className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
               value={form.whatsappNumber}
               onChange={e => setForm(f => ({ ...f, whatsappNumber: e.target.value }))}
               placeholder="Contoh: 6281234567890"
@@ -91,7 +91,7 @@ export function AdminSettings() {
           <div>
             <label className="block text-xs font-medium text-gray-600 mb-1">Jam Operasional</label>
             <input
-              className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-300"
+              className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
               value={form.operationalHours}
               onChange={e => setForm(f => ({ ...f, operationalHours: e.target.value }))}
             />
@@ -99,7 +99,7 @@ export function AdminSettings() {
           <div>
             <label className="block text-xs font-medium text-gray-600 mb-1">Pesan SLA / Waktu Respons</label>
             <input
-              className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-300"
+              className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
               value={form.responseTime}
               onChange={e => setForm(f => ({ ...f, responseTime: e.target.value }))}
             />
@@ -107,7 +107,7 @@ export function AdminSettings() {
           <div>
             <label className="block text-xs font-medium text-gray-600 mb-1">Teks Footer</label>
             <input
-              className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-300"
+              className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
               value={form.footerText}
               onChange={e => setForm(f => ({ ...f, footerText: e.target.value }))}
             />
@@ -122,7 +122,7 @@ export function AdminSettings() {
           <div>
             <label className="block text-xs font-medium text-gray-600 mb-1">Instagram (tanpa @)</label>
             <input
-              className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-300"
+              className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
               value={form.socialMedia?.instagram ?? ''}
               onChange={e => setForm(f => ({ ...f, socialMedia: { ...f.socialMedia, instagram: e.target.value } }))}
               placeholder="zerothstore"
@@ -131,7 +131,7 @@ export function AdminSettings() {
           <div>
             <label className="block text-xs font-medium text-gray-600 mb-1">Discord</label>
             <input
-              className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-300"
+              className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
               value={form.socialMedia?.discord ?? ''}
               onChange={e => setForm(f => ({ ...f, socialMedia: { ...f.socialMedia, discord: e.target.value } }))}
               placeholder="discord.gg/zerothstore"
@@ -140,7 +140,7 @@ export function AdminSettings() {
           <div>
             <label className="block text-xs font-medium text-gray-600 mb-1">TikTok</label>
             <input
-              className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-300"
+              className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
               value={form.socialMedia?.tiktok ?? ''}
               onChange={e => setForm(f => ({ ...f, socialMedia: { ...f.socialMedia, tiktok: e.target.value } }))}
               placeholder="@zerothstore"
@@ -151,7 +151,7 @@ export function AdminSettings() {
 
       <button
         onClick={saveSettings}
-        className="flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-black font-semibold px-6 py-3 rounded-xl transition-colors"
+        className="flex items-center gap-2 bg-primary hover:bg-primary text-black font-semibold px-6 py-3 rounded-xl transition-colors"
       >
         <Save className="w-4 h-4" />
         Simpan Pengaturan
@@ -171,7 +171,7 @@ export function AdminSettings() {
               <label className="block text-xs font-medium text-gray-600 mb-1">{label}</label>
               <input
                 type="number"
-                className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-300"
+                className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                 value={statsForm[key as keyof typeof statsForm]}
                 onChange={e => setStatsForm(f => ({ ...f, [key]: Number(e.target.value) }))}
               />
@@ -180,7 +180,7 @@ export function AdminSettings() {
         </div>
         <button
           onClick={saveStats}
-          className="flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-black font-semibold px-5 py-2.5 rounded-xl transition-colors mt-4"
+          className="flex items-center gap-2 bg-primary hover:bg-primary text-black font-semibold px-5 py-2.5 rounded-xl transition-colors mt-4"
         >
           <Save className="w-4 h-4" />
           Simpan Statistik

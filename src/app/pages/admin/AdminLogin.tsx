@@ -28,15 +28,15 @@ export function AdminLogin() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] flex items-center justify-center p-4">
+    <div className="min-h-screen bg-[#272729] flex items-center justify-center p-4">
       <div className="w-full max-w-sm">
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="w-12 h-12 bg-amber-500 rounded-xl flex items-center justify-center mx-auto mb-3">
+          <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center mx-auto mb-3">
             <Zap className="w-6 h-6 text-black" strokeWidth={2.5} />
           </div>
-          <h1 className="text-white font-bold text-xl" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
-            Zeroth<span className="text-amber-500">Store</span>
+          <h1 className="text-white font-bold text-xl" style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
+            Zeroth<span className="text-primary">Store</span>
           </h1>
           <p className="text-gray-500 text-sm mt-1">Admin Panel</p>
         </div>
@@ -56,7 +56,7 @@ export function AdminLogin() {
                   value={email}
                   onChange={e => setEmail(e.target.value)}
                   placeholder="admin@zeroth.store"
-                  className="w-full bg-[#0A0A0A] border border-gray-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 placeholder-gray-600 transition"
+                  className="w-full bg-[#272729] border border-gray-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary placeholder-gray-600 transition"
                   required
                 />
               </div>
@@ -70,7 +70,7 @@ export function AdminLogin() {
                   value={password}
                   onChange={e => setPassword(e.target.value)}
                   placeholder="Masukkan password admin"
-                  className="w-full bg-[#0A0A0A] border border-gray-700 text-white rounded-xl px-4 py-3 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 placeholder-gray-600 transition"
+                  className="w-full bg-[#272729] border border-gray-700 text-white rounded-xl px-4 py-3 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary placeholder-gray-600 transition"
                   required
                 />
                 <button
@@ -92,7 +92,7 @@ export function AdminLogin() {
             <button
               type="submit"
               disabled={loading || !password}
-              className="w-full bg-amber-500 hover:bg-amber-400 disabled:opacity-50 disabled:cursor-not-allowed text-black font-semibold py-3 rounded-xl transition-colors"
+              className="w-full bg-primary hover:bg-primary disabled:opacity-50 disabled:cursor-not-allowed text-black font-semibold py-3 rounded-xl transition-colors"
             >
               {loading ? 'Memverifikasi...' : 'Masuk'}
             </button>
@@ -100,7 +100,7 @@ export function AdminLogin() {
 
           <div className="mt-4 p-3 bg-gray-800/50 rounded-xl">
             <p className="text-gray-500 text-xs text-center">
-              Login: <code className="text-amber-400">admin@zeroth.store</code> / password dari <code className="text-amber-400">ADMIN_PASSWORD</code> di <code className="text-amber-400">.env</code>
+              Login: <code className="text-primary">admin@zeroth.store</code> / password dari <code className="text-primary">ADMIN_PASSWORD</code> di <code className="text-primary">.env</code>
             </p>
           </div>
         </div>
