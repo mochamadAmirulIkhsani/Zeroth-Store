@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'motion/react';
 import { ChevronDown, ChevronUp, MessageCircle } from 'lucide-react';
 import { useApp } from '../context/AppContext';
+import { SEO } from '../components/SEO';
 
 const CATEGORY_ICONS: Record<string, string> = {
   Umum: '📋',
@@ -29,7 +30,22 @@ export function FAQPage() {
   const waLink = `https://wa.me/${settings.whatsappNumber}?text=${encodeURIComponent('Halo! Saya punya pertanyaan tentang layanan Zeroth Store.')}`;
 
   return (
-    <div className="min-h-screen" style={{ background: '#faf9f5' }}>
+    <>
+      <SEO
+        title="Pertanyaan yang Sering Ditanya — Zeroth Store"
+        description="Temukan jawaban atas pertanyaan umum tentang layanan joki Zeroth Store: cara order, keamanan akun, pembayaran, dan garansi."
+        path="/faq"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: activeFaqs.map(f => ({
+            '@type': 'Question',
+            name: f.question,
+            acceptedAnswer: { '@type': 'Answer', text: f.answer },
+          })),
+        }}
+      />
+      <div className="min-h-screen" style={{ background: '#faf9f5' }}>
       {/* Header */}
       <div className="py-16" style={{ background: '#faf9f5', borderBottom: '1px solid #e6dfd8' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -150,5 +166,7 @@ export function FAQPage() {
         </div>
       </div>
     </div>
+    </>
+
   );
 }

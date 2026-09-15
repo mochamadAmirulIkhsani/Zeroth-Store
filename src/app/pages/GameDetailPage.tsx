@@ -9,6 +9,7 @@ import { useApp } from '../context/AppContext';
 import { getWALink, DEFAULT_WA_TEMPLATE } from '../data/gameData';
 import type { Service, Game } from '../data/gameData';
 import { formatDate } from '../components/ui/formatDate';
+import { SEO } from '../components/SEO';
 const CATEGORY_COLORS: Record<string, string> = {
   Leveling: '#4A90D9',
   Endgame: '#7B5EA7',
@@ -118,7 +119,13 @@ export function GameDetailPage() {
   );
 
   return (
-    <div className="min-h-screen bg-white pt-16">
+    <>
+      <SEO
+        title={`Joki ${game.name} — Zeroth Store`}
+        description={`Layanan joki ${game.name}: ${activeServices.slice(0, 3).map(s => s.name).join(', ')}. Aman, cepat, harga terjangkau. Order via WhatsApp.`}
+        path={`/games/${game.slug}`}
+      />
+      <div className="min-h-screen bg-white pt-16">
       {/* Banner */}
       <div className="relative h-56 sm:h-72 overflow-hidden">
         <img
@@ -349,5 +356,7 @@ export function GameDetailPage() {
         </div>
       </div>
     </div>
+    </>
+
   );
 }

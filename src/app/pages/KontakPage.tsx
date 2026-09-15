@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { MessageCircle, Clock, Zap, Instagram, CheckCircle } from 'lucide-react';
 import { useApp } from '../context/AppContext';
+import { SEO } from '../components/SEO';
 
 export function KontakPage() {
   const { settings, games } = useApp();
@@ -8,7 +9,13 @@ export function KontakPage() {
   const waLink = `https://wa.me/${settings.whatsappNumber}?text=${encodeURIComponent('Halo Admin! Saya ingin tanya tentang layanan Zeroth Store.')}`;
 
   return (
-    <div className="min-h-screen" style={{ background: '#faf9f5' }}>
+    <>
+      <SEO
+        title="Hubungi Kami — Zeroth Store"
+        description="Hubungi Zeroth Store via WhatsApp untuk order joki game, konsultasi layanan, atau pertanyaan lainnya. Melayani Senin–Minggu 08.00–24.00 WIB."
+        path="/kontak"
+      />
+      <div className="min-h-screen" style={{ background: '#faf9f5' }}>
       {/* Header */}
       <div className="py-16" style={{ background: '#faf9f5', borderBottom: '1px solid #e6dfd8' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -171,6 +178,8 @@ export function KontakPage() {
         </div>
       </div>
     </div>
+    </>
+
   );
 }
 

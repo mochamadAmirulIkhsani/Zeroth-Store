@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { motion } from 'motion/react';
 import { Search, ArrowRight, SlidersHorizontal, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useApp } from '../context/AppContext';
+import { SEO } from '../components/SEO';
 
 const PER_PAGE = 6;
 
@@ -126,7 +127,13 @@ export function GamesPage() {
   );
 
   return (
-    <div className="min-h-screen" style={{ background: '#faf9f5' }}>
+    <>
+      <SEO
+        title="Semua Game — Zeroth Store"
+        description="Daftar lengkap game yang kami layani: Genshin Impact, Honkai Star Rail, Zenless Zone Zero, Wuthering Waves, dan lainnya. Lihat layanan joki yang tersedia."
+        path="/games"
+      />
+      <div className="min-h-screen" style={{ background: '#faf9f5' }}>
       {/* Header */}
       <div className="py-14" style={{ background: '#faf9f5', borderBottom: '1px solid #e6dfd8' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -325,5 +332,7 @@ export function GamesPage() {
         </div>
       </div>
     </div>
+    </>
+
   );
 }

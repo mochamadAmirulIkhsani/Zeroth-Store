@@ -4,6 +4,7 @@ import { Star, ChevronDown, X, SlidersHorizontal, ChevronLeft, ChevronRight } fr
 import { useApp } from '../context/AppContext';
 import type { Game } from '../data/gameData';
 import { formatDate } from '../components/ui/formatDate';
+import { SEO } from '../components/SEO';
 
 const ITEMS_PER_PAGE = 10;
 
@@ -148,7 +149,13 @@ export function TestimoniPage() {
   };
 
   return (
-    <div className="min-h-screen pt-16" style={{ background: '#faf9f5' }} onClick={() => gameDropdownOpen && setGameDropdownOpen(false)}>
+    <>
+      <SEO
+        title="Testimoni Klien — Zeroth Store"
+        description="Lihat testimoni dan ulasan dari klien yang sudah order joki game di Zeroth Store. Ribuan klien puas telah mempercayakan akun mereka kepada kami."
+        path="/testimoni"
+      />
+      <div className="min-h-screen pt-16" style={{ background: '#faf9f5' }} onClick={() => gameDropdownOpen && setGameDropdownOpen(false)}>
       {/* Header */}
       <div className="py-16" style={{ background: '#faf9f5', borderBottom: '1px solid #e6dfd8' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -311,5 +318,7 @@ export function TestimoniPage() {
         </div>
       </div>
     </div>
+    </>
+
   );
 }

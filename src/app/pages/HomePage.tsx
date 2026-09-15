@@ -8,6 +8,7 @@ import {
 import { useApp } from '../context/AppContext';
 import { HeroSection } from '../components/HeroSection';
 import { TestimonialsCarousel } from '../components/TestimonialsCarousel';
+import { SEO } from '../components/SEO';
 
 function AnimatedCounter({ target, suffix = '' }: { target: number; suffix?: string }) {
   const [count, setCount] = useState(0);
@@ -73,7 +74,24 @@ export function HomePage() {
   const waLink = `https://wa.me/${settings.whatsappNumber}?text=${encodeURIComponent('Halo Admin! Saya ingin tanya tentang layanan Zeroth Store.')}`;
 
   return (
-    <div style={{ background: '#faf9f5' }}>
+    <>
+      <SEO
+        title="Zeroth Store — Joki Game Profesional & Terpercaya #1 Indonesia"
+        description="Joki game profesional untuk Genshin Impact, Honkai Star Rail, Zenless Zone Zero, dan lainnya. Aman, cepat, harga terjangkau. Order via WhatsApp."
+        path="/"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'LocalBusiness',
+          name: 'Zeroth Store',
+          description: 'Platform joki game profesional & terpercaya untuk game gacha dan action RPG.',
+          url: 'https://zeroth-store.vercel.app/',
+          telephone: '+62 812-3456-7890',
+          address: { '@type': 'PostalAddress', addressLocality: 'Malang', addressRegion: 'Jawa Timur', addressCountry: 'ID' },
+          openingHours: 'Mo-Su 08:00-24:00',
+          priceRange: 'Rp 25.000 - Rp 200.000',
+        }}
+      />
+      <div style={{ background: '#faf9f5' }}>
       {/* HERO */}
       <HeroSection
         heroHeadline={settings.heroHeadline}
@@ -583,5 +601,6 @@ export function HomePage() {
         </div>
       </section>
     </div>
+    </>
   );
 }
