@@ -230,7 +230,7 @@ export function GameDetailPage() {
                         )}
                       </div>
                       <div className="pb-6 last:pb-0">
-                        <p className="text-xs text-gray-400 mb-0.5">Langkah {i + 1}</p>
+                        <p className="text-xs text-gray-500 mb-0.5">Langkah {i + 1}</p>
                         <h4 className="font-semibold text-[#0A0A0A] mb-1">{step.title}</h4>
                         <p className="text-gray-500 text-sm leading-relaxed">{step.description}</p>
                       </div>
@@ -273,12 +273,12 @@ export function GameDetailPage() {
                         {Array.from({ length: 5 }).map((_, j) => (
                           <Star key={j} className={`w-3.5 h-3.5 ${j < t.rating ? 'text-amber-400 fill-amber-400' : 'text-gray-200'}`} />
                         ))}
-                        <span className="text-gray-400 text-xs ml-1">{formatDate(t.date)}</span>
+                        <span className="text-gray-500 text-xs ml-1">{formatDate(t.date)}</span>
                       </div>
                       <p className="text-gray-700 text-sm mb-3">"{t.content}"</p>
                       <div>
                         <p className="font-medium text-[#0A0A0A] text-sm">{t.name}</p>
-                        <p className="text-gray-400 text-xs">{t.service}</p>
+                        <p className="text-gray-500 text-xs">{t.service}</p>
                       </div>
                     </div>
                   ))}
@@ -298,7 +298,7 @@ export function GameDetailPage() {
                 <h3 className="font-bold text-lg mb-2" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
                   Mulai Order Sekarang
                 </h3>
-                <p className="text-gray-400 text-sm mb-5">
+                <p className="text-gray-500 text-sm mb-5">
                   Hubungi admin untuk diskusi layanan dan harga terbaik
                 </p>
                 <a
@@ -311,15 +311,15 @@ export function GameDetailPage() {
                   <span>Chat via WhatsApp</span>
                 </a>
                 <div className="mt-4 pt-4 border-t border-gray-800 space-y-2">
-                  <div className="flex items-center gap-2 text-gray-400 text-xs">
+                  <div className="flex items-center gap-2 text-gray-500 text-xs">
                     <CheckCircle className="w-3.5 h-3.5 text-green-500" />
                     <span>Respon dalam 5 menit</span>
                   </div>
-                  <div className="flex items-center gap-2 text-gray-400 text-xs">
+                  <div className="flex items-center gap-2 text-gray-500 text-xs">
                     <CheckCircle className="w-3.5 h-3.5 text-green-500" />
                     <span>Akun dijamin aman</span>
                   </div>
-                  <div className="flex items-center gap-2 text-gray-400 text-xs">
+                  <div className="flex items-center gap-2 text-gray-500 text-xs">
                     <CheckCircle className="w-3.5 h-3.5 text-green-500" />
                     <span>Garansi pengerjaan</span>
                   </div>

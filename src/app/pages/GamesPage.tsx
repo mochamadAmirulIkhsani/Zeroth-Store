@@ -46,9 +46,9 @@ export function GamesPage() {
     <aside className="space-y-6">
       {/* Search */}
       <div>
-        <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Cari Game</p>
+        <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Cari Game</p>
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
           <input
             type="text"
             placeholder="Nama game..."
@@ -57,7 +57,7 @@ export function GamesPage() {
             className="w-full pl-9 pr-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-300 focus:border-amber-300 transition"
           />
           {query && (
-            <button onClick={() => handleQueryChange('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
+            <button onClick={() => handleQueryChange('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-600">
               <X className="w-3.5 h-3.5" />
             </button>
           )}
@@ -66,7 +66,7 @@ export function GamesPage() {
 
       {/* Sort */}
       <div>
-        <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Urutkan</p>
+        <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Urutkan</p>
         <div className="space-y-1">
           {([
             { value: 'default', label: 'Default' },
@@ -90,7 +90,7 @@ export function GamesPage() {
 
       {/* Min services */}
       <div>
-        <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Min. Layanan</p>
+        <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Min. Layanan</p>
         <div className="space-y-1">
           {[
             { value: 0, label: 'Semua' },
@@ -181,13 +181,13 @@ export function GamesPage() {
                   </button>
                 )}
               </p>
-              <p className="text-xs text-gray-400">
+              <p className="text-xs text-gray-500">
                 Halaman {safePage} dari {totalPages}
               </p>
             </div>
 
             {paginated.length === 0 ? (
-              <div className="text-center py-20 text-gray-400">
+              <div className="text-center py-20 text-gray-500">
                 <p>Tidak ada game yang cocok dengan filter ini.</p>
                 <button onClick={clearFilters} className="mt-3 text-sm text-amber-600 hover:underline">
                   Reset filter
@@ -234,7 +234,7 @@ export function GamesPage() {
                           <p className="text-gray-500 text-sm mb-4 line-clamp-2">{game.description}</p>
                           <div className="flex items-center justify-between">
                             <div>
-                              <p className="text-gray-400 text-xs mb-0.5">Mulai dari</p>
+                              <p className="text-gray-500 text-xs mb-0.5">Mulai dari</p>
                               <p className="font-semibold text-[#0A0A0A] text-sm">{startingPrice}</p>
                             </div>
                             <div className="flex items-center gap-2">
@@ -277,7 +277,7 @@ export function GamesPage() {
 
                       if (!isNear) {
                         if (showEllipsisBefore || showEllipsisAfter) {
-                          return <span key={n} className="w-9 text-center text-gray-400 text-sm select-none">…</span>;
+                          return <span key={n} className="w-9 text-center text-gray-500 text-sm select-none">…</span>;
                         }
                         return null;
                       }
@@ -316,7 +316,7 @@ export function GamesPage() {
                 </div>
 
                 {/* Page info */}
-                <p className="text-center text-xs text-gray-400 mt-3">
+                <p className="text-center text-xs text-gray-500 mt-3">
                   Halaman <span className="font-medium text-gray-600">{safePage}</span> dari <span className="font-medium text-gray-600">{totalPages}</span> · {filtered.length} game
                 </p>
               </div>

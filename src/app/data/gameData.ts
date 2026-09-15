@@ -97,7 +97,7 @@ export const SECURITY_NOTES_DEFAULT = [
   'Kami tidak menyimpan data login Anda setelah joki selesai',
   'Proses dilakukan dengan hati-hati sesuai aturan game',
   'Garansi pengerjaan ulang jika ada kesalahan dari tim kami',
-  'Privasi klien dijaga penuh — tidak ada data yang dibocorkan',
+  'Privasi klien dijaga penuh, tidak ada data yang dibocorkan',
 ];
 
 export const INITIAL_GAMES: Game[] = [
@@ -115,7 +115,7 @@ export const INITIAL_GAMES: Game[] = [
     securityNotes: SECURITY_NOTES_DEFAULT,
     services: [
       { id: 'gi-1', name: 'Adventure Rank (AR) Leveling', description: 'Naik AR dari level berapa saja hingga AR 60. Cocok untuk pemain baru yang ingin cepat unlock konten endgame.', duration: '3–7 hari', price: 'Mulai Rp 50.000', category: 'Leveling', active: true },
-      { id: 'gi-2', name: 'Spiral Abyss — Full Clear', description: 'Clear Floor 9/10/11/12 dengan bintang penuh. Dapatkan primogem reward maksimal setiap bulannya.', duration: '1–2 hari', price: 'Mulai Rp 80.000', category: 'Endgame', active: true },
+      { id: 'gi-2', name: 'Spiral Abyss, Full Clear', description: 'Clear Floor 9/10/11/12 dengan bintang penuh. Dapatkan primogem reward maksimal setiap bulannya.', duration: '1–2 hari', price: 'Mulai Rp 80.000', category: 'Endgame', active: true },
       { id: 'gi-3', name: 'World Quest Completion', description: 'Menyelesaikan quest utama, archon quest, dan side quest per region (Mondstadt, Liyue, Inazuma, dst).', duration: '2–5 hari', price: 'Mulai Rp 60.000', notes: 'Harga tergantung jumlah quest yang diselesaikan', category: 'Story', active: true },
       { id: 'gi-4', name: 'Domain Farming', description: 'Farm artifact terbaik dengan set yang diinginkan. Farming material ascension karakter dan weapon.', duration: '1–3 hari', price: 'Mulai Rp 40.000', category: 'Farming', active: true },
       { id: 'gi-5', name: 'Event Completion', description: 'Selesaikan event limited time dan klaim semua reward eksklusif sebelum event berakhir.', duration: '1–2 hari', price: 'Mulai Rp 35.000', category: 'Event', active: true },
@@ -161,7 +161,7 @@ export const INITIAL_GAMES: Game[] = [
     securityNotes: SECURITY_NOTES_DEFAULT,
     services: [
       { id: 'zzz-1', name: 'Inter-Knot Level Leveling', description: 'Naik Inter-Knot Level untuk unlock konten baru dan tingkatkan reward harian di New Eridu.', duration: '3–6 hari', price: 'Mulai Rp 50.000', category: 'Leveling', active: true },
-      { id: 'zzz-2', name: 'Shiyu Defense — Full Clear', description: 'Clear semua floor Shiyu Defense dengan bintang penuh untuk master reward.', duration: '1–2 hari', price: 'Mulai Rp 70.000', category: 'Endgame', active: true },
+      { id: 'zzz-2', name: 'Shiyu Defense, Full Clear', description: 'Clear semua floor Shiyu Defense dengan bintang penuh untuk master reward.', duration: '1–2 hari', price: 'Mulai Rp 70.000', category: 'Endgame', active: true },
       { id: 'zzz-3', name: 'Deadly Assault', description: 'Clear konten endgame Deadly Assault dan dapatkan semua reward kompetitif.', duration: '1 hari', price: 'Mulai Rp 60.000', category: 'Endgame', active: true },
       { id: 'zzz-4', name: 'Story Chapter Completion', description: 'Selesaikan chapter utama dan side story untuk unlock konten dan karakter baru.', duration: '2–4 hari', price: 'Mulai Rp 55.000', category: 'Story', active: true },
       { id: 'zzz-5', name: 'Agent Building', description: 'Level up, upgrade skill, mindscape maze, dan optimasi W-Engine untuk agen pilihan.', duration: '2–3 hari', price: 'Mulai Rp 65.000', notes: 'Material tidak termasuk', category: 'Build', active: true },

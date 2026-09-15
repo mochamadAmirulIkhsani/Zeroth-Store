@@ -40,13 +40,17 @@ function AnimatedCounter({ target, suffix = '' }: { target: number; suffix?: str
   return <div ref={ref}>{count.toLocaleString('id-ID')}{suffix}</div>;
 }
 
-function SectionLabel({ text }: { text: string }) {
+function SectionLabel({ text, variant = 'outline' }: { text: string; variant?: 'outline' | 'solid' }) {
   return (
     <div
       className="inline-flex items-center gap-2 mb-4 px-3 py-1 rounded-full border text-xs"
-      style={{ borderColor: 'rgba(251,191,36,0.25)', background: 'rgba(251,191,36,0.06)', color: '#fbbf24' }}
+      style={
+        variant === 'solid'
+          ? { borderColor: '#fbbf24', background: 'linear-gradient(135deg, #fbbf24, #f97316)', color: '#000' }
+          : { borderColor: 'rgba(251,191,36,0.25)', background: 'rgba(251,191,36,0.06)', color: '#fbbf24' }
+      }
     >
-      <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+      <span className="w-1.5 h-1.5 rounded-full" style={variant === 'solid' ? { background: '#000' } : { background: '#fbbf24' }} />
       {text}
     </div>
   );
@@ -75,6 +79,7 @@ export function HomePage() {
         heroHeadline={settings.heroHeadline}
         heroSubheadline={settings.heroSubheadline}
         waLink={waLink}
+        stats={stats}
       />
 
       {/* GAME LIST */}
@@ -144,11 +149,9 @@ export function HomePage() {
                       <div>
                         <div className="flex items-start justify-between gap-1 sm:gap-2 mb-1 sm:mb-2">
                           <div className="flex items-center gap-1.5">
-                            <motion.div
+                            <span
                               className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full flex-shrink-0"
                               style={{ backgroundColor: game.color }}
-                              animate={{ opacity: [1, 0.4, 1], scale: [1, 1.35, 1] }}
-                              transition={{ duration: 2.5, repeat: Infinity, delay: i * 0.3 }}
                             />
                             <h3 className="font-bold text-white leading-tight line-clamp-1"
                               style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 'clamp(0.72rem, 2.5vw, 1.05rem)' }}>
@@ -167,7 +170,7 @@ export function HomePage() {
                             {activeServices.length}
                           </span>
                         </div>
-                        <p className="hidden sm:block text-xs mb-4 leading-relaxed line-clamp-2" style={{ color: 'rgba(255,255,255,0.38)' }}>
+                        <p className="hidden sm:block text-xs mb-4 leading-relaxed line-clamp-2" style={{ color: 'rgba(255,255,255,0.5)' }}>
                           {game.tagline}
                         </p>
                       </div>
@@ -242,14 +245,14 @@ export function HomePage() {
 
       {/* WHY US */}
       <section className="py-24 relative overflow-hidden" style={{ background: 'linear-gradient(160deg, #0d0d10 0%, #0a0a0a 50%, #0d0a0d 100%)' }}>
+        {/* Dot-grid texture (R-07 reason): gaming-brand background rhythm echoing pixel/HUD aesthetic of the store's game catalog; kept at 4% opacity so it reads as texture, never pattern. Removed only if the brand drops the gaming identity. */}
         <div className="absolute inset-0 pointer-events-none" style={{
           backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px)',
           backgroundSize: '28px 28px',
         }} />
         <div className="absolute top-0 left-1/4 w-96 h-96 rounded-full pointer-events-none"
           style={{ background: 'radial-gradient(circle, rgba(251,191,36,0.05) 0%, transparent 70%)', filter: 'blur(40px)' }} />
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 rounded-full pointer-events-none"
-          style={{ background: 'radial-gradient(circle, rgba(96,165,250,0.05) 0%, transparent 70%)', filter: 'blur(40px)' }} />
+        {/* Blue orb removed: R-13 dose cap — single amber accent is the brand anchor; blue was decorative */}
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div className="text-center mb-14" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
@@ -258,7 +261,7 @@ export function HomePage() {
               Mengapa Memilih Zeroth Store?
             </h2>
             <p className="max-w-xl mx-auto" style={{ color: 'rgba(255,255,255,0.4)' }}>
-              Bukan sekadar joki — kami adalah mitra gaming profesional Anda
+              Bukan sekadar joki, kami adalah mitra gaming profesional Anda
             </p>
           </motion.div>
 
@@ -279,7 +282,7 @@ export function HomePage() {
                 </div>
                 <div className="flex-1">
                   <h3 className="font-bold text-white mb-2" style={{ fontFamily: 'Space Grotesk', fontSize: '1.15rem' }}>Aman & Terpercaya</h3>
-                  <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.45)' }}>Data akun dijaga ketat. Tidak ada kebocoran informasi klien, dijamin privasi 100%.</p>
+                  <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.5)' }}>Data akun dijaga ketat. Tidak ada kebocoran informasi klien, dijamin privasi 100%.</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 mt-6 relative z-10 flex-wrap">
@@ -308,7 +311,7 @@ export function HomePage() {
                 <Zap className="w-7 h-7 text-blue-400" strokeWidth={1.5} />
               </div>
               <h3 className="font-bold text-white mb-2 relative z-10" style={{ fontFamily: 'Space Grotesk', fontSize: '1.15rem' }}>Proses Cepat</h3>
-              <p className="text-sm leading-relaxed mb-auto relative z-10" style={{ color: 'rgba(255,255,255,0.45)' }}>
+              <p className="text-sm leading-relaxed mb-auto relative z-10" style={{ color: 'rgba(255,255,255,0.5)' }}>
                 Tim berpengalaman mengerjakan pesanan dengan efisien. Estimasi waktu selalu transparan.
               </p>
               <div className="mt-8 space-y-3 relative z-10">
@@ -393,10 +396,6 @@ export function HomePage() {
               <p className="text-sm leading-relaxed relative z-10" style={{ color: 'rgba(255,255,255,0.4)' }}>
                 Admin aktif 16 jam sehari, 7 hari seminggu. Pesan Anda tidak akan terabaikan.
               </p>
-              <div className="absolute bottom-4 right-4 flex items-center gap-1.5 z-10">
-                <motion.div className="w-2 h-2 rounded-full bg-green-400" animate={{ opacity: [1, 0.3, 1] }} transition={{ duration: 1.4, repeat: Infinity }} />
-                <span className="text-xs" style={{ color: 'rgba(255,255,255,0.3)' }}>Admin Online</span>
-              </div>
             </motion.div>
 
             {/* Card 6: Ribuan Klien — wide */}
@@ -414,13 +413,16 @@ export function HomePage() {
                   <Users className="w-7 h-7" style={{ color: '#fb7185' }} strokeWidth={1.5} />
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-bold text-white mb-1.5" style={{ fontFamily: 'Space Grotesk', fontSize: '1.15rem' }}>Ribuan Klien Puas</h3>
+                  <h3 className="font-bold text-white mb-1.5" style={{ fontFamily: 'Space Grotesk', fontSize: '1.15rem' }}>Dipercaya Pelanggan Nyata</h3>
                   <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.4)' }}>
-                    Sudah dipercaya ribuan klien. Testimoni nyata dari pengguna yang puas dengan hasil kerja tim kami.
+                    {testimonials.filter(t => t.active).length} testimoni dari pelanggan yang sudah merasakan layanan kami. Nama disamarkan demi privasi.
                   </p>
                 </div>
                 <div className="flex gap-6 flex-shrink-0">
-                  {[{ val: '5K+', label: 'Klien' }, { val: '98%', label: 'Kepuasan' }].map(s => (
+                  {[
+                    { val: stats.ordersCompleted.toLocaleString('id-ID') + '+', label: 'Klien' },
+                    { val: stats.satisfactionRate + '%', label: 'Kepuasan' },
+                  ].map(s => (
                     <div key={s.label} className="text-center">
                       <p className="font-bold" style={{ color: '#fb7185', fontFamily: 'Space Grotesk', fontSize: '1.6rem' }}>{s.val}</p>
                       <p className="text-xs" style={{ color: 'rgba(255,255,255,0.3)' }}>{s.label}</p>
@@ -442,7 +444,7 @@ export function HomePage() {
       <section className="py-24" style={{ background: '#0A0A0A' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div className="text-center mb-14" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <SectionLabel text="Angka Bicara" />
+            <SectionLabel text="Angka Bicara" variant="solid" />
             <h2 className="text-3xl font-bold text-white mb-3" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
               Zeroth Store dalam Angka
             </h2>
@@ -562,7 +564,7 @@ export function HomePage() {
                 </button>
                 {openFaq === i && (
                   <div className="px-6 pb-5">
-                    <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.45)' }}>{faq.a}</p>
+                    <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.5)' }}>{faq.a}</p>
                   </div>
                 )}
               </motion.div>

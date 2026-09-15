@@ -105,7 +105,7 @@ export function TestimonialsCarousel({ testimonials, games, dark = false }: Prop
           </div>
           <div>
             <p className="text-sm font-medium text-white" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>{t.name}</p>
-            <p className="text-xs" style={{ color: 'rgba(255,255,255,0.3)' }}>{game?.name}{t.service ? ` — ${t.service}` : ''}</p>
+            <p className="text-xs" style={{ color: 'rgba(255,255,255,0.3)' }}>{game?.name}{t.service ? `, ${t.service}` : ''}</p>
           </div>
         </div>
       </div>
@@ -127,7 +127,7 @@ export function TestimonialsCarousel({ testimonials, games, dark = false }: Prop
           </div>
           <div>
             <p className="font-medium text-[#0A0A0A] text-sm">{t.name}</p>
-            <p className="text-gray-400 text-xs">{game?.name}{t.service ? ` — ${t.service}` : ''}</p>
+            <p className="text-gray-400 text-xs">{game?.name}{t.service ? `, ${t.service}` : ''}</p>
           </div>
         </div>
       </div>

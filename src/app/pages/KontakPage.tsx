@@ -111,7 +111,7 @@ export function KontakPage() {
               </h2>
               <div className="space-y-4">
                 {[
-                  { icon: Zap, title: 'Respon Langsung', desc: 'Chat real-time dengan admin — tidak perlu nunggu email atau form.' },
+                  { icon: Zap, title: 'Respon Langsung', desc: 'Chat real-time dengan admin, tidak perlu nunggu email atau form.' },
                   { icon: CheckCircle, title: 'Fleksibel & Personal', desc: 'Diskusi bebas sesuai kebutuhan, harga bisa disesuaikan.' },
                   { icon: Shield, title: 'Terjamin Aman', desc: 'Komunikasi terenkripsi end-to-end di WhatsApp.' },
                 ].map((item, i) => (

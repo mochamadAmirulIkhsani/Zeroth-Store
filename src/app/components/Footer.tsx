@@ -4,7 +4,7 @@ import { motion } from 'motion/react';
 import { useApp } from '../context/AppContext';
 
 export function Footer() {
-  const { settings, games } = useApp();
+  const { settings, games, stats } = useApp();
   const activeGames = games.filter(g => g.status === 'active');
   const waLink = `https://wa.me/${settings.whatsappNumber}?text=${encodeURIComponent('Halo Admin! Saya ingin tanya tentang layanan Zeroth Store.')}`;
 
@@ -19,7 +19,7 @@ export function Footer() {
   const trustBadges = [
     { icon: Shield, label: 'Akun Aman & Terjaga' },
     { icon: Clock, label: 'Respon < 5 Menit' },
-    { icon: Star, label: '98% Kepuasan Klien' },
+    { icon: Star, label: `${stats.satisfactionRate}% Kepuasan Klien` },
   ];
 
   return (
@@ -64,16 +64,11 @@ export function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            {/* Status pill */}
+            {/* Status pill: real operational hours */}
             <div className="inline-flex items-center gap-2 mb-6 px-3.5 py-1.5 rounded-full border"
               style={{ borderColor: 'rgba(52,211,153,0.25)', background: 'rgba(52,211,153,0.07)' }}>
-              <motion.span
-                className="w-2 h-2 rounded-full bg-green-400"
-                animate={{ opacity: [1, 0.3, 1], scale: [1, 1.4, 1] }}
-                transition={{ duration: 1.8, repeat: Infinity }}
-              />
               <span className="text-xs text-green-400 font-medium" style={{ fontFamily: 'Space Grotesk' }}>
-                Admin Online Sekarang
+                {settings.operationalHours}
               </span>
             </div>
 
@@ -84,8 +79,8 @@ export function Footer() {
               Siap Naik Level?{' '}
               <span style={{ color: '#fbbf24' }}>Order Sekarang.</span>
             </h2>
-            <p className="mb-8 max-w-lg mx-auto" style={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.95rem', lineHeight: 1.6 }}>
-              Diskusikan kebutuhan joki Anda dengan kami. Aman, cepat, dan harga terjangkau — {settings.operationalHours}.
+            <p className="mb-8 max-w-lg mx-auto" style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.95rem', lineHeight: 1.6 }}>
+              Diskusikan kebutuhan joki Anda dengan kami. Aman, cepat, dan harga terjangkau, {settings.operationalHours}.
             </p>
 
             <a
@@ -95,7 +90,6 @@ export function Footer() {
               className="group inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-black font-semibold transition-all duration-200 hover:scale-105 active:scale-95"
               style={{
                 background: 'linear-gradient(135deg, #fbbf24 0%, #f97316 100%)',
-                boxShadow: '0 0 32px rgba(251,191,36,0.25), 0 4px 16px rgba(0,0,0,0.3)',
                 fontFamily: 'Space Grotesk, sans-serif',
               }}
             >
@@ -109,7 +103,7 @@ export function Footer() {
               {trustBadges.map(({ icon: Icon, label }) => (
                 <div key={label} className="flex items-center gap-2">
                   <Icon className="w-3.5 h-3.5 text-amber-500 flex-shrink-0" strokeWidth={2} />
-                  <span className="text-xs" style={{ color: 'rgba(255,255,255,0.4)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+                  <span className="text-xs" style={{ color: 'rgba(255,255,255,0.5)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                     {label}
                   </span>
                 </div>
@@ -139,7 +133,7 @@ export function Footer() {
                 Zeroth<span className="text-amber-400">Store</span>
               </span>
             </Link>
-            <p className="text-sm leading-relaxed mb-5" style={{ color: 'rgba(255,255,255,0.35)' }}>
+            <p className="text-sm leading-relaxed mb-5" style={{ color: 'rgba(255,255,255,0.5)' }}>
               Platform joki game profesional &amp; terpercaya. Melayani berbagai game gacha &amp; action RPG populer.
             </p>
             {/* Social */}
@@ -205,9 +199,9 @@ export function Footer() {
                   <Link
                     to={`/games/${game.slug}`}
                     className="group flex items-center gap-2.5 text-sm transition-all duration-150"
-                    style={{ color: 'rgba(255,255,255,0.4)' }}
+                    style={{ color: 'rgba(255,255,255,0.5)' }}
                     onMouseEnter={e => (e.currentTarget.style.color = game.color)}
-                    onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.4)')}
+                    onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.5)')}
                   >
                     <span
                       className="w-1.5 h-1.5 rounded-full flex-shrink-0 transition-all duration-150 group-hover:scale-125"
@@ -232,7 +226,7 @@ export function Footer() {
                   <Link
                     to={link.href}
                     className="text-sm transition-colors duration-150 hover:text-white"
-                    style={{ color: 'rgba(255,255,255,0.4)' }}
+                    style={{ color: 'rgba(255,255,255,0.5)' }}
                   >
                     {link.label}
                   </Link>

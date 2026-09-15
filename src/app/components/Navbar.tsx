@@ -41,7 +41,7 @@ export function Navbar() {
           }}
         >
           <span className="inline-flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-black/30 animate-pulse" />
+            <span className="w-1.5 h-1.5 rounded-full bg-black/30" />
             {settings.announcement}
           </span>
         </div>
@@ -80,7 +80,6 @@ export function Navbar() {
                 className="relative w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110"
                 style={{
                   background: 'linear-gradient(135deg, #fbbf24 0%, #f97316 100%)',
-                  boxShadow: '0 0 20px rgba(251,191,36,0.3)',
                 }}
               >
                 <Zap className="w-4.5 h-4.5 text-black" strokeWidth={2.5} style={{ width: 18, height: 18 }} />
@@ -94,7 +93,7 @@ export function Navbar() {
                 </span>
                 <span
                   className="tracking-widest leading-none"
-                  style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 500, fontSize: '0.5rem', color: 'rgba(255,255,255,0.35)', letterSpacing: '0.2em' }}
+                  style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 500, fontSize: '0.5rem', color: 'rgba(255,255,255,0.5)', letterSpacing: '0.2em' }}
                 >
                   STORE
                 </span>
@@ -140,17 +139,6 @@ export function Navbar() {
 
             {/* Desktop CTAs */}
             <div className="hidden md:flex items-center gap-3">
-              {/* Live indicator */}
-              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full"
-                style={{ background: 'rgba(52,211,153,0.08)', border: '1px solid rgba(52,211,153,0.15)' }}>
-                <motion.span
-                  className="w-1.5 h-1.5 rounded-full bg-green-400"
-                  animate={{ opacity: [1, 0.3, 1] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                />
-                <span className="text-xs" style={{ color: 'rgba(255,255,255,0.45)', fontFamily: 'Space Grotesk' }}>Online</span>
-              </div>
-
               <a
                 href={waLink}
                 target="_blank"
@@ -160,10 +148,7 @@ export function Navbar() {
                   background: 'linear-gradient(135deg, #fbbf24 0%, #f97316 100%)',
                   color: '#000',
                   fontFamily: 'Space Grotesk, sans-serif',
-                  boxShadow: '0 0 20px rgba(251,191,36,0.25)',
                 }}
-                onMouseEnter={e => (e.currentTarget as HTMLElement).style.boxShadow = '0 0 28px rgba(251,191,36,0.45)'}
-                onMouseLeave={e => (e.currentTarget as HTMLElement).style.boxShadow = '0 0 20px rgba(251,191,36,0.25)'}
               >
                 <MessageCircle className="w-4 h-4" />
                 Order Sekarang
@@ -236,12 +221,6 @@ export function Navbar() {
                   transition={{ delay: 0.22, duration: 0.2 }}
                   className="pt-3 space-y-2"
                 >
-                  {/* Online badge */}
-                  <div className="flex items-center justify-center gap-2 py-2">
-                    <motion.span className="w-1.5 h-1.5 rounded-full bg-green-400"
-                      animate={{ opacity: [1, 0.3, 1] }} transition={{ duration: 1.5, repeat: Infinity }} />
-                    <span className="text-xs" style={{ color: 'rgba(255,255,255,0.35)' }}>Admin sedang online — siap melayani</span>
-                  </div>
                   <a
                     href={waLink}
                     target="_blank"

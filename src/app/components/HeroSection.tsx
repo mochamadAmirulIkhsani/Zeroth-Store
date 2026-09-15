@@ -5,9 +5,10 @@ interface HeroSectionProps {
   heroHeadline: string;
   heroSubheadline: string;
   waLink: string;
+  stats: { ordersCompleted: number; satisfactionRate: number; activeClients: number };
 }
 
-export function HeroSection({ heroHeadline, heroSubheadline, waLink }: HeroSectionProps) {
+export function HeroSection({ heroHeadline, heroSubheadline, waLink, stats }: HeroSectionProps) {
   const words = heroHeadline.split(' ');
   // Split words into 2-3 line chunks for large heading
   const line1 = words.slice(0, 2).join(' ');
@@ -109,9 +110,9 @@ export function HeroSection({ heroHeadline, heroSubheadline, waLink }: HeroSecti
                 className="font-bold text-gray-900"
                 style={{ fontFamily: 'Space Grotesk', fontSize: '2rem', lineHeight: 1 }}
               >
-                5K+
+                {stats.ordersCompleted.toLocaleString('id-ID')}+
               </span>
-              <p className="text-xs text-gray-400 mt-0.5">Klien Puas</p>
+              <p className="text-xs text-gray-500 mt-0.5">Klien Puas</p>
             </div>
             <div
               className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
@@ -122,7 +123,7 @@ export function HeroSection({ heroHeadline, heroSubheadline, waLink }: HeroSecti
           </div>
         </motion.div>
 
-        {/* Two smaller side-by-side cards */}
+        {/* Two smaller side-by-side cards — border-only surface, secondary to flagship */}
         <div className="flex gap-2.5">
           <motion.div
             initial={{ opacity: 0, y: -16, x: 16 }}
@@ -130,18 +131,19 @@ export function HeroSection({ heroHeadline, heroSubheadline, waLink }: HeroSecti
             transition={{ delay: 0.85, duration: 0.5, type: 'spring', stiffness: 120 }}
             className="flex-1 rounded-2xl p-3.5"
             style={{
-              background: 'rgba(255,255,255,0.96)',
-              boxShadow: '0 8px 40px rgba(0,0,0,0.3)',
+              background: 'rgba(255,255,255,0.55)',
+              border: '1px solid rgba(255,255,255,0.4)',
+              boxShadow: 'none',
             }}
           >
-            <p className="text-[10px] font-medium text-gray-500 mb-1.5">Win Rate</p>
+            <p className="text-[10px] font-medium text-gray-700 mb-1.5">Win Rate</p>
             <p
               className="font-bold text-gray-900"
               style={{ fontFamily: 'Space Grotesk', fontSize: '1.3rem', lineHeight: 1 }}
             >
-              98%
+              {stats.satisfactionRate}%
             </p>
-            <p className="text-[10px] text-gray-400 mt-0.5">Jaminan</p>
+            <p className="text-[10px] text-gray-700 mt-0.5">Jaminan</p>
           </motion.div>
 
           <motion.div
@@ -150,11 +152,12 @@ export function HeroSection({ heroHeadline, heroSubheadline, waLink }: HeroSecti
             transition={{ delay: 1, duration: 0.5, type: 'spring', stiffness: 120 }}
             className="flex-1 rounded-2xl p-3.5"
             style={{
-              background: 'rgba(255,255,255,0.96)',
-              boxShadow: '0 8px 40px rgba(0,0,0,0.3)',
+              background: 'rgba(255,255,255,0.55)',
+              border: '1px solid rgba(255,255,255,0.4)',
+              boxShadow: 'none',
             }}
           >
-            <p className="text-[10px] font-medium text-gray-500 mb-1.5">Selesai</p>
+            <p className="text-[10px] font-medium text-gray-700 mb-1.5">Klien Aktif</p>
             <div className="flex gap-0.5 mb-0.5">
               {[1,2,3,4,5].map(s => (
                 <div key={s} className="w-1.5 h-1.5 rounded-full" style={{ background: s <= 4 ? '#fbbf24' : 'rgba(251,191,36,0.25)' }} />
@@ -164,9 +167,9 @@ export function HeroSection({ heroHeadline, heroSubheadline, waLink }: HeroSecti
               className="font-bold text-gray-900"
               style={{ fontFamily: 'Space Grotesk', fontSize: '1.3rem', lineHeight: 1 }}
             >
-              1–7
+              {stats.activeClients.toLocaleString('id-ID')}+
             </p>
-            <p className="text-[10px] text-gray-400 mt-0.5">Hari Kerja</p>
+            <p className="text-[10px] text-gray-700 mt-0.5">Klien</p>
           </motion.div>
         </div>
       </div>
@@ -222,7 +225,7 @@ export function HeroSection({ heroHeadline, heroSubheadline, waLink }: HeroSecti
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.65 }}
           className="mb-8 max-w-sm"
-          style={{ color: 'rgba(255,255,255,0.45)', fontSize: '1rem', lineHeight: 1.6 }}
+          style={{ color: 'rgba(255,255,255,0.5)', fontSize: '1rem', lineHeight: 1.6 }}
         >
           {heroSubheadline}
         </motion.p>
@@ -239,8 +242,8 @@ export function HeroSection({ heroHeadline, heroSubheadline, waLink }: HeroSecti
               <Star key={s} className="w-4 h-4 text-amber-400 fill-amber-400" />
             ))}
           </div>
-          <span className="text-sm" style={{ color: 'rgba(255,255,255,0.45)' }}>
-            Dipercaya <span className="text-white font-semibold" style={{ fontFamily: 'Space Grotesk' }}>5.000+</span> Klien
+          <span className="text-sm" style={{ color: 'rgba(255,255,255,0.5)' }}>
+            Dipercaya <span className="text-white font-semibold" style={{ fontFamily: 'Space Grotesk' }}>{stats.ordersCompleted.toLocaleString('id-ID')}+</span> Klien
           </span>
         </motion.div>
 
@@ -300,33 +303,6 @@ export function HeroSection({ heroHeadline, heroSubheadline, waLink }: HeroSecti
             <path d="M5 12h14M12 5l7 7-7 7"/>
           </svg>
         </a>
-      </motion.div>
-
-      {/* ── Live order notification — floats above CTA ── */}
-      <motion.div
-        className="absolute z-30 flex justify-center"
-        style={{ bottom: '6.5rem', left: 0, right: 0 }}
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 1.5 }}
-      >
-        <div
-          className="flex items-center gap-2 px-3.5 py-2 rounded-full"
-          style={{
-            background: 'rgba(15,15,15,0.85)',
-            border: '1px solid rgba(255,255,255,0.1)',
-            backdropFilter: 'blur(12px)',
-          }}
-        >
-          <motion.div
-            className="w-1.5 h-1.5 rounded-full bg-green-400"
-            animate={{ opacity: [1, 0.3, 1] }}
-            transition={{ duration: 1.3, repeat: Infinity }}
-          />
-          <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.72rem' }}>
-            Order baru masuk · 2 detik yang lalu
-          </span>
-        </div>
       </motion.div>
     </section>
   );

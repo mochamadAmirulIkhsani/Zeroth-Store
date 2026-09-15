@@ -14,8 +14,6 @@ export function FloatingWhatsApp() {
       aria-label="Chat via WhatsApp"
     >
       <div className="relative">
-        {/* Pulse ring */}
-        <div className="absolute inset-0 bg-green-400 rounded-full animate-ping opacity-30 scale-110" />
         <div className="relative w-14 h-14 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center shadow-lg shadow-green-500/30 hover:shadow-green-500/50 transition-all duration-200 hover:scale-110">
           <MessageCircle className="w-6 h-6 text-white" />
         </div>
